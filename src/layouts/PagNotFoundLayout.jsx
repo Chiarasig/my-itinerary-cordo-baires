@@ -9,7 +9,7 @@ export default function PagNotFoundLayout() {
   return (
     <div className='NotFoundLayout'>
         <PagNotFound></PagNotFound>
-        <Link to={"/home"}><CallToAction title="HOME"/></Link>
+        <Link to={"/"}><CallToAction title="HOME"/></Link>
         <BackToTopButton/>
     </div>
   )
