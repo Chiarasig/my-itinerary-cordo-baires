@@ -10,10 +10,10 @@ export default function Home1y2() {
       <div>
         <img className="logo" src={LogoImg} alt="Logo" />
         <div className="callToAc">
-          <Link to={"/cities"}>
+          <Link to={"/hotels"}>
             <CallToAction title="Hotels" />
           </Link>
-          <Link to={"/hotels"}>
+          <Link to={"/cities"}>
             <CallToAction title="Cities" />
           </Link>
         </div>
