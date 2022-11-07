@@ -1,0 +1,46 @@
+[
+  {
+    "id": "admin1",
+    "name": "Chiara",
+    "lastName": "Signori",
+    "age": 19,
+    "email": "chiarasignori37@gmail.com",
+    "password": "chiara19",
+    "code": "cghs25ds",
+    "verified": true,
+    "logged": true
+  },
+  {
+    "id": "admin2",
+    "name": "Matias",
+    "lastName": "Rodriguez",
+    "age": 23,
+    "email": "mati.rodriguezph@gmail.com",
+    "password": "mati23",
+    "code": "45da17q9",
+    "verified": true,
+    "logged": true
+  },
+  {
+    "id": "admin3",
+    "name": "Sabrina",
+    "lastName": "Meritano",
+    "age": 29,
+    "email": "sabrimeritano@gmail.com",
+    "password": "sabri29",
+    "code": "54dss26",
+    "verified": true,
+    "logged": true
+  },
+  {
+    "id": "admin4",
+    "name": "Stefano",
+    "lastName": "Signori",
+    "age": 24,
+    "email": "stefanosignori.98@gmail.com",
+    "password": "stefano24",
+    "code": "26fesj25",
+    "verified": true,
+    "logged": true
+  }
+]
