@@ -1,0 +1,73 @@
+.carrousel {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding: 2rem;
+ 
+}
+.cardImg {
+    height: 80%;
+    padding: 10px;
+    border: none;
+    border-radius: 1.5rem;
+    width: 100%;
+    display: flex;
+    
+}
+.citiesCard {
+  text-align: center;
+  width: 300px;
+  height: 280px;
+  display: flex;
+  flex-wrap: wrap;
+  border: none;
+  flex-direction: column;
+  border-radius: 1.5rem;
+  background: linear-gradient(rgba(5, 7, 12, 0.226), rgba(5, 7, 12, 0.733));
+}
+.containerCitiesCards{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    background-attachment: fixed;
+    background-position: 50% 50%;
+    background-size: contain;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding: 2rem;
+    
+}
+.buttonScrollToTop{
+  position: fixed;
+  bottom: 100px;
+  right: 5%;
+  height: 48px;
+  width: 48px;
+  background-image: url(../../Image/caret-up-circle-solid-48.png);    
+  border-radius: none;
+  background-repeat: no-repeat;   
+  background-size: cover;  
+  border-radius: 19rem;
+}
+.footerTittle{
+  font-weight: bold;
+  list-style: none;
+  color: rgb(231, 231, 231);
+  padding-top: 9px;
+  font-family: Arial, Helvetica, sans-serif
+}
+.footerSubtittle{
+  text-align: center;
+  list-style: none;
+  text-decoration: none;
+  color: #bab3a6;  
+  font-size: larger;
+  padding: 8px;
+  font-family: Arial, Helvetica, sans-serif
+}
+.footerSubtittle:hover{
+  color: #FFC300;
+}
+a{
+  text-decoration: none;
+}

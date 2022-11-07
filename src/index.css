@@ -15,3 +15,13 @@
   display: flex;
   justify-content: space-between;
   }
+  .footerLayout{
+    background: linear-gradient(rgba(5, 7, 12, 0.75),rgba(5, 7, 12, 0.75)),
+    url(https://irp-cdn.multiscreensite.com/cb8b3f67/MOBILE/jpg/1709056-lunasfe-viajes-banner-5-.jpg);
+    background-color: rgba(0, 0, 0, 0.8);
+    min-height: 35vh;
+    background-position: 50% 50%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
