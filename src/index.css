@@ -159,8 +159,10 @@ ul{
   background-position: 50% 50%;
   background-size: contain;
   min-height: 80vh;
+  flex-direction: row;
 }
 .citiesCard{
+  flex-direction: row;
   width: 350px;
   height: 320px;
   display: flex;
