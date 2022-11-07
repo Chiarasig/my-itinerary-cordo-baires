@@ -44,7 +44,7 @@ export default function CardsHotels() {
       data.name.toLowerCase().includes(search.toLowerCase())
     );
   }
-
+console.log(results)
   return (
     <>
     <div className="containerFilters">
