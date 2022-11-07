@@ -14,6 +14,7 @@ import LoginFormLayout from "./layouts/LoginFormLayout";
 import NewCity from "./components/NewCity/NewCity";
 import CardsHotels from "./components/Hotels/CardsHotels";
 import DetailHotel from './components/DetailHotel/DetailHotel'
+import NewHotel from './components/NewHotel/NewHotel'
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
         <Route path='detail/:id' element={<DetailHotel/>}/>
       </Route>
       <Route path="/signIn" element={<LoginFormLayout/>}/>
+      <Route path="/newhotel" element={<NewHotel/>}/>
 
       <Route path="*" element={<PagNotFoundLayout/>}/>
 </Routes>
