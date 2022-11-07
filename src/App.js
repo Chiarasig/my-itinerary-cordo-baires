@@ -13,6 +13,9 @@ import CardsCities from "./components/Cities/CardsCities";
 import LoginFormLayout from "./layouts/LoginFormLayout";
 import NewCity from "./components/NewCity/NewCity";
 import CardsHotels from "./components/Hotels/CardsHotels";
+import DetailCity from "./components/Cities/DetailCity";
+
+
 import DetailHotel from './components/DetailHotel/DetailHotel'
 import NewHotel from './components/NewHotel/NewHotel'
 
@@ -29,6 +32,7 @@ function App() {
       <Route path="/register" element={<RegisterSignUp/>}/>
       <Route path="/cities">
         <Route index element={<CardsCities/>}/>
+        <Route path='detail/:id' element={<DetailCity/>}/>
       </Route>
       <Route path="/newcity" element={<NewCity/>}/>
       <Route path='/hotels'>
