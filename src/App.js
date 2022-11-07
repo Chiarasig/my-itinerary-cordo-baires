@@ -9,6 +9,7 @@ import Home2 from "./layouts/Home2";
 import Home1y2 from "./layouts/Home1y2";
 import PagNotFoundLayout from "./layouts/PagNotFoundLayout";
 import RegisterSignUp from "./layouts/RegisterSignUp";
+import LoginFormLayout from "./layouts/LoginFormLayout";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
       <Route path="/home2" element={<Home2/>}/>
       <Route path="/home1" element={<Home1Layout/>}/>
       <Route path="/register" element={<RegisterSignUp/>}/>
+      <Route path="/signIn" element={<LoginFormLayout/>}/>
 
       <Route path="*" element={<PagNotFoundLayout/>}/>
 </Routes>
