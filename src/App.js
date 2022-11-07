@@ -9,6 +9,7 @@ import Home2 from "./layouts/Home2";
 import Home1y2 from "./layouts/Home1y2";
 import PagNotFoundLayout from "./layouts/PagNotFoundLayout";
 import RegisterSignUp from "./layouts/RegisterSignUp";
+import CardsCities from "./components/Cities/CardsCities";
 
 function App() {
   return (
@@ -21,7 +22,9 @@ function App() {
       <Route path="/home2" element={<Home2/>}/>
       <Route path="/home1" element={<Home1Layout/>}/>
       <Route path="/register" element={<RegisterSignUp/>}/>
-
+      <Route path="/cities">
+        <Route index element={<CardsCities/>}/>
+      </Route>
       <Route path="*" element={<PagNotFoundLayout/>}/>
 </Routes>
 <FooterLayout/>
