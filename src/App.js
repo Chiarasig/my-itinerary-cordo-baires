@@ -11,6 +11,7 @@ import PagNotFoundLayout from "./layouts/PagNotFoundLayout";
 import RegisterSignUp from "./layouts/RegisterSignUp";
 import CardsCities from "./components/Cities/CardsCities";
 import LoginFormLayout from "./layouts/LoginFormLayout";
+import NewCity from "./components/NewCity/NewCity";
 import CardsHotels from "./components/Hotels/CardsHotels";
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
       <Route path="/cities">
         <Route index element={<CardsCities/>}/>
       </Route>
+      <Route path="/newcity" element={<NewCity/>}/>
       <Route path="/hotels">
         <Route index element={<CardsHotels/>}/>
       </Route>
