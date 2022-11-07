@@ -234,6 +234,7 @@ ul{
   background-position: 50% 50%;
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-around;
 }
 /* Pag Not Found */
 .NotFoundLayout{
