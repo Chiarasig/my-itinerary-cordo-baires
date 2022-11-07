@@ -7,6 +7,7 @@ import BackToTopButton from './components/Home2/BackToTopButton'
 import FooterLayout from './layouts/FooterLayout'
 import Home2 from "./layouts/Home2";
 import Home1y2 from "./layouts/Home1y2";
+import PagNotFoundLayout from "./layouts/PagNotFoundLayout";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <Route path="/home2" element={<Home2/>}/>
       <Route path="/home1" element={<Home1Layout/>}/>
 
+      <Route path="*" element={<PagNotFoundLayout/>}/>
 </Routes>
 <FooterLayout/>
 </>

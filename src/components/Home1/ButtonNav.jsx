@@ -18,7 +18,7 @@ export default function ButtonNav(props) {
         <>
         {/* Ejemplo para linkear los componentes de la NavBar */}
         {/* Usar "onMouseEnter" para que se muestre el menu al pasar el mouse por encima del boton */}
-          <p  className="tittleNavbar" onMouseEnter={hide}><Link to={"/home"}>{titulo}</Link></p>
+          <p  className="tittleNavbar" onMouseEnter={hide}><Link to={"/"}>{titulo}</Link></p>
           <ul>
             <li className="dropdawn">
               <Link to={"/cities"}>{texto1}</Link>
