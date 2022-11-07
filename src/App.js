@@ -13,6 +13,7 @@ import CardsCities from "./components/Cities/CardsCities";
 import LoginFormLayout from "./layouts/LoginFormLayout";
 import NewCity from "./components/NewCity/NewCity";
 import CardsHotels from "./components/Hotels/CardsHotels";
+import DetailHotel from './components/DetailHotel/DetailHotel'
 
 function App() {
   return (
@@ -29,8 +30,9 @@ function App() {
         <Route index element={<CardsCities/>}/>
       </Route>
       <Route path="/newcity" element={<NewCity/>}/>
-      <Route path="/hotels">
+      <Route path='/hotels'>
         <Route index element={<CardsHotels/>}/>
+        <Route path='detail/:id' element={<DetailHotel/>}/>
       </Route>
       <Route path="/signIn" element={<LoginFormLayout/>}/>
 
