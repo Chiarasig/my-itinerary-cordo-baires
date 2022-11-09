@@ -5,12 +5,12 @@ import "../index.css"
 
 export default function RegisterSignUp() {
   return (
-    <div className='flex column center Form_Font_Family'>
-        <div className='flex'>
+    <div className='registerLayout'>
+        <div className='tittleImgLogin'>
             <img src={RegisterImg} alt="Register image" />
             <h1 className='SignUpH1'>Sign Up</h1>
         </div>
-        <div className='flex column center borderForm'>
+        <div className='formLogin'>
             <RegisterForm/>
         </div>
     </div>

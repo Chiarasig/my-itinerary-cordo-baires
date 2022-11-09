@@ -55,7 +55,6 @@ console.log(results)
           value={search}
           onChange={searcher}
         />
-        <label id="filterSelect"/>
         <select
           id="filterSelect"
           type="select"
@@ -69,12 +68,12 @@ console.log(results)
           <option value="descendente">Descendente</option>
         </select>
       </div>
-      <div className="flex wrap g-2 p-2 containerCitiesCards">
+      <div className="containerHotelsCards">
         {results.map((hotels) => (
-          <div key={hotels.id} className="citiesCard text-center">
-            <img className="cardImg" src={hotels.photo} alt={hotels.name} />
+          <div key={hotels.id} className="hotelCard">
+            <img className="cardImgHotel" src={hotels.photo} alt={hotels.name} />
             <h3 className="subtittleCard">{hotels.name}</h3>
-            <Link to={`/hotels/detail/${hotels.id}`}><p>view more</p>
+            <Link to={`/hotels/detail/${hotels.id}`} className="viewMoreSubttitle"><p>view more</p>
             </Link>
           </div>
         ))}

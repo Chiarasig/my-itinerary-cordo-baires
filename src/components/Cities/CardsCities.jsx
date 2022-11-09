@@ -56,35 +56,35 @@ export default function CardsCities() {
   let checkboxes = [...checkbox]
 
   return (
-    <div className="flex wrap g-2 p-2 containerCitiesCards">
-      <div className="flex wrap">
-      <label>
+    <>
+      <div className="containerFiltersCities">
         <input
-          className="search"
+          className="searchCities"
           type="text"
           placeholder="Search"
           value={search}
           onChange={searcher}
         />
-      </label>
       {checkboxes.map((checkbox, index) => (
-        <label key={index}>
-          <input onChange={handleChange} type="checkbox" name="letter" value={checkbox} />{checkbox}
+        <label key={index} className="checkboxCities">
+          <input onChange={handleChange} className="checkboxCities" type="checkbox" name="letter" value={checkbox} />{checkbox}
         </label>
       ))}
       </div>
+      <div className="containerCitiessCards">
       {result.length !== 0 ?
         result.map((cities) => (
           <div key={cities.id} className="citiesCard text-center flex">
             <img className="cardImg" src={cities.photo} alt={cities.name} />
             <h3 className="subtittleCard">{cities.name}</h3>
-            <Link to={`/cities/detail/${cities.id}`}><p>view more</p>
+            <Link to={`/cities/detail/${cities.id}`} className="viewMoreSubttitle"><p>view more</p>
             </Link>
           </div>
         ))
         : (
           <h1>No se encontraron coincidencias</h1>
         )}
-    </div>
+        </div>
+    </>
   );
 }

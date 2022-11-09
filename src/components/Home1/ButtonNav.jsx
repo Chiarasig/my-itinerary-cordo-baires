@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import './Home1.css'
+import '../../index.css'
 
 export default function ButtonNav(props) {
   let { texto1, texto2, titulo } = props;

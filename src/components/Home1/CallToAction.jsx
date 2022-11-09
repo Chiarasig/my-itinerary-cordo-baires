@@ -1,5 +1,5 @@
 import React from 'react'
-import './Home1.css'
+import '../../index.css'
 
 export default function CallToAction(props) {
   let {title} = props

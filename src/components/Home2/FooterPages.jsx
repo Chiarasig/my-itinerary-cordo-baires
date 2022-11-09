@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import './Home2.css'
+import '../../index.css'
 
 export default function FooterPages() {
   return (

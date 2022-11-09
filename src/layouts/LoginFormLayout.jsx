@@ -4,12 +4,12 @@ import LoginImg from "../Image/signinimg.png";
 
 export default function LoginFormLayout() {
   return (
-    <div className="flex column center Form_Font_Family">
-      <div className="flex">
+    <div className="loginLayout">
+      <div className="tittleImgLogin">
         <img src={LoginImg} alt="RegisterImg" />
         <h1 className="SignUpH1">Sign In</h1>
       </div>
-      <div className="flex column center borderForm">
+      <div className="formLogin">
         <LoginForm />
       </div>
     </div>

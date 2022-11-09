@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import HotelShows from "./HotelShows";
-import '../../index.css'
+import "../../index.css";
 
 export default function DetailHotel() {
   const { id } = useParams();
@@ -16,18 +16,24 @@ export default function DetailHotel() {
       });
   }, [id]);
   return (
-    <div>
-      <div className="flex column">
+    <div className="containerDetailHotel">
+      <div className="containerTittleDetailHotel">
         <h1 className="tittleDetail">Panel de Hoteles</h1>
-        </div>
-      <div key={hotel.id} className="citiesCard text-center">
-        <img className="cardImg" src={hotel.photo} alt={hotel.name} />
-        <h3 className="subtittleCard">{hotel.name}</h3>
-        <h3 className="subtittleCard">{hotel.price}</h3>
       </div>
-      <div>
-      <h1 className="tittleDetail">Panel de shows</h1>
-        <HotelShows idHotel={hotel.id} />
+      <div key={hotel.id} className="containerCardDetailHotel">
+        <img className="cardDetailImg" src={hotel.photo} alt={hotel.name} />
+        <div className="subttitleDetails">
+          <h3 className="subtittleCardDetail">Name: {hotel.name}</h3>
+          <h3 className="subtittleCardDetail">Capacity: {hotel.capacity}</h3>
+        </div>
+      </div>
+      <div className="containerShowTittleHotel">
+        <div className="containerTittleDetailHotel">
+          <h1 className="tittleDetail">Panel de shows</h1>
+        </div>
+        <div className="containerCardShowsHotel">
+          <HotelShows idHotel={hotel.id} />
+        </div>
       </div>
     </div>
   );

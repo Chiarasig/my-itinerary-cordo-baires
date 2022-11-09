@@ -4,7 +4,7 @@ import Flechita from '../components/Home2/Flechita'
 
 export default function Home2() {
   return (
-    <div>
+    <div  className="home2"> 
         <Carrousel/>
         <Flechita/>
     </div>

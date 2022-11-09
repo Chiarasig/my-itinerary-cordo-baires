@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "../../index.css";
 
-
 export default function HotelShows(props) {
   const { idHotel } = props;
   const [shows, setShows] = React.useState([]);
@@ -24,30 +23,31 @@ export default function HotelShows(props) {
     <div className="cardsShows">
       {shows.length !== 0
         ? shows.map((show) => (
-            <div key={show.id} className="citiesCard text-center">
-              <img className="cardImg" src={show.photo} alt={show.name} />
-              <h3 className="subtittleCard">Event: {show.name}</h3>
-              <h3 className="subtittleCard">Price: {show.price}</h3>
-              <h3 className="subtittleCard">Description: {show.description}</h3>
+            <div className="containerShowDetails">
+                <img className="cardImgShow" src={show.photo} alt={show.name} />
+              <div className="containerShowDetailsDescription"> 
+                <h3 className="subtittleCardDetail">Event: {show.name}</h3>
+                <h3 className="subtittleCardDetail">Price: {show.price}</h3>
+                <h3 className="subtittleCardDetail">
+                  Description: {show.description}
+                </h3>
+                <h3 className="subtittleCardDetail">Date: {show.date}</h3>
+              </div>
             </div>
           ))
         : null}
-        <div>
-          {mostrarOcultar ? 
-          (<>
-            
+      <div className="containerComent">
+        {mostrarOcultar ? (
+          <>
             <p onClick={hide}>COMENTARIOS</p>
-            <input type="text" placeholder="Tus comentarios" />
-            </>
-          ) : 
-          (
-            <>
-            <p onClick={hide}>CAJON DE COMENTARIOS</p>
-            </>
-          ) 
-
-          }
-        </div>
+            <input type="text" placeholder="Your comment" />
+          </>
+        ) : (
+          <>
+            <p onClick={hide}>COMMENT BOX</p>
+          </>
+        )}
+      </div>
     </div>
   );
 }
