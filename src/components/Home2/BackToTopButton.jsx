@@ -1,6 +1,6 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import './Home2.css'
+import '../../index.css'
 
 export default function BackToTop() {
   const [backToTopButton, setBackToTopButton] = useState(false);

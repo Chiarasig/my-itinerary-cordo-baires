@@ -1,7 +1,8 @@
 import React from 'react'
 import ButtonNav from './ButtonNav'
 import ButtonNavSig from './ButtonNavSig'
-import './Home1.css'
+import '../../index.css'
+import ButtonNavNew from './ButtonNavNew'
 
 
 export default function NavBar() {
@@ -9,6 +10,7 @@ export default function NavBar() {
     <>
     <div className='NavBar'>
     <ButtonNav className="navBarH" titulo="Home" texto1="Cities" texto2="Hotels" />
+    <ButtonNavNew className="navBarMiddle" titulo="New" texto1="New City" texto2="New Hotel"/>
     <ButtonNavSig className="navBarR" titulo="Register" texto1="Sign In" texto2="Sign Up" />
     </div>
     </>

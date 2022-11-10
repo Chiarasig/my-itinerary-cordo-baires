@@ -6,10 +6,10 @@ import LogoImg from '../Image/LogoTimeToTravel.png'
 
 export default function Home1y2() {
   return (
-    <div className="logoCall">
+    <div className="mainHome">
       <div>
-        <img className="logo" src={LogoImg} alt="Logo" />
-        <div className="callToAc">
+        <div className="containerCallToAc">
+       {/*  <img className="logo" src="https://www.infoturchubut.ar/wp-content/uploads/2020/03/agencia-de-viajes.jpg" alt="Logo" /> */}
           <Link to={"/hotels"}>
             <CallToAction title="Hotels" />
           </Link>
@@ -18,7 +18,7 @@ export default function Home1y2() {
           </Link>
         </div>
       </div>
-      <div>
+      <div className="carousselHome">
         <Carrousel />
       </div>
     </div>

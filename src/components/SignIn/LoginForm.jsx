@@ -1,6 +1,6 @@
 // Login Form and save information to local storage for future use in the app 
 import React, { useState } from 'react';
-import './LoginForm.css'
+import '../../index.css'
 
 
 function LoginForm(){
@@ -17,23 +17,21 @@ function LoginForm(){
   };
   return (
     <>
-    <form className="nuevoFormulario">
-      <div className="nuevoFormulario">
-        <label>Email
-        <input
+    <form className="nuevoFormularioLogin">
+      <div className='formInputLabel'>
+        <label className='labelLogin'>Email
+        <input className='inputLogin'
           type="email"
           autoComplete='current-email'
           placeholder="Email"
-          className='form__input'
           onChange={(e) => setEmail(e.target.value)}
         />
         </label>
-        <label>Password
-        <input
+        <label className='labelLogin'>Password
+        <input className='inputLogin'
           type="password"
           autoComplete='on'
           placeholder="Password"
-          className='form__input'
           onChange={(e) => setPassword(e.target.value)}
         />
         </label>

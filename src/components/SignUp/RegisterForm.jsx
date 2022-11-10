@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import "./RegisterForm.css";
+import '../../index.css'
 
 export default function RegisterForm() {
   const [firstName, setFirstName] = useState("");
@@ -25,55 +25,55 @@ export default function RegisterForm() {
   };
   return (
     <>
-      <form className="nuevoFormulario">
-        <div className="nuevoFormulario">
-          <label>
+      <form className="nuevoFormularioLogin">
+        <div className="formInputLabelRegister">
+          <label className='labelLogin'>
             First Name
             <input
               type="text"
               autoComplete="on"
               placeholder="First Name"
-              className="form__input"
+              className='inputLogin'
               onChange={(e) => setFirstName(e.target.value)}
             />
           </label>
-          <label>
+          <label className='labelLogin'>
             Last Name
             <input
               type="text"
               autoComplete="on"
               placeholder="Last Name"
-              className="form__input"
+              className='inputLogin'
               onChange={(e) => setLastName(e.target.value)}
             />
           </label>
-          <label>
+          <label className='labelLogin'>
             Email
             <input
               type="mail"
               autoComplete="current-email"
               placeholder="mail"
-              className="form__input"
+              className='inputLogin'
               onChange={(e) => setEmail(e.target.value)}
             />
           </label>
-          <label>
+          <label className='labelLogin'>
             Password
             <input
               type="password"
               autoComplete="on"
               placeholder="Password"
-              className="form__input"
+              className='inputLogin'
               onChange={(e) => setPassword(e.target.value)}
             />
           </label>
-          <label>
+          <label className='labelLogin'>
             Confirm Password
             <input
               type="password"
               autoComplete="on"
               placeholder="Confirm Password"
-              className="form__input"
+              className='inputLogin'
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
           </label>

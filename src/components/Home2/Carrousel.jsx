@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import "../../index.css";
 import Flechita from "./Flechita";
-import './Home2.css'
+import '../../index.css'
 
 export default function Carrousel(props) {
 
@@ -62,17 +62,17 @@ export default function Carrousel(props) {
   };
 
   return (
-    <div className="containerCitiesCards">
+    <div className="containerCaroussel">
       <Flechita verbo="🢀" onClick={prev} />
       {carouselTemp.length !== 0
         ? carouselTemp.map((carrousel) => (
-            <div key={carrousel.id} className="citiesCard text-center">
+            <div key={carrousel.id} className="carousselCard">
               <img
-                className="cardImg"
+                className="carousselImg"
                 src={carrousel.photo}
                 alt={carrousel.name}
               />
-              <h3 className="subtittleCard">{carrousel.name}</h3>
+              <h3 className="carousselSubtittle">{carrousel.name}</h3>
             </div>
           ))
         : null}

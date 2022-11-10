@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
-import './Home1.css'
+import '../../index.css'
 
 export default function AutoToTop() {
   let {pathname} = useLocation()

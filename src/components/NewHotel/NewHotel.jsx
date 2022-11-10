@@ -18,33 +18,43 @@ export default function NewHotel() {
   }
     return (
     <>
-     <form className="nuevoFormulario">
-        <label>Id: 
-        <input
+     <form className="nuevoFormularioLogin">
+      <div className='formInputLabelRegister'>
+        <label className='labelLogin'>Id: 
+        <input className='inputHotelNew'
           type="text" autoComplete="on" placeholder="Ej: Id: city13 (el numero tiene que ser mayor a 12)"
           onChange={(e) => setId(e.target.value)}
         />
         </label>
-        <label>Name
-        <input
+        <label className='labelLogin'>Name
+        <input className='inputHotelNew'
           type="text" autoComplete="on" placeholder="Name"
           onChange={(e) => setName(e.target.value)}
         />
         </label>
-        <label>Capacity
-        <input
+        <label className='labelLogin'>Capacity
+        <input className='inputHotelNew'
           type="text" autoComplete="on" placeholder="Capacity"
           onChange={(e) => setCapacity(e.target.value)}
         />
         </label>
-        <label>Photo: son necesarias 3 URL
-        <input
+        <label className='labelLogin'>Photo: URL
+        <input className='inputHotelNew'
+          type="text" autoComplete="on" placeholder="Photo"
+          onChange={(e) => setPhoto(e.target.value)}
+        />
+        <input className='inputHotelNew'
+          type="text" autoComplete="on" placeholder="Photo"
+          onChange={(e) => setPhoto(e.target.value)}
+        />
+        <input className='inputHotelNew'
           type="text" autoComplete="on" placeholder="Photo"
           onChange={(e) => setPhoto(e.target.value)}
         />
         </label>
         <div className="contenedorByP">
           <button className="buttonNuevoFormulario" onClick={submit}>Register hotel</button>
+        </div>
         </div>
      </form>
     </>
