@@ -22,18 +22,21 @@ export default function Activiti (props) {
     console.log(activities);
 
      return (
-        <div>
+        <div className="cardsShows">
             {activities.length !== 0
         ? activities.map((activity) => (
-            <div key={activity.id} className="citiesCard text-center">
+            <div key={activity.id} className="containerActivityDetails">
               <img
-                className="cardImg"
+                className="cardImgShow"
                 src={activity.photo}
                 alt={activity.name}
               />
-              <h5 className="subtittleCard">{activity.name}</h5>
-              <h5 className="subtittleCard">Price:${activity.price}</h5>
-              <h5 className="subtittleCard">Duration:{activity.duration}HS</h5>
+              <div className="containerShowDetailsDescription">
+              <h3 className="subtittleCardDetail">{activity.name}</h3>
+              <h3 className="subtittleCardDetail">Description: {activity.description}</h3>
+              <h3 className="subtittleCardDetail">Price: ${activity.price}</h3>
+              <h3 className="subtittleCardDetail">Duration: {activity.duration}HS</h3>
+              </div>
             </div>
           ))
         : null}
@@ -41,13 +44,13 @@ export default function Activiti (props) {
           {mostrarOcultar ? 
           (<>
             
-            <p onClick={hide}>COMENTARIOS</p>
-            <input type="text" placeholder="Tus comentarios" />
+            <p onClick={hide}>COMMENT</p>
+            <input type="text" placeholder="Your comment" />
             </>
           ) : 
           (
             <>
-            <p onClick={hide}>CAJON DE COMENTARIOS</p>
+            <p onClick={hide}>COMMENT BOX</p>
             </>
           ) 
 

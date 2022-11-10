@@ -15,16 +15,25 @@ export default function DetailCity() {
       });
   }, [id]);
   return (
-    <div className="flex wrap">
-       <h1 className="tittleDetail text-center">City panel</h1> 
-      <div key={city.id} className="citiesCard text-center">
-        <img className="cardImg" src={city.photo} alt={city.name} />
-        <h3 className="subtittleCard">{city.name}</h3>
-        <h3 className="subtittleCard">{city.price}</h3>
+    <div className="containerDetailHotel">
+      <div className="containerTittleDetailHotel">
+       <h1 className="tittleDetail">City panel</h1> 
+       </div>
+      <div key={city.id} className="containerCardDetailHotel">
+        <img className="cardDetailImg" src={city.photo} alt={city.name} />
+        <div className="subttitleDetails">
+        <h3 className="subtittleCardDetail">{city.name}</h3>
+        <h3 className="subtittleCardDetail">Continent: {city.continent}</h3>
+        <h3 className="subtittleCardDetail">Population: {city.population}</h3>
+        </div>
       </div>
-      <div className="flex wrap">
+      <div className="containerShowTittleHotel">
+        <div className="containerTittleDetailHotel">
         <h1 className="tittleDetail">Activities panel</h1>
+        </div>
+        <div className="containerCardShowsHotel">
         <Activiti idCity={city.id} />
+        </div>
       </div>
     </div>
   );

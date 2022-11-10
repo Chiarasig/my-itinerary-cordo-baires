@@ -39,7 +39,7 @@ export default function HotelShows(props) {
       <div className="containerComent">
         {mostrarOcultar ? (
           <>
-            <p onClick={hide}>COMENTARIOS</p>
+            <p onClick={hide}>COMMENT</p>
             <input type="text" placeholder="Your comment" />
           </>
         ) : (

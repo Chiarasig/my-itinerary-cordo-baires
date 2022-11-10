@@ -131,6 +131,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
+  background: url(https://previews.123rf.com/images/bigjom/bigjom1605/bigjom160500009/58628966-piedras-del-mar-de-fondo-la-decoraci%C3%B3n-del-paseo-jard%C3%ADn.jpg);
 }
 .containerCardDetailHotel{
   display: flex;
@@ -139,6 +140,7 @@ a {
 }
 .containerShowDetails{
   display: flex;
+  background: linear-gradient(rgba(5, 7, 12, 0.308), rgba(5, 7, 12, 0.486));
   width: 48%;
   align-items: center;
   justify-content: center;
@@ -146,6 +148,19 @@ a {
   text-align: center;
   padding: 2px;
   height: 450px;
+  box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.2);
+}
+.containerActivityDetails{
+  display: flex;
+  background: linear-gradient(rgba(5, 7, 12, 0.308), rgba(5, 7, 12, 0.486));
+  width: 45%;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 2px;
+  height: 600px;
+  box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.2);
 }
 .containerShowDetailsImage{
   background-color: #000;
@@ -167,6 +182,7 @@ a {
   padding-right: 10px;
   padding-top: 5px;
   font-family: Arial, Helvetica, sans-serif;
+  color: rgba(255, 255, 255, 0.911);
 }
 .cardImgShow{
   width: 100%;
@@ -504,15 +520,17 @@ ul {
   color: white;
   flex-wrap: wrap;
   padding-top: 0.8rem;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
 }
 .containerFiltersCities {
   background: linear-gradient(rgba(5, 7, 12, 0.466), rgba(5, 7, 12, 0.486)),
     url(https://i.pinimg.com/550x/9c/24/99/9c249956ae4623c8fa7a7b49fb9f8f9e.jpg);
   background-position: 50% 35%;
   display: flex;
-
   flex-wrap: wrap;
   justify-content: center;
+  justify-content: space-around;
 }
 .containerCitiessCards {
   display: flex;
