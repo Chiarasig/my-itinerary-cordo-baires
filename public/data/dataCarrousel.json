@@ -1,0 +1,122 @@
+[
+ {
+    "photo": "https://cdn.travelsafe-abroad.com/wp-content/uploads/f2e4cf07538afb05aa5894cc2b8c9567-700.jpg", 
+    "name": "Monterrey", 
+    "id": "city1"
+},
+{
+    "photo": "https://airlines-airports.com/wp-content/uploads/2016/09/Mexico-Veracruz.jpg", 
+    "name": "Veracruz", 
+    "id": "city2"
+},
+{
+    "photo": "https://arc-anglerfish-arc2-prod-infobae.s3.amazonaws.com/public/EWRWZLV7FZEM7C24TIEPFBJCP4.jpg", 
+    "name": "Buenos Aires", 
+    "id": "city3"
+},
+{
+    "photo": "https://px.cdn.lanueva.com/012017/1511593866240.webp?cw=1121&ch=633&extw=jpg", 
+    "name": "Cordoba", 
+    "id": "city4"
+},
+{
+    "photo": "https://imgcy.trivago.com/c_fill,d_dummy.jpeg,e_sh…q_auto,w_1200/categoryimages/14/66/14667_v10.jpeg", 
+    "name": "Las Vegas", 
+    "id": "city5"
+},
+{
+    "photo": "https://cloudfront-us-east-1.images.arcpublishing.com/infobae/MYTNL4OIFBCJNCE5PTOC464XNI.jpg", 
+    "name": "Miami", 
+    "id": "city6"
+},
+{
+    "photo": "https://www.fotonostra.com/albums/america/fotos/rio.jpg", 
+    "name": "Rio de Janeiro", 
+    "id": "city7"
+},
+{
+    "photo": "https://www.tangol.com/Fotos/Tours/city-tour-con-puesta-de-sol_2610202011181027221.Mobile.JPG", 
+    "name": "Natal", 
+    "id": "city8"
+},
+{
+    "photo": "https://icoplastperu2022.org/wp-content/uploads/revslider/Test-Slider/BG_381278428-min.jpg", 
+    "name": "Lima", 
+    "id": "city9"
+},
+{
+    "photo": "https://planetofhotels.com/guide/sites/default/fil…_lb_image__1880bp/public/live_banner/Arequipa.jpg", 
+    "name": "Arequipa", 
+    "id": "city10"
+}, 
+{
+    "photo": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1a/cb/6f/24/caption.jpg?w=600&h=400&s=1", 
+    "name": "Bogota", 
+    "id": "city11"
+},
+{
+    "photo": "https://cdn.getyourguide.com/img/location/5cced3e295e02.jpeg/99.jpg", 
+    "name": "Medellin", 
+    "id": "city12"
+},
+{
+    "id": "ho1",
+    "name" : "Safi Royal Luxury Metropolitan",
+    "photo": "https://images.trvl-media.com/hotels/72000000/71430000/71421600/71421536/b0b2aae2.jpg?impolicy=fcrop&w=670&h=385&p=1&q=medium"
+},
+{
+    "id": "ho2",
+    "name": "Grand Fiesta Americana Veracruz",
+    "photo": "https://media.hrs.com/media/image/8c/1a/55/GRAND_FIESTA_AMERICANA_VERACRUZ-Veracruz-Aussenansicht-7-74472_1280x1280.jpg"
+},
+{
+    "id": "ho3",
+    "name": "Palermo Soho Square",
+    "photo" : "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1b/3f/94/88/palermo-soho-square.jpg?w=700&h=-1&s=1"
+},
+{
+    "id": "ho4",
+    "name": "Hotel de la Cañada",
+    "photo": "https://i2.wp.com/hoteldelacaniada.com/wp-content/uploads/2013/06/GUS_1285.jpg?w=298&h=448"
+},
+{
+    "id": "ho5",
+    "name": "Polo Towers",
+    "photo": "https://cf.bstatic.com/xdata/images/hotel/max1024x768/302715553.jpg?k=045a4c479caef6c88e17c6f714224c8836010a9c94606d88f4c61e6cfdd5a840&o=&hp=1"
+},
+{
+    "id": "ho6",
+    "name": "Tradewinds Apartment Hotel Miami Beach",
+    "photo": "https://cf.bstatic.com/xdata/images/hotel/max1024x768/157824151.jpg?k=6f9aded03522a286272cbf94c6f432097efb84990f1eafe5c67d9793eac63b37&o=&hp=1"
+},
+{
+    "id": "ho7",
+    "name": "Hotel Pouso Real",
+    "photo": "https://ak-d.tripcdn.com/images/0222r120009lvz36m88D8_Z_1100_824_R5_Q70_D.jpg"
+},
+{
+    "id": "ho8",
+    "name": "Praiamar Express Hotel",
+    "photo": "https://media-cdn.tripadvisor.com/media/photo-s/23/5c/14/b1/fachada-do-praiamar-express.jpg"
+},
+{
+    "id": "ho9",
+    "name": "Costa Del Sol by Wyndham",
+    "photo": "https://cf.bstatic.com/xdata/images/hotel/max500/74256346.jpg?k=c873018e32f293bd724b2dec9b83285b48f7d698f369a752fedc0bd74373958e&o=&hp=1"
+},
+{
+    "id": "ho10",
+    "name": "Hampton by Hilton Arequipa",
+    "photo": "https://images.trvl-media.com/hotels/64000000/63660000/63650300/63650278/05821185.jpg?impolicy=resizecrop&rw=670&ra=fit"
+},
+{
+    "id": "ho11",
+    "name": "Hotel Dann Carlton Bogota",
+    "photo":  "https://hotelesdann.com/dann-carlton-bogota/wp-content/uploads/sites/3/2020/08/fachada-hotel-dann-carlton-bogot-colombia_36954894293_o.jpg"
+},
+{
+    "id": "ho12",
+    "name": "Mini Apartments Beminimal",
+    "photo": "https://cf.bstatic.com/images/hotel/840x460/399/399933188.jpg"
+}
+]
