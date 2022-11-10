@@ -68,7 +68,7 @@ console.log(results)
           <option value="descendente">Descendente</option>
         </select>
       </div>
-      <div className="containerHotelsCards">
+      <div className="containerHotelsCards Font_Arial">
         {results.map((hotels) => (
           <div key={hotels.id} className="hotelCard">
             <img className="cardImgHotel" src={hotels.photo} alt={hotels.name} />

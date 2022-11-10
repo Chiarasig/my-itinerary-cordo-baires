@@ -54,6 +54,25 @@ a:hover {
   align-items: center;
   margin-top: 10px;
 }
+
+.Font_Arial{
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.h1Time_Title{
+  color: white;
+  font-size: 2rem;
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 10px;
+  font-size: 50px;
+  -webkit-text-stroke: 2px #624410;
+}
+
 /* Home 1 */
 
 /* Home 2 */
@@ -62,9 +81,9 @@ a:hover {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  padding-top: 20rem;
+  /* padding-top: 2rem; */
   gap: 1rem;
-  padding-bottom: 2rem;
+  /* padding-bottom: 2rem; */
 }
 .carousselCard {
   background-color: white;
@@ -1482,21 +1501,26 @@ ul {
 }
 
 /* Home */
-.containerCallToAc {
-  background: url(https://www.infoturchubut.ar/wp-content/uploads/2020/03/agencia-de-viajes.jpg);
-  background-size: contain;
-  background-repeat: no-repeat;
-  width: 500px;
-  height: 300px;
-  display: flex;
-  flex-wrap: wrap;
-}
+  .containerCallToAc {
+    /* background: url(https://www.infoturchubut.ar/wp-content/uploads/2020/03/agencia-de-viajes.jpg); */
+    /* background-size: contain;
+    background-repeat: no-repeat; */
+    width: 100%;
+    height: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-end;
+    
+  }
+
+
 .mainHome {
   background-image: linear-gradient(rgba(5, 7, 12, 0.39), rgba(5, 7, 12, 0.096)),
     url(./Image/LogoTimeToTravel.png);
   background-repeat: no-repeat;
   background-position: 50% 50%;
-  min-height: 135vh;
+  min-height: 100vh;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

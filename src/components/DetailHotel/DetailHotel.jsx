@@ -16,7 +16,7 @@ export default function DetailHotel() {
       });
   }, [id]);
   return (
-    <div className="containerDetailHotel">
+    <div className="containerDetailHotel Font_Arial">
       <div className="containerTittleDetailHotel">
         <h1 className="tittleDetail">Hotels panel</h1>
       </div>
