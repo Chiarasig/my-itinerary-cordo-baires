@@ -55,6 +55,10 @@ a:hover {
   margin-top: 10px;
 }
 
+.Font_Arial{
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 .h1Time_Title{
   color: white;
   font-size: 2rem;

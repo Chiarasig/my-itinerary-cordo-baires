@@ -71,13 +71,13 @@ export default function CardsCities() {
         </label>
       ))}
       </div>
-      <div className="containerCitiessCards">
+      <div className="containerCitiessCards Font_Arial">
       {result.length !== 0 ?
         result.map((cities) => (
           <div key={cities.id} className="citiesCard text-center flex">
             <img className="cardImg" src={cities.photo} alt={cities.name} />
             <h3 className="subtittleCard">{cities.name}</h3>
-            <Link to={`/cities/detail/${cities.id}`} className="viewMoreSubttitle"><p>view more</p>
+            <Link to={`/cities/detail/${cities.id}`} className="viewMoreSubttitle Font_Arial"><p>view more</p>
             </Link>
           </div>
         ))
