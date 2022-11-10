@@ -18,7 +18,7 @@ export default function DetailHotel() {
   return (
     <div className="containerDetailHotel">
       <div className="containerTittleDetailHotel">
-        <h1 className="tittleDetail">Panel de Hoteles</h1>
+        <h1 className="tittleDetail">Hotels panel</h1>
       </div>
       <div key={hotel.id} className="containerCardDetailHotel">
         <img className="cardDetailImg" src={hotel.photo} alt={hotel.name} />
@@ -29,7 +29,7 @@ export default function DetailHotel() {
       </div>
       <div className="containerShowTittleHotel">
         <div className="containerTittleDetailHotel">
-          <h1 className="tittleDetail">Panel de shows</h1>
+          <h1 className="tittleDetail">Shows panel</h1>
         </div>
         <div className="containerCardShowsHotel">
           <HotelShows idHotel={hotel.id} />
