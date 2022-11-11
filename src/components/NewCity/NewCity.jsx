@@ -1,31 +1,44 @@
 import React from "react";
 import { useState } from "react";
 import '../../index.css';
+import axios from 'axios';
+import { useEffect } from "react";
+import {BASE_URL} from '../../api/url'
 
 export default function NewCity() {
-    const [id, setId] = useState("");
+
+
+//  useEffect(() => {
+//   axios.post(`${BASE_URL}/`)
+//   }, [])
+
+    const [userId, setuserId] = useState("");
     const [name, setName] = useState ("");
     const [photo, setPhoto] = useState ("");
     const [continent, setContinent] = useState ("");
     const [population, setPopulation] = useState("");
     
     
-    const submit = () => {
-      if (id === "" || name === "" || photo === "" || continent === "" || population === ""){
+    const submit = (e) => {
+        e.preventDefault();
+      if (userId === "" || name === "" || photo === "" || continent === "" || population === ""){
         alert("Please fill in all fields")
       } else {
-        let city = {id, name, photo, continent, population}
-        localStorage.setItem("ciudad", JSON.stringify(city))
+        let city = {userId, name, photo, continent, population}
+        axios.post(`${BASE_URL}/city`, city)
+        .then(res => {
+          console.log(res)
+        })
       }
     }
       return (
       <>
        <form className="nuevoFormularioLogin">
         <div className='formInputLabelRegister'>
-          <label className='labelLogin'>Id: 
+          <label className='labelLogin'>userId: 
           <input className='inputHotelNew'
             type="text" autoComplete="on" placeholder="Ej: Id: city13 (el numero tiene que ser mayor a 12)"
-            onChange={(e) => setId(e.target.value)}
+            onChange={(e) => setuserId(e.target.value)}
           />
           </label>
           <label className='labelLogin'>Name
