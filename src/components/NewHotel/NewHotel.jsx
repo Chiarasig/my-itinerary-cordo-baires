@@ -1,29 +1,35 @@
 import React from "react";
 import { useState } from "react";
 import '../../index.css';
+import axios from 'axios';
+import {BASE_URL} from '../../api/url'
 
 export default function NewHotel() {
-  const [id, setId] = useState("");
+  const [userId, setUserId] = useState("");
   const [name, setName] = useState ("");
   const [photo, setPhoto] = useState ("");
   const [capacity, setCapacity] = useState ("");
   
-  const submit = () => {
-    if (id === "" || name === "" || photo === "" || capacity === ""){
+  const submit = (e) => {
+     e.preventDefault();
+    if (userId === "" || name === "" || photo === "" || capacity === ""){
       alert("Please fill in all fields")
     } else {
-      let hotel = {id, name, photo, capacity}
-      localStorage.setItem("hotel", JSON.stringify(hotel))
+      let hotel = {userId, name, photo, capacity}
+      axios.post(`${BASE_URL}/hotel`, hotel)
+        .then(res => {
+          console.log(res)
+        })
     }
   }
     return (
     <>
      <form className="nuevoFormularioLogin">
       <div className='formInputLabelRegister'>
-        <label className='labelLogin'>Id: 
+        <label className='labelLogin'>User Id: 
         <input className='inputHotelNew'
-          type="text" autoComplete="on" placeholder="Ej: Id: city13 (el numero tiene que ser mayor a 12)"
-          onChange={(e) => setId(e.target.value)}
+          type="text" autoComplete="on" placeholder="userId mongoose"
+          onChange={(e) => setUserId(e.target.value)}
         />
         </label>
         <label className='labelLogin'>Name
