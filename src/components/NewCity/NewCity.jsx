@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import '../../index.css';
 import axios from 'axios';
-import { useEffect } from "react";
+// import { useEffect } from "react"; //Se usa para traer info y controlar la asincronía //
 import {BASE_URL} from '../../api/url'
 
 export default function NewCity() {
@@ -37,7 +37,7 @@ export default function NewCity() {
         <div className='formInputLabelRegister'>
           <label className='labelLogin'>userId: 
           <input className='inputHotelNew'
-            type="text" autoComplete="on" placeholder="Ej: Id: city13 (el numero tiene que ser mayor a 12)"
+            type="text" autoComplete="on" placeholder="userId mongoose"
             onChange={(e) => setuserId(e.target.value)}
           />
           </label>
