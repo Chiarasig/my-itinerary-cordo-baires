@@ -53,7 +53,7 @@ export default function NewCity() {
             onChange={(e) => setContinent(e.target.value)}
           />
           </label>
-          <label className='labelLogin'>Photo: son necesarias 3 URL
+          <label className='labelLogin'>Photo: URL
           <input className='inputHotelNew'
             type="text" autoComplete="on" placeholder="Photo"
             onChange={(e) => setPhoto(e.target.value)}

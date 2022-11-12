@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { BASE_URL } from "../../api/url";
 import "../../index.css";
 
 let results = [];
@@ -20,11 +22,12 @@ export default function CardsHotels() {
   const [order, setOrder] = useState("ascendente");
 
   useEffect(() => {
-    fetch("./data/dataHotels.json")
-      .then((res) => res.json())
-      .then((res) => setHotels(res));
-    // eslint-disable-next-line
-  }, []);
+    axios.get(`${BASE_URL}/hotel`)
+      .then((res) =>{
+        console.log(res.data.response);
+        setHotels(res.data.response)
+    })
+  }, [])
 
   const searcher = (e) => {
     setSearch(e.target.value);
@@ -69,15 +72,19 @@ console.log(results)
         </select>
       </div>
       <div className="containerHotelsCards Font_Arial">
-        {results.map((hotels) => (
+      {results.length !== 0 ?
+        results.map((hotels) => (
           <div key={hotels.id} className="hotelCard">
             <img className="cardImgHotel" src={hotels.photo} alt={hotels.name} />
             <h3 className="subtittleCard">{hotels.name}</h3>
             <Link to={`/hotels/detail/${hotels.id}`} className="viewMoreSubttitle"><p>view more</p>
             </Link>
           </div>
-        ))}
-      </div>
+        ))
+        : (
+          <h1>No results were found, please try again with another search</h1>
+        )}
+        </div>
     </>
   );
 }
