@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import axios from 'axios';
+import {BASE_URL} from '../../api/url'
 
 export default function CardsCities() {
   const [cities, setCities] = useState([]);
@@ -11,12 +13,12 @@ export default function CardsCities() {
 
   //Fetch de varios json (arrays) de hoteles y ciudades//
   useEffect(() => {
-    fetch("./data/dataCity.json")
-      .then((res) => res.json())
+    axios.get(`${BASE_URL}/city`)
       .then((res) => {
-        setCities(res);
-        setResult(res);
-        setCheckbox(new Set(res.map((object) => object.continent)));
+        console.log(res.data.response);
+        setCities(res.data.response);
+        setResult(res.data.response);
+        setCheckbox(new Set(res.data.response.map((object) => object.continent)));
       });
     // eslint-disable-next-line
   }, []);
