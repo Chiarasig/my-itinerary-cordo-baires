@@ -13,7 +13,7 @@ export default function DetailCity() {
   useEffect(() => {
     axios.get(`${BASE_URL}/cities/${id}`)
     .then((res) => {
-      console.log(res.data.response);
+      // console.log(res.data.response);
         setCity(res.data.response);
       });
   }, [id]);
