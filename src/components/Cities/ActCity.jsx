@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
 import "../../index.css";
+import axios from 'axios';
+import {BASE_URL} from '../../api/url'
 
 export default function Activiti (props) {
     const {idCity} = props;
+    console.log('soy el id', idCity);
     const [activities, setActivities] = React.useState([]);
     let [mostrarOcultar, setMostrarOcultar] = useState(false);
     let hide = () => {
@@ -11,12 +14,12 @@ export default function Activiti (props) {
     console.log(mostrarOcultar);
     };
 
-    React.useEffect(() => {
+    useEffect(() => {
 
-        fetch(`/data/dataActiviti.json`)
-        .then((res) => res.json())
-        .then((res) => {        
-            setActivities(res.filter((obj) => obj.citiId === idCity ));
+      axios.get(`${BASE_URL}/itineraries?cityId=${idCity}`)
+        .then((res) => { 
+          console.log(res.data.response);       
+            setActivities(res.data.response);
         });
     }, [idCity]);
     console.log(activities);

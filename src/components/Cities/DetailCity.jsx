@@ -36,7 +36,7 @@ export default function DetailCity() {
         <h1 className="tittleDetail">Activities panel</h1>
         </div>
         <div className="containerCardShowsHotel">
-        <Activiti idCity={city.id} />
+        <Activiti idCity={city._id} />
         </div>
       </div>
     </div>
