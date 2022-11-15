@@ -77,7 +77,7 @@ console.log(results)
           <div key={hotels.id} className="hotelCard">
             <img className="cardImgHotel" src={hotels.photo} alt={hotels.name} />
             <h3 className="subtittleCard">{hotels.name}</h3>
-            <Link to={`/hotels/detail/${hotels.id}`} className="viewMoreSubttitle"><p>view more</p>
+            <Link to={`/hotels/detail/${hotels._id}`} className="viewMoreSubttitle"><p>view more</p>
             </Link>
           </div>
         ))

@@ -1,6 +1,8 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import HotelShows from "./HotelShows";
+import axios from "axios";
+import { BASE_URL } from "../../api/url";
 import "../../index.css";
 
 export default function DetailHotel() {
@@ -9,12 +11,12 @@ export default function DetailHotel() {
   const [hotel, setHotel] = React.useState({});
 
   React.useEffect(() => {
-    fetch(`/data/dataHotels.json`)
-      .then((res) => res.json())
+    axios.get(`${BASE_URL}/hotels/${id}`)
       .then((res) => {
-        setHotel(res.find((hotel) => hotel.id === id));
+        setHotel(res.data.response);
       });
   }, [id]);
+
   return (
     <div className="containerDetailHotel Font_Arial">
       <div className="containerTittleDetailHotel">
@@ -32,7 +34,7 @@ export default function DetailHotel() {
           <h1 className="tittleDetail">Shows panel</h1>
         </div>
         <div className="containerCardShowsHotel">
-          <HotelShows idHotel={hotel.id} />
+          <HotelShows idHotel={hotel._id} />
         </div>
       </div>
     </div>

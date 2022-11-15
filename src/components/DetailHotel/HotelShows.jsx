@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import axios from "axios";
+import { BASE_URL } from "../../api/url";
 import "../../index.css";
 
 export default function HotelShows(props) {
@@ -11,10 +13,9 @@ export default function HotelShows(props) {
   };
 
   React.useEffect(() => {
-    fetch(`/data/dataShow.json`)
-      .then((res) => res.json())
+    axios.get(`${BASE_URL}/shows?hotelId=${idHotel}`)
       .then((res) => {
-        setShows(res.filter((obj) => obj.hotelId === idHotel));
+        setShows(res.data.response);
       });
   }, [idHotel]);
   console.log(shows);
