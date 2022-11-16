@@ -6,19 +6,19 @@ import {BASE_URL} from '../../api/url'
 
 export default function NewHotel() {
   const [userId, setUserId] = useState("");
+  const [cityId, setCityId] = useState("");
   const [name, setName] = useState ("");
   const [photo, setPhoto] = useState ("");
   const [capacity, setCapacity] = useState ("");
   
   const submit = (e) => {
      e.preventDefault();
-    if (userId === "" || name === "" || photo === "" || capacity === ""){
+    if (userId === "" || name === "" || photo === "" || capacity === "" || cityId === ""){
       alert("Please fill in all fields")
     } else {
-      let hotel = {userId, name, photo, capacity}
+      let hotel = {userId, name, photo, capacity, cityId}
       axios.post(`${BASE_URL}/hotel`, hotel)
         .then(res => {
-          console.log(res)
         })
     }
   }
@@ -30,6 +30,12 @@ export default function NewHotel() {
         <input className='inputHotelNew'
           type="text" autoComplete="on" placeholder="userId mongoose"
           onChange={(e) => setUserId(e.target.value)}
+        />
+        </label>
+        <label className='labelLogin'>City Id: 
+        <input className='inputHotelNew'
+          type="text" autoComplete="on" placeholder="cityId mongoose"
+          onChange={(e) => setCityId(e.target.value)}
         />
         </label>
         <label className='labelLogin'>Name

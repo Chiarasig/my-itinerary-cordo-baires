@@ -6,23 +6,19 @@ import {BASE_URL} from '../../api/url'
 
 export default function Activiti (props) {
     const {idCity} = props;
-    console.log('soy el id', idCity);
     const [activities, setActivities] = React.useState([]);
     let [mostrarOcultar, setMostrarOcultar] = useState(false);
     let hide = () => {
     setMostrarOcultar(!mostrarOcultar);
-    console.log(mostrarOcultar);
     };
 
     useEffect(() => {
 
       axios.get(`${BASE_URL}/itineraries?cityId=${idCity}`)
-        .then((res) => { 
-          console.log(res.data.response);       
+        .then((res) => {     
             setActivities(res.data.response);
         });
     }, [idCity]);
-    console.log(activities);
 
      return (
         <div className="cardsShows">

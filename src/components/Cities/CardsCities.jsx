@@ -15,44 +15,34 @@ export default function CardsCities() {
   useEffect(() => {
     axios.get(`${BASE_URL}/city`)
       .then((res) => {
-        console.log(res.data.response);
         setCities(res.data.response);
         setResult(res.data.response);
         setCheckbox(new Set(res.data.response.map((object) => object.continent)));
       });
     // eslint-disable-next-line
   }, []);
-  console.log(checkbox);
+
 
   useEffect(() => {
-    console.log("ingresa segundo usf")
     filtering();
   }, [search, checkboxChecked])
 
   /* creamos una función, en la cual si está "checked" lo agregamos a un array vacio, en caso que se quite el checked lo eliminamos del array mediante el método splice, y el indexOf que nos devuelve la posición del elemento a quitar en este caso */
   function handleChange(e) {
-    console.log("ingresa a handleCheck");
     if (e.target.checked) {
       setCheckboxChecked([...checkboxChecked, e.target.value])
     } else {
       setCheckboxChecked(checkboxChecked.filter((data) => !data.includes(e.target.value)));
-      console.log(checkboxChecked);
     }
-    console.log(checkboxChecked)
   }
 
   function filtering() {
-    console.log("checkboxChecked", checkboxChecked);
     let filterCheckbox = cities.filter(cities => checkboxChecked.includes(cities.continent) || checkboxChecked.length === 0)
-    console.log(filterCheckbox)
     setResult(filterCheckbox.filter(cities => cities.name.toLowerCase().includes(search.toLowerCase())))
-    console.log(result);
-    console.log(search)
   }
 
   const searcher = (e) => {
     setSearch(e.target.value)
-    console.log(e.target.value);
   };
 
   let checkboxes = [...checkbox]

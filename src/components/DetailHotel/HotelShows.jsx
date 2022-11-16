@@ -8,8 +8,7 @@ export default function HotelShows(props) {
   const [shows, setShows] = React.useState([]);
   let [mostrarOcultar, setMostrarOcultar] = useState(false);
   let hide = () => {
-    setMostrarOcultar(!mostrarOcultar);
-    console.log(mostrarOcultar);
+    setMostrarOcultar(!mostrarOcultar)
   };
 
   React.useEffect(() => {
@@ -17,8 +16,7 @@ export default function HotelShows(props) {
       .then((res) => {
         setShows(res.data.response);
       });
-  }, [idHotel]);
-  console.log(shows);
+  }, [idHotel])
 
   return (
     <div className="cardsShows">
