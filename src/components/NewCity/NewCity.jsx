@@ -27,7 +27,6 @@ export default function NewCity() {
         let city = {userId, name, photo, continent, population}
         axios.post(`${BASE_URL}/city`, city)
         .then(res => {
-          console.log(res)
         })
       }
     }

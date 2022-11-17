@@ -1,15 +1,19 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import '../../index.css'
 
 export default function RegisterForm() {
-  const [firstName, setFirstName] = useState("");
+/*   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-
-  const submit = () => {
+  const [confirmPassword, setConfirmPassword] = useState(""); */
+  const firstName = useRef(null)
+  const lastName = useRef(null)
+  const email = useRef(null)
+  const password = useRef(null)
+  const confirmPassword = useRef(null)
+  /* const submit = () => {
     if (
       (firstName === "",
       lastName === "",
@@ -22,7 +26,29 @@ export default function RegisterForm() {
       let register = { firstName, lastName, email, password, confirmPassword };
       localStorage.setItem("Register", JSON.stringify(register));
     }
-  };
+  }; */
+
+  let submit = (event) => {
+    event.preventDefault();
+        const data = {
+          firstName: firstName.current.value,
+          lastName: lastName.current.value,
+          email: email.current.value,
+          password: password.current.value,
+          confirmPassword: confirmPassword.current.value
+        };
+        
+    localStorage.setItem('user-registered', JSON.stringify(data))
+
+    alert("You are signed up!")
+
+    firstName.current.value=''
+    lastName.current.value=''
+    email.current.value=''
+    password.current.value=''
+    confirmPassword.current.value=''    
+    }
+
   return (
     <>
       <form className="nuevoFormularioLogin">
@@ -34,7 +60,8 @@ export default function RegisterForm() {
               autoComplete="on"
               placeholder="First Name"
               className='inputLogin'
-              onChange={(e) => setFirstName(e.target.value)}
+              ref={firstName}
+              /* onChange={(e) => setFirstName(e.target.value)} */
             />
           </label>
           <label className='labelLogin'>
@@ -44,7 +71,8 @@ export default function RegisterForm() {
               autoComplete="on"
               placeholder="Last Name"
               className='inputLogin'
-              onChange={(e) => setLastName(e.target.value)}
+              ref={lastName}
+              /* onChange={(e) => setLastName(e.target.value)} */
             />
           </label>
           <label className='labelLogin'>
@@ -54,7 +82,8 @@ export default function RegisterForm() {
               autoComplete="current-email"
               placeholder="mail"
               className='inputLogin'
-              onChange={(e) => setEmail(e.target.value)}
+              ref={email}
+            /*   onChange={(e) => setEmail(e.target.value)} */
             />
           </label>
           <label className='labelLogin'>
@@ -64,7 +93,8 @@ export default function RegisterForm() {
               autoComplete="on"
               placeholder="Password"
               className='inputLogin'
-              onChange={(e) => setPassword(e.target.value)}
+              ref={password}
+             /*  onChange={(e) => setPassword(e.target.value)} */
             />
           </label>
           <label className='labelLogin'>
@@ -74,7 +104,8 @@ export default function RegisterForm() {
               autoComplete="on"
               placeholder="Confirm Password"
               className='inputLogin'
-              onChange={(e) => setConfirmPassword(e.target.value)}
+              ref={confirmPassword}
+              /* onChange={(e) => setConfirmPassword(e.target.value)} */
             />
           </label>
           <div className="contenedorByP">

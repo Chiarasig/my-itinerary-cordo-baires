@@ -7,12 +7,10 @@ import "../../index.css";
 let results = [];
 results.sort((a, b) => a.name.localeCompare(b.name));
 function ascendentOrderer() {
-  results.sort((a, b) => a.name.localeCompare(b.name));
-  console.log(results);
+  results.sort((a, b) => a.name.localeCompare(b.name))
 }
 function descendentOrderer() {
-  results.sort((a, b) => b.name.localeCompare(a.name));
-  console.log(results);
+  results.sort((a, b) => b.name.localeCompare(a.name))
 }
 
 export default function CardsHotels() {
@@ -24,7 +22,6 @@ export default function CardsHotels() {
   useEffect(() => {
     axios.get(`${BASE_URL}/hotel`)
       .then((res) =>{
-        console.log(res.data.response);
         setHotels(res.data.response)
     })
   }, [])
@@ -33,7 +30,6 @@ export default function CardsHotels() {
     setSearch(e.target.value);
   };
   if (searcher !== "") {
-    console.log(searcher);
     results = hotels;
   }
   if (order === "ascendente") {
@@ -47,7 +43,7 @@ export default function CardsHotels() {
       data.name.toLowerCase().includes(search.toLowerCase())
     );
   }
-console.log(results)
+
   return (
     <>
     <div className="containerFilters">
@@ -64,7 +60,6 @@ console.log(results)
           onChange={(e) => {
             let orderer = e.target.value;
             setOrder(orderer);
-            console.log(searcher);
           }}
         >
           <option value="ascendente">Ascendente</option>
