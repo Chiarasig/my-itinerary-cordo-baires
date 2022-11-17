@@ -1,20 +1,37 @@
 // Login Form and save information to local storage for future use in the app 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import '../../index.css'
 
 
 function LoginForm(){
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+ /*  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState(""); */
+    const email = useRef(null)
+  const password = useRef(null)
 
-  const submit = () => {
+/*   const submit = () => {
     if (email === "" | password === "") {
       alert("Please fill in all fields");
     } else {
       let login = {email, password}
       localStorage.setItem("Sign In", JSON.stringify(login));
     }
-  };
+  }; */
+  let submit = (event) => {
+    event.preventDefault();
+        const data = {
+          email: email.current.value,
+          password: password.current.value
+        };
+        
+    localStorage.setItem('sign-in', JSON.stringify(data))
+
+    alert("You have entered correctly!")
+
+    email.current.value=''
+    password.current.value=''
+  
+    }
   return (
     <>
     <form className="nuevoFormularioLogin">
@@ -24,7 +41,8 @@ function LoginForm(){
           type="email"
           autoComplete='current-email'
           placeholder="Email"
-          onChange={(e) => setEmail(e.target.value)}
+          ref={email}
+     /*      onChange={(e) => setEmail(e.target.value)} */
         />
         </label>
         <label className='labelLogin'>Password
@@ -32,7 +50,8 @@ function LoginForm(){
           type="password"
           autoComplete='on'
           placeholder="Password"
-          onChange={(e) => setPassword(e.target.value)}
+          ref={password}
+      /*     onChange={(e) => setPassword(e.target.value)} */
         />
         </label>
       <div className="contenedorByP">
