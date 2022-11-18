@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { BASE_URL } from "../../api/url";
 import "../../index.css";
 
 let results = [];
 results.sort((a, b) => a.name.localeCompare(b.name));
 function ascendentOrderer() {
-  results.sort((a, b) => a.name.localeCompare(b.name));
-  console.log(results);
+  results.sort((a, b) => a.name.localeCompare(b.name))
 }
 function descendentOrderer() {
-  results.sort((a, b) => b.name.localeCompare(a.name));
-  console.log(results);
+  results.sort((a, b) => b.name.localeCompare(a.name))
 }
 
 export default function CardsHotels() {
@@ -20,17 +20,16 @@ export default function CardsHotels() {
   const [order, setOrder] = useState("ascendente");
 
   useEffect(() => {
-    fetch("./data/dataHotels.json")
-      .then((res) => res.json())
-      .then((res) => setHotels(res));
-    // eslint-disable-next-line
-  }, []);
+    axios.get(`${BASE_URL}/hotel`)
+      .then((res) =>{
+        setHotels(res.data.response)
+    })
+  }, [])
 
   const searcher = (e) => {
     setSearch(e.target.value);
   };
   if (searcher !== "") {
-    console.log(searcher);
     results = hotels;
   }
   if (order === "ascendente") {
@@ -44,7 +43,7 @@ export default function CardsHotels() {
       data.name.toLowerCase().includes(search.toLowerCase())
     );
   }
-console.log(results)
+
   return (
     <>
     <div className="containerFilters">
@@ -61,7 +60,6 @@ console.log(results)
           onChange={(e) => {
             let orderer = e.target.value;
             setOrder(orderer);
-            console.log(searcher);
           }}
         >
           <option value="ascendente">Ascendente</option>
@@ -69,15 +67,19 @@ console.log(results)
         </select>
       </div>
       <div className="containerHotelsCards Font_Arial">
-        {results.map((hotels) => (
+      {results.length !== 0 ?
+        results.map((hotels) => (
           <div key={hotels.id} className="hotelCard">
             <img className="cardImgHotel" src={hotels.photo} alt={hotels.name} />
             <h3 className="subtittleCard">{hotels.name}</h3>
-            <Link to={`/hotels/detail/${hotels.id}`} className="viewMoreSubttitle"><p>view more</p>
+            <Link to={`/hotels/detail/${hotels._id}`} className="viewMoreSubttitle"><p>view more</p>
             </Link>
           </div>
-        ))}
-      </div>
+        ))
+        : (
+          <h1>No results were found, please try again with another search</h1>
+        )}
+        </div>
     </>
   );
 }

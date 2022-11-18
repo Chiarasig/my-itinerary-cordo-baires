@@ -7,8 +7,7 @@ export default function ButtonNavNew(props) {
     let { texto1, texto2, titulo } = props;
     let [mostrarOcultar, setMostrarOcultar] = useState(false);
     let hide = () => {
-        setMostrarOcultar(!mostrarOcultar);
-        console.log(mostrarOcultar);
+        setMostrarOcultar(!mostrarOcultar)
       };
   return (
     <div>

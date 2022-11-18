@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
 import "../../index.css";
+import axios from 'axios';
+import {BASE_URL} from '../../api/url'
 
 export default function Activiti (props) {
     const {idCity} = props;
@@ -8,18 +10,15 @@ export default function Activiti (props) {
     let [mostrarOcultar, setMostrarOcultar] = useState(false);
     let hide = () => {
     setMostrarOcultar(!mostrarOcultar);
-    console.log(mostrarOcultar);
     };
 
-    React.useEffect(() => {
+    useEffect(() => {
 
-        fetch(`/data/dataActiviti.json`)
-        .then((res) => res.json())
-        .then((res) => {        
-            setActivities(res.filter((obj) => obj.citiId === idCity ));
+      axios.get(`${BASE_URL}/itineraries?cityId=${idCity}`)
+        .then((res) => {     
+            setActivities(res.data.response);
         });
     }, [idCity]);
-    console.log(activities);
 
      return (
         <div className="cardsShows">

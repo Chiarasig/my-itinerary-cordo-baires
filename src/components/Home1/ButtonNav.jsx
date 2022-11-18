@@ -8,8 +8,7 @@ export default function ButtonNav(props) {
   let [mostrarOcultar, setMostrarOcultar] = useState(false);
   //funcion para mostrar y ocultar el menu
   let hide = () => {
-    setMostrarOcultar(!mostrarOcultar);
-    console.log(mostrarOcultar);
+    setMostrarOcultar(!mostrarOcultar)
   };
   //Funcion para ocultar el menu al hacer click en un link
   return (
