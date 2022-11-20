@@ -9,7 +9,6 @@ export default function CardsHotels() {
   let [searched, setSearched] = useState("");
   const hotels = useSelector((store) => store.hotelReducer.hotels);
   let dispatch = useDispatch();
-  console.log(hotels);
 
   useEffect(() => {
     dispatch(hotelsActions.getHotels());
