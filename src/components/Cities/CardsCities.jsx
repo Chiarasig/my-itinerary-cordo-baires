@@ -2,25 +2,26 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from 'axios';
 import {BASE_URL} from '../../api/url'
+import citiesActions from "../../redux/actions/citiesActions";
+import { useDispatch, useSelector } from "react-redux";
+
 
 export default function CardsCities() {
-  const [cities, setCities] = useState([]);
+  const dispatch = useDispatch();
+  const cities = useSelector((state) => state.cityReducer.cities);
   const [search, setSearch] = useState("");
   const [checkbox, setCheckbox] = useState([]);
   const [result, setResult] = useState([]);
-
   const [checkboxChecked, setCheckboxChecked] = useState([])
-
-  //Fetch de varios json (arrays) de hoteles y ciudades//
+  
   useEffect(() => {
-    axios.get(`${BASE_URL}/city`)
-      .then((res) => {
-        setCities(res.data.response);
-        setResult(res.data.response);
-        setCheckbox(new Set(res.data.response.map((object) => object.continent)));
-      });
-    // eslint-disable-next-line
+    dispatch(citiesActions.getCities())
   }, []);
+
+  useEffect(()=>{
+    setResult(cities)
+    setCheckbox(new Set(cities.map((object) => object.continent)))
+  },[cities]);
 
 
   useEffect(() => {
