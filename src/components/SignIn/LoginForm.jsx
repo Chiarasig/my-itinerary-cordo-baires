@@ -1,5 +1,5 @@
 // Login Form and save information to local storage for future use in the app 
-import React, { useState, useRef } from 'react';
+import React, { useRef } from 'react';
 import '../../index.css'
 
 

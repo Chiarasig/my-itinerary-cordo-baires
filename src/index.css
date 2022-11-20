@@ -225,7 +225,11 @@ a {
   margin-top: 15px;
 }
 
-
+.viewMore{
+  border: solid 2px rgb(95, 62, 2);
+  padding: 6px;
+  border-radius: 9px;
+}
 
 
 /* DETAIL HOTEL */
@@ -517,7 +521,7 @@ ul {
   text-align: center;
 }
 .cardImgHotel {
-  height: 80%;
+  height: 75%;
   padding: 10px;
   border: none;
   border-radius: 1.5rem;
@@ -594,6 +598,9 @@ ul {
 }
 .viewMoreSubttitle {
   color: #000;
+}
+.viewMoreSubttitle:hover{
+  color: rgb(184, 123, 11);
 }
 /* Navbar */
 .navBar {

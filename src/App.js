@@ -9,7 +9,7 @@ import PagNotFoundLayout from "./layouts/PagNotFoundLayout";
 import RegisterSignUp from "./layouts/RegisterSignUp";
 import CardsCities from "./components/Cities/CardsCities";
 import LoginFormLayout from "./layouts/LoginFormLayout";
-import CardsHotels from "./components/Hotels/CardsHotels";
+import CardsHotels from "./components/Hotels/CardsHotel";
 import DetailCity from "./components/Cities/DetailCity";
 import DetailHotel from "./components/DetailHotel/DetailHotel";
 import NewHotelLayout from "./layouts/NewHotelLayout";
