@@ -1,58 +1,37 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import {BASE_URL} from '../../api/url'
+import { BASE_URL } from "../../api/url";
 
-const getHotels = createAsyncThunk("getHotels", async () => {
-    try {
-        const res = await axios.get(`${BASE_URL}/hotel`);
-        return res.data.response
-    } catch (error) {
-        console.log(error);
-        return {
-            payload: "error"
-        };
-    }
+let getHotels = createAsyncThunk("getHotels", async () => {
+  let data = await axios.get(`${BASE_URL}/hotel`);
+  console.log(data.data.response);
+  return {
+    hotels: data.data.response,
+};
 });
 
-const getHotelsFilter = createAsyncThunk("getHotelsFilter", async ({name}) =>{
-    let url = `${BASE_URL}/hotel?name=${name}`;
-    try {
-        const res = await axios.get(url);
-        console.log(res.data.response);
-        return {
-            hotels: res.data.response,
-        };
-    } catch (error) {
-        console.log(error);
-        return {
-            payload: "error"
-        };
-    }
+let getHotelsByName = createAsyncThunk("getHotelsByName", async (name) => {
+  let data = await axios.get(`${BASE_URL}/hotel?name=${name}`);
+  console.log(data);
+  return {
+    hotels: data.data.response,
+  };
 });
 
-const getHotelsSelect = createAsyncThunk(
-    "getHotelsSelect",
-    async (order) => {
-      /* let url = `${BASE_URL}/hotel?name=${order.text}&order=${order.order}` */
-      try {
-        const res = await axios.get(`${BASE_URL}/hotel?name=${order.text}&order=${order.order}`);
-        console.log(res.data.response);
-        return {
-          hotels: res.data.response,
-        };
-      } catch (error) {
-        console.log(error.message);
-        return {
-          payload: "error",
-        };
-      }
-    }
+let getHotelByFilter = createAsyncThunk("getHotelByFilter", async (filter) => {
+  let data = await axios.get(
+    `${BASE_URL}/hotel?name=${filter.name}&order=${filter.order}`
   );
+  console.log(data);
+  return {
+    hotels: data.data.response,
+  };
+});
 
 const hotelsActions = {
-    getHotels,
-    getHotelsFilter,
-    getHotelsSelect
+  getHotels,
+  getHotelsByName,
+  getHotelByFilter,
 };
 
-export default hotelsActions
+export default hotelsActions;

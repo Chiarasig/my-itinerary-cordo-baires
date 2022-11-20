@@ -1,79 +1,84 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import hotelsActions from "../../redux/actions/hotelsActions";
 import "../../index.css";
 import { useDispatch, useSelector } from "react-redux";
 
-
 export default function CardsHotels() {
-  const dispatch = useDispatch();
-  const { getHotels, getHotelsFilter, getHotelsSelect } = hotelsActions;
-  const { hotels } = useSelector((state) => state.hotels);
-  const { order, name } = useSelector((state) => state.hotels);
-  const search = useRef("");
-  const select = useRef("");
+  let [selectDefault, setSelectDefault] = useState("");
+  let [searched, setSearched] = useState("");
+  const hotels = useSelector((store) => store.hotelReducer);
+  let dispatch = useDispatch();
+  console.log(hotels);
 
   useEffect(() => {
-    if (hotels.length === 0) {
-      dispatch(getHotels());
-    }
-    // eslint-disable-next-line
+    dispatch(hotelsActions.getHotels());
   }, []);
 
-  let filter = () => {
-   
-    let text = search.current.value;
-    let selectFil = select.current.value;
-    console.log(text);
-    console.log(selectFil)
-
-    if (selectFil === 0) {
-      dispatch(getHotelsFilter(text));
+  useEffect(() => {
+    // eslint-disable-next-line
+    if (selectDefault == 0) {
+      dispatch(hotelsActions.getHotelsByName(searched));
     } else {
-      let filters = {
-        text: search.current.value,
-        order: select.current.value
-      }
-      dispatch(getHotelsSelect(filters));
+      let filter = {
+        name: searched,
+        order: selectDefault,
+      };
+      dispatch(hotelsActions.getHotelByFilter(filter));
     }
+  }, [searched, selectDefault]);
+
+  let hand = (e) => {
+    setSelectDefault(e.target.value);
   };
+
+  let inputs = (e) => {
+    setSearched(e.target.value.trim());
+  };
+
   return (
     <>
       <div className="containerFilters">
-        <input
-          ref={search}
-          className="search"
-          type="text"
-          placeholder="Search"
-          onChange={filter}
-        />
-        <select onChange={filter} ref={select} id="filterSelect" type="select">
-          <option value="0">Select Order</option>
-          <option value="1">Ascend</option>
-          <option value="-1">Descend</option>
-        </select>
+          <input
+            className="search"
+            placeholder="Search..."
+            onChange={inputs}
+            type="text"
+          />
+          <select
+            id="filterSelect"
+            name="Select"
+            type="select"
+            value={selectDefault}
+            onChange={hand}
+          >
+            <option value="0">Select order</option>
+            <option value="1">Ascend</option>
+            <option value="-1">Descend</option>
+          </select>
+
       </div>
       <div className="containerHotelsCards Font_Arial">
-        {hotels.length !== 0 ? (
-          hotels.map((hotels) => (
-            <div key={hotels.id} className="hotelCard">
-              <img
-                className="cardImgHotel"
-                src={hotels.photo}
-                alt={hotels.name}
-              />
-              <h3 className="subtittleCard">{hotels.name}</h3>
-              <Link
-                to={`/hotels/detail/${hotels._id}`}
-                className="viewMoreSubttitle"
-              >
-                <p>view more</p>
-              </Link>
-            </div>
-          ))
-        ) : (
-          <h1>No results were found, please try again with another search</h1>
-        )}
+        {
+            hotels.length > 0 ?
+            hotels.map(hotels => 
+              <div key={hotels._id} className="hotelCard">
+                <img
+                  className="cardImgHotel"
+                  src={hotels.photo}
+                  alt={hotels.name}
+                />
+                <h3 className="subtittleCard">{hotels.name}</h3>
+                <Link
+                  to={`/hotels/detail/${hotels._id}`}
+                  className="viewMoreSubttitle"
+                >
+                  <p>view more</p>
+                </Link>
+              </div>
+            ) :
+            <h2>No results were found, please try again with another search</h2>
+        }
       </div>
     </>
   );
