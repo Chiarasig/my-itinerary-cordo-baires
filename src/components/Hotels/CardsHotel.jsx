@@ -72,7 +72,7 @@ export default function CardsHotels() {
                   to={`/hotels/detail/${hotels._id}`}
                   className="viewMoreSubttitle"
                 >
-                  <p>view more</p>
+                  <p className="viewMore">view more</p>
                 </Link>
               </div>
             ) :
