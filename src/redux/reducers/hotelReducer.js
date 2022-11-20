@@ -5,20 +5,19 @@ const initialState = {
     hotels: [],
   };
 
-const hotelReducer = createReducer (initialState, (hotel) =>{
-    hotel.addCase(hotelsActions.getHotels.fulfilled, (state, action) => {
+const hotelReducer = createReducer (initialState, (builder) =>{
+    builder
+    .addCase(hotelsActions.getHotels.fulfilled, (state, action) => {
         console.log(action.payload)
-        console.log(hotel)
-        return  {...state, hotel:action.payload.hotels}
+        return  {...state, ...action.payload.hotels}
     })
-    hotel.addCase(hotelsActions.getHotelsByName.fulfilled, (state, action)=>{
+    .addCase(hotelsActions.getHotelsByName.fulfilled, (state, action)=>{
         console.log(action.payload)
-        return  {...state, hotel:action.payload.hotels}
+        return  {...state, hotels:action.payload.hotels}
     })
-    hotel.addCase(hotelsActions.getHotelByFilter.fulfilled, (state, action)=>{
+    .addCase(hotelsActions.getHotelByFilter.fulfilled, (state, action)=>{
         console.log(action.payload)
-        console.log(hotel)
-        return  {...state, hotel:action.payload.hotels}
+        return  {...state, hotels:action.payload.hotels}
     })
 
 })

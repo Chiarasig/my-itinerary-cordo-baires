@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 export default function CardsHotels() {
   let [selectDefault, setSelectDefault] = useState("");
   let [searched, setSearched] = useState("");
-  const hotels = useSelector((store) => store.hotelReducer);
+  const hotels = useSelector((store) => store.hotelReducer.hotels);
   let dispatch = useDispatch();
   console.log(hotels);
 
