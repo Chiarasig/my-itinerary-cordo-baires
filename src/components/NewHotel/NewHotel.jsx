@@ -125,7 +125,7 @@ export default function NewHotel() {
               type="submit"
               onClick={notify}
             >
-              CREATE A NEW HOTEL
+              Create a new hotel
             </button>
           </div>
         </div>

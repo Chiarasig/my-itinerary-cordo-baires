@@ -8,7 +8,7 @@ const initialState = {
 const hotelReducer = createReducer (initialState, (builder) =>{
     builder
     .addCase(hotelsActions.getHotels.fulfilled, (state, action) => {
-        return  {...state, ...action.payload.hotels}
+        return  {...state, hotels:action.payload.hotels}
     })
     .addCase(hotelsActions.getHotelsByName.fulfilled, (state, action)=>{
         return  {...state, hotels:action.payload.hotels}

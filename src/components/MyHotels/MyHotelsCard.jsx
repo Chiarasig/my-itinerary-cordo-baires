@@ -8,16 +8,16 @@ import "react-toastify/dist/ReactToastify.css";
 
 export default function MyHotelsCard() {
   const dispatch = useDispatch();
-  const hotels = useSelector((state) => state.myHotelsReducers.hotels);
+  const hotels = useSelector((state) => state.myHotelsReducers);
   console.log(hotels);
   const notify = () => {
     toast();
   };
 
   useEffect(() => {
-    let userId = "636d5a9512a6c5227df1ef0b";
+    let userId = "636d5a9512a6c5227df1ef0d";
     dispatch(myHotelsAction.getMyHotels(userId));
-    console.log("soy el dispatch de", hotels);
+    console.log("soy el dispatch de", hotels.hotels);
   }, []);
 
 /*   function deleteFunc() {
@@ -25,24 +25,23 @@ export default function MyHotelsCard() {
       toast.success("the hotel was deleted successfully", {
         position: toast.POSITION.TOP_RIGHT,
       });
-      setTimeout(function () {
-        window.location.replace("");
-      }, 1500);
     }
   } */
-console.log(hotels)
+
   return (
-    <div className="flex justify-center column main-full">
-      <div>
-        <h1>My hotels </h1>
-      </div>
-        {hotels?.map((e) => {
+    <>
+    <div className="tittleMyHotels">
+      <h2>My hotels by userId</h2>
+    </div>
+      <div className="flex wrap w-100 justify-center align-center g-25 pb-3">
+        {hotels.hotels?.map((e) => {
           <div key={e._id} className="hotelCard">
             <img className="cardImgHotel" src={e.photo} alt={e.name} />
             <h3 className="subtittleCard">{e.name}</h3>
-      {/*       <ToastContainer autoClose={8000} /> */}
+        {/*     <ToastContainer autoClose={8000} /> */}
           </div>;
         })}
-    </div>
+      </div>
+    </>
   );
 }

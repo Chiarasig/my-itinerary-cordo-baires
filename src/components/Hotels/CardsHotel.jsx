@@ -75,6 +75,12 @@ export default function CardsHotels() {
                 >
                   <p className="viewMore">view more</p>
                 </Link>
+                <Link
+                  to={`/hotels/editHotel/${hotels._id}`}
+                  className="viewMoreSubttitle"
+                >
+                  <p className="viewMore">Editar</p>
+                </Link>
               </div>
             ) :
             <h2>No results were found, please try again with another search</h2>
