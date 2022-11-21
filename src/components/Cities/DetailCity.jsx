@@ -35,7 +35,7 @@ export default function DetailCity() {
         <h1 className="tittleDetail">Activities panel</h1>
         </div>
         <div className="containerCardShowsHotel">
-        <Activiti idCity={city._id} />
+          {city._id ? <Activiti idCity={city._id} /> : null}
         </div>
       </div>
     </div>
