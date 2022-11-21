@@ -561,6 +561,18 @@ ul {
   background: white;
   text-align: center;
 }
+.myHotelCard {
+  flex-direction: row;
+  width: 300px;
+  height: 350px;
+  display: flex;
+  flex-wrap: wrap;
+  border: none;
+  flex-direction: column;
+  background: white;
+  text-align: center;
+  border: 2px solid black;
+}
 .cardImgHotel {
   height: 75%;
   padding: 10px;

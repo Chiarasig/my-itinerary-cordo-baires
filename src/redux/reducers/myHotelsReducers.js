@@ -11,6 +11,9 @@ const myHotelsReducers = createReducer (initialState, (builder)=>{
         return {...state, hotels:action.payload.hotels};
     })
     .addCase(myHotelsAction.deleteMyHotels.fulfilled, (state, action)=>{
+        return {...state};
+    })
+    .addCase(myHotelsAction.cargarHoteles.fulfilled, (state, action) =>{
         return {...state, hotels:action.payload.hotels};
     })
 })

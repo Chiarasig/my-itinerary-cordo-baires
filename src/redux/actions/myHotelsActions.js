@@ -12,14 +12,18 @@ let getMyHotels = createAsyncThunk("getMyHotels", async (userId) =>{
 
 let deleteMyHotels = createAsyncThunk("deleteMyHotels", async(idHotel)=>{
     let data = await axios.delete(`${BASE_URL}/hotel/${idHotel}`)
+})
+
+let cargarHoteles = createAsyncThunk("cargarHoteles", async (hotels) => {
     return {
-        hotels: data.data.response
-    };
+        hotels
+    }
 })
 
 const myHotelsAction = {
     getMyHotels,
-    deleteMyHotels
+    deleteMyHotels,
+    cargarHoteles
 }
 
 export default myHotelsAction
