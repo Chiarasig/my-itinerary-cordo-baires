@@ -11,10 +11,10 @@ export default function NewHotelLayout() {
         <img className="logoReg" src={LogReg} alt="Logo register" />
         <h1 className="SignUpH1">Register hotel</h1>
         <div className="linkHotels">
-              <Link to="/hotels">
-                <p  className="linkHotelSubtittle">Go hotels page</p>
-              </Link>
-            </div>
+          <Link to="/hotels">
+            <p className="linkHotelSubtittle">Go hotels page</p>
+          </Link>
+        </div>
       </div>
       <div className="formLogin">
         <NewHotel />

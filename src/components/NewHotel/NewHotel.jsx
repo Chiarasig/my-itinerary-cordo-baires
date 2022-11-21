@@ -34,6 +34,7 @@ export default function NewHotel() {
         toast.success("The hotel was successfully created");
       } else {
         toast.error(res.data.message.join(" - - - - "));
+        console.log(res.data);
       }
     } catch (error) {
       console.log(error);
