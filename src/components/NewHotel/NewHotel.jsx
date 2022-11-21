@@ -1,82 +1,135 @@
 import React from "react";
 import { useRef } from "react";
-import '../../index.css';
-import axios from 'axios';
-import {BASE_URL} from '../../api/url'
+import "../../index.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
+import { BASE_URL } from "../../api/url";
 
 export default function NewHotel() {
-  const userId = useRef(null);
-  const cityId = useRef(null);
-  const name = useRef(null);
-  const photo = useRef(null);
-  const capacity = useRef(null);
-  
-  let submit = (event) => {
-    event.preventDefault();
-    const hotel = {
-      userId: userId.current.value,
-      cityId: cityId.current.value,
-      name: name.current.value,
-      photo: photo.current.value,
-      capacity: capacity.current.value,
-    };
-    axios.post(`${BASE_URL}/hotel`, hotel).then((res) => {});
-
-    alert("Your hotel was successfully registered!");
-
-      userId.current.value = ""
-      cityId.current.value = ""
-      name.current.value = ""
-      photo.current.value = ""
-      capacity.current.value = ""
+  const notify = () => {
+    toast();
   };
-    return (
+  let information = useRef();
+  let name = useRef();
+  let photo1 = useRef();
+  let photo2 = useRef();
+  let photo3 = useRef();
+  let capacity = useRef();
+  let cityId = useRef();
+  let userId = useRef();
+
+  async function newHotel(event) {
+    event.preventDefault();
+    let newHotel = {
+      name: name.current.value,
+      photo: [photo1.current.value, photo2.current.value, photo3.current.value],
+      capacity: capacity.current.value,
+      cityId: cityId.current.value,
+      userId: userId.current.value,
+    };
+    try {
+      let res = await axios.post(`${BASE_URL}/hotel`, newHotel);
+      if (res.data.success) {
+        toast.success("The hotel was successfully created");
+      } else {
+        toast.error(res.data.message.join(" - - - - "));
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  return (
     <>
-     <form className="nuevoFormularioLogin">
-      <div className='formInputLabelRegister'>
-        <label className='labelLogin'>User Id: 
-        <input className='inputHotelNew'
-          type="text" autoComplete="on" placeholder="userId mongoose"
-          ref={userId}
-        />
-        </label>
-        <label className='labelLogin'>City Id: 
-        <input className='inputHotelNew'
-          type="text" autoComplete="on" placeholder="cityId mongoose"
-          ref={cityId}
-        />
-        </label>
-        <label className='labelLogin'>Name
-        <input className='inputHotelNew'
-          type="text" autoComplete="on" placeholder="Name"
-          ref={name}
-        />
-        </label>
-        <label className='labelLogin'>Capacity
-        <input className='inputHotelNew'
-          type="text" autoComplete="on" placeholder="Capacity"
-          ref={capacity}
-        />
-        </label>
-        <label className='labelLogin'>Photo: URL
-        <input className='inputHotelNew'
-          type="text" autoComplete="on" placeholder="Photo"
-          ref={photo}
-        />
-        <input className='inputHotelNew'
-          type="text" autoComplete="on" placeholder="Photo"
-          ref={photo}
-        />
-        <input className='inputHotelNew'
-          type="text" autoComplete="on" placeholder="Photo"
-          ref={photo}
-        />
-        </label>
-        <div className="contenedorByP">
-          <button className="buttonNuevoFormulario" onClick={submit}>Register hotel</button>
+      <form
+        className="nuevoFormularioLogin"
+        onSubmit={newHotel}
+        ref={information}
+      >
+        <div className="formInputLabelRegister">
+          <label className="labelLogin">
+            Name
+            <input
+              className="inputHotelNew"
+              type="text"
+              autoComplete="on"
+              placeholder="Name"
+              ref={name}
+            />
+          </label>
+          <label className="labelLogin">
+            Photo: URL
+            <input
+              className="inputHotelNew"
+              name="photo1"
+              accept="image/png, image/jpeg"
+              type="text"
+              autoComplete="on"
+              placeholder="Photo"
+              ref={photo1}
+            />
+            <input
+              className="inputHotelNew"
+              name="photo2"
+              accept="image/png, image/jpeg"
+              type="text"
+              autoComplete="on"
+              placeholder="Photo"
+              ref={photo2}
+            />
+            <input
+              className="inputHotelNew"
+              name="photo3"
+              accept="image/png, image/jpeg"
+              type="text"
+              autoComplete="on"
+              placeholder="Photo"
+              ref={photo3}
+            />
+          </label>
+          <label className="labelLogin">
+            Capacity
+            <input
+              className="inputHotelNew"
+              type="text"
+              autoComplete="on"
+              placeholder="Capacity"
+              ref={capacity}
+            />
+          </label>
+          <label className="labelLogin">
+            City Id:
+            <input
+              className="inputHotelNew"
+              type="text"
+              autoComplete="on"
+              placeholder="cityId mongoose"
+              ref={cityId}
+            />
+          </label>
+          <label className="labelLogin">
+            User Id:
+            <input
+              className="inputHotelNew"
+              type="text"
+              autoComplete="on"
+              placeholder="userId mongoose"
+              ref={userId}
+            />
+          </label>
+          <div className="contenedorByP">
+            <button
+              className="buttonNuevoFormulario"
+              type="submit"
+              onClick={notify}
+            >
+              CREATE A NEW HOTEL
+            </button>
+          </div>
         </div>
-        </div>
-     </form>
+        <ToastContainer />
+      </form>
     </>
   );
 }
