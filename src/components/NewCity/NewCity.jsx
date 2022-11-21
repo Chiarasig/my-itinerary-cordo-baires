@@ -33,8 +33,7 @@ export default function NewCity() {
       let res = await axios.post(`${BASE_URL}/city`, newCity);
       if (res.data.success) {
         console.log(res.data);
-        toast.success(res.data.message);
-        navigate(`/cities/detail/${res.data.id}`);
+        navigate(`/cities/detail/${res.data.id}?success=true`);
       } else {
         console.log(res.data);
         toast.error(res.data.message.join(" - - - - "));
