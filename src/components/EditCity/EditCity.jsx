@@ -19,7 +19,7 @@ export default function EditCity() {
   let population = useRef();
   let userId = useRef();
 
-  async function EditCity(event) {
+  async function editCity(event) {
     event.preventDefault();
     let editCity = {
       name: name.current.value,
@@ -29,7 +29,7 @@ export default function EditCity() {
       userId: userId.current.value,
     };
     try {
-      let res = await axios.patch(`${BASE_URL}/city/${id}`, editCity);
+      let res = await axios.put(`${BASE_URL}/city/${id}`, editCity);
       if (res.data.success) {
         toast.success("The city was successfully modified");
       } else {
@@ -45,7 +45,7 @@ export default function EditCity() {
     <>
       <form
         className="nuevoFormularioLogin"
-        onSubmit={editHotel}
+        onSubmit={editCity}
         ref={information}
       >
         <div className="formInputLabelRegister">
@@ -60,43 +60,45 @@ export default function EditCity() {
             />
           </label>
           <label className="labelLogin">
-            Photo: URL
+            Continent
             <input
               className="inputHotelNew"
-              name="photo1"
-              accept="image/png, image/jpeg"
               type="text"
               autoComplete="on"
-              placeholder="Photo"
-              ref={photo1}
-            />
-            <input
-              className="inputHotelNew"
-              name="photo2"
-              accept="image/png, image/jpeg"
-              type="text"
-              autoComplete="on"
-              placeholder="Photo"
-              ref={photo2}
-            />
-            <input
-              className="inputHotelNew"
-              name="photo3"
-              accept="image/png, image/jpeg"
-              type="text"
-              autoComplete="on"
-              placeholder="Photo"
-              ref={photo3}
+              placeholder="continent"
+              ref={continent}
             />
           </label>
           <label className="labelLogin">
-            Capacity
+            Photo: URL
+            <input
+              className="inputHotelNew"
+              name="photo"
+              accept="image/png, image/jpeg"
+              type="text"
+              autoComplete="on"
+              placeholder="Photo"
+              ref={photo}
+            />
+          </label>
+          <label className="labelLogin">
+          Population
             <input
               className="inputHotelNew"
               type="text"
               autoComplete="on"
-              placeholder="Capacity"
-              ref={capacity}
+              placeholder="Population"
+              ref={population}
+            />
+          </label>
+          <label className="labelLogin">
+          UserId
+            <input
+              className="inputHotelNew"
+              type="text"
+              autoComplete="on"
+              placeholder="UserId"
+              ref={userId}
             />
           </label>
           <div className="contenedorByP">
@@ -105,7 +107,7 @@ export default function EditCity() {
               type="submit"
               onClick={notify}
             >
-              Modified a hotel
+              Modified a city
             </button>
           </div>
         </div>

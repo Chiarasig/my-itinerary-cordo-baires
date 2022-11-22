@@ -1,8 +1,9 @@
 import React from 'react'
+import EditCity from '../components/EditCity/EditCity';
 import LogReg from "../Image/registerCiudad.png";
 import "../index.css";
 
-export default function EditHotelLayout() {
+export default function EditCityLayout() {
     return (
       
       <div className="loginLayout">
