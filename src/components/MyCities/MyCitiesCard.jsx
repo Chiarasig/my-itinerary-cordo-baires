@@ -7,9 +7,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function MyCitiesCard() {
-    
   const dispatch = useDispatch();
-  const {cities} = useSelector((state) => state.myCitiesReducers);
+  const { cities } = useSelector((state) => state.myCitiesReducers);
 
   useEffect(() => {
     let userId = "636d5a9512a6c5227df1ef0c";
@@ -30,9 +29,9 @@ export default function MyCitiesCard() {
   };
 
   return (
-    <>
+    <div className="containerMyHotels">
       <div className="tittleMyHotels">
-        <h2>My cities by userId</h2>
+        <h2 className="text-center">My cities whit userId</h2>
       </div>
       <div className="flex wrap w-100 justify-center align-center g-25 pb-3">
         {cities && cities.length > 0 ? (
@@ -44,30 +43,33 @@ export default function MyCitiesCard() {
                 alt={cities.name}
               />
               <h3 className="subtittleCard">{cities.name}</h3>
-              <Link
-                to={`/cities/detail/${cities._id}`}
-                className="viewMoreSubttitle"
-              >
-                <p className="viewMore">view more</p>
-              </Link>
-              <Link
-                to={`/hotels/editHotel/${cities._id}`}
-                className="viewMoreSubttitle"
-              >
-                <p className="viewMore">Editar</p>
-              </Link>
-              <div>
-                <button onClick={(event) => deleteCity(event, `${cities._id}`)}>
-                  Delete
-                </button>
+              <div className="buttonMyHotels">
+                <Link
+                  to={`/cities/detail/${cities._id}`}
+                  className="viewMoreSubttitle"
+                >
+                  <p className="viewMore">view more</p>
+                </Link>
+                <Link
+                  to={`/cities/editCities/${cities._id}`}
+                  className="viewMoreSubttitle"
+                >
+                  <p className="viewMore">edit</p>
+                </Link>
+                <div
+                  className="viewMore" 
+                  onClick={(event) => deleteCity(event, `${cities._id}`)}
+                >
+                  delete
+                </div>
               </div>
-              <ToastContainer/>
+              <ToastContainer />
             </div>
           ))
         ) : (
           <h2>No results were found, please try again with another search</h2>
         )}
       </div>
-    </>
+    </div>
   );
 }
