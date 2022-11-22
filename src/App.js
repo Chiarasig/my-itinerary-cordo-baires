@@ -14,6 +14,8 @@ import DetailCity from "./components/Cities/DetailCity";
 import DetailHotel from "./components/DetailHotel/DetailHotel";
 import NewHotelLayout from "./layouts/NewHotelLayout";
 import NewCityLayout from "./layouts/NewCityLayout";
+import MyHotelsCard from "./components/MyHotels/MyHotelsCard";
+import EditHotelLayout from "./layouts/EditHotelLayout";
 import MyCitiesCard from "./components/MyCities/MyCitiesCard";
 
 function App() {
@@ -30,10 +32,14 @@ function App() {
           <Route path="detail/:id" element={<DetailCity />} />
         </Route>
         <Route path="/newcity" element={<NewCityLayout />} />
+          <Route path="/myhotels" element={<MyHotelsCard/>} />
+        <Route path="/editHotel" element={<EditHotelLayout/>} />
         <Route path= "/mycities" element={<MyCitiesCard />} />
         <Route path="/hotels">
           <Route index element={<CardsHotels />} />
           <Route path="detail/:id" element={<DetailHotel />} />
+          <Route path="editHotel/:id" element={<EditHotelLayout/>} />
+
         </Route>
         <Route path="/signIn" element={<LoginFormLayout />} />
         <Route path="/newhotel" element={<NewHotelLayout />} />

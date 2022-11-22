@@ -36,6 +36,7 @@ export default function NewHotel() {
         navigate(`/hotels/detail/${res.data.id}?success=true`);
       } else {
         toast.error(res.data.message.join(" - - - - "));
+        console.log(res.data);
       }
     } catch (error) {
       console.log(error);
