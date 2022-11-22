@@ -49,7 +49,7 @@ export default function MyHotelsCard() {
   }  */
 
   return (
-    <>
+    <div className="containerMyHotels">
       <div className="tittleMyHotels">
         <h2>My hotels by userId</h2>
       </div>
@@ -63,6 +63,7 @@ export default function MyHotelsCard() {
                 alt={hotels.name}
               />
               <h3 className="subtittleCard">{hotels.name}</h3>
+              <div className="buttonMyHotels">
               <Link
                 to={`/hotels/detail/${hotels._id}`}
                 className="viewMoreSubttitle"
@@ -73,12 +74,11 @@ export default function MyHotelsCard() {
                 to={`/hotels/editHotel/${hotels._id}`}
                 className="viewMoreSubttitle"
               >
-                <p className="viewMore">Editar</p>
+                <p className="viewMore">editar</p>
               </Link>
-              <div>
-                <button onClick={(event) => deleteFunc(event, `${hotels._id}`)}>
-                  Delete
-                </button>
+                <div className="viewMore" onClick={(event) => deleteFunc(event, `${hotels._id}`)}>
+                  delete
+                </div>
               </div>
               <ToastContainer/>
             </div>
@@ -87,6 +87,6 @@ export default function MyHotelsCard() {
           <h2>No results were found, please try again with another search</h2>
         )}
       </div>
-    </>
+    </div>
   );
 }
