@@ -50,12 +50,6 @@ export default function MyShowsCard() {
               <h3 className="subtittleCard">{hotels.name}</h3>
               <div className="buttonMyHotels">
               <Link
-                to={`/detail/${hotels._id}`}
-                className="viewMoreSubttitle"
-              >
-                <p className="viewMore">view more</p>
-              </Link>
-              <Link
                 to={`/hotels/editShows/${hotels._id}`}
                 className="viewMoreSubttitle"
               >
