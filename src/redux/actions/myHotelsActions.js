@@ -4,7 +4,6 @@ import { BASE_URL } from "../../api/url";
 
 let getMyHotels = createAsyncThunk("getMyHotels", async (userId) =>{
     let data = await axios.get(`${BASE_URL}/hotel?userId=${userId}`);
-    console.log(data.data.response);
     return {
         hotels: data.data.response
     };

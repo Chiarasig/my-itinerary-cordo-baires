@@ -20,6 +20,8 @@ import MyCitiesCard from "./components/MyCities/MyCitiesCard";
 import EditCityLayout from "./layouts/EditCityLayout";
 import EditItineraryLayout from "./layouts/EditItineraryLayout";
 import MyActivitiessCard from "./components/MyActivities/MyActivityCard";
+import EditShowLayout from "./layouts/EditShowLayout";
+import MyShowsCard from "./components/MyShowsCard/MyShowsCard";
 
 function App() {
   return (
@@ -36,6 +38,7 @@ function App() {
           <Route path="editCities/:id" element={<EditCityLayout/>} />
           <Route path="editItinerary/:id" element={<EditItineraryLayout/>} />
 
+          <Route path="editCities/:id" element={<EditCityLayout />} />
         </Route>
         <Route path="/myitinerary" element={<MyActivitiessCard/>}/>
         <Route path="/newcity" element={<NewCityLayout />} />
@@ -44,11 +47,17 @@ function App() {
         <Route path= "/mycities" element={<MyCitiesCard />} />
         <Route path="/editCities" element={<EditCityLayout/>} />
         <Route path="/editItinerary" element={<EditItineraryLayout/>} />
+        <Route path="/myhotels" element={<MyHotelsCard />} />
+        <Route path="/editHotel" element={<EditHotelLayout />} />
+        <Route path="/mycities" element={<MyCitiesCard />} />
+        <Route path="/editCities" element={<EditCityLayout />} />
+        <Route path="/myshows" element={<MyShowsCard />} />
+        <Route path="/editShows" element={<EditShowLayout />} />
         <Route path="/hotels">
           <Route index element={<CardsHotels />} />
           <Route path="detail/:id" element={<DetailHotel />} />
-          <Route path="editHotel/:id" element={<EditHotelLayout/>} />
-
+          <Route path="editHotel/:id" element={<EditHotelLayout />} />
+          <Route path="editShows/:id" element={<EditShowLayout />} />
         </Route>
         <Route path="/signIn" element={<LoginFormLayout />} />
         <Route path="/newhotel" element={<NewHotelLayout />} />
