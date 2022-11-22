@@ -5,14 +5,13 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { BASE_URL } from "../../api/url";
-import { useNavigate} from "react-router-dom";
+import { useParams } from "react-router-dom";
 
-export default function NewCity() {
-  const navigate = useNavigate();
-
+export default function EditCity() {
   const notify = () => {
     toast();
   };
+  let { id } = useParams();
   let information = useRef();
   let name = useRef();
   let continent = useRef();
@@ -20,9 +19,9 @@ export default function NewCity() {
   let population = useRef();
   let userId = useRef();
 
-  async function newCity(event) {
+  async function EditCity(event) {
     event.preventDefault();
-    let newCity = {
+    let editCity = {
       name: name.current.value,
       continent: continent.current.value,
       photo: photo.current.value,
@@ -30,13 +29,12 @@ export default function NewCity() {
       userId: userId.current.value,
     };
     try {
-      let res = await axios.post(`${BASE_URL}/city`, newCity);
+      let res = await axios.patch(`${BASE_URL}/city/${id}`, editCity);
       if (res.data.success) {
-        console.log(res.data);
-        navigate(`/cities/detail/${res.data.id}?success=true`);
+        toast.success("The city was successfully modified");
       } else {
-        console.log(res.data);
         toast.error(res.data.message.join(" - - - - "));
+        console.log(res.data);
       }
     } catch (error) {
       console.log(error);
@@ -47,7 +45,7 @@ export default function NewCity() {
     <>
       <form
         className="nuevoFormularioLogin"
-        onSubmit={newCity}
+        onSubmit={editHotel}
         ref={information}
       >
         <div className="formInputLabelRegister">
@@ -65,42 +63,40 @@ export default function NewCity() {
             Photo: URL
             <input
               className="inputHotelNew"
-              name="photo"
+              name="photo1"
               accept="image/png, image/jpeg"
               type="text"
               autoComplete="on"
               placeholder="Photo"
-              ref={photo}
+              ref={photo1}
+            />
+            <input
+              className="inputHotelNew"
+              name="photo2"
+              accept="image/png, image/jpeg"
+              type="text"
+              autoComplete="on"
+              placeholder="Photo"
+              ref={photo2}
+            />
+            <input
+              className="inputHotelNew"
+              name="photo3"
+              accept="image/png, image/jpeg"
+              type="text"
+              autoComplete="on"
+              placeholder="Photo"
+              ref={photo3}
             />
           </label>
           <label className="labelLogin">
-            Continent
+            Capacity
             <input
               className="inputHotelNew"
               type="text"
               autoComplete="on"
-              placeholder="Continent"
-              ref={continent}
-            />
-          </label>
-          <label className="labelLogin">
-            Population
-            <input
-              className="inputHotelNew"
-              type="text"
-              autoComplete="on"
-              placeholder="Population"
-              ref={population}
-            />
-          </label>
-          <label className="labelLogin">
-            User Id:
-            <input
-              className="inputHotelNew"
-              type="text"
-              autoComplete="on"
-              placeholder="UserId mongoose"
-              ref={userId}
+              placeholder="Capacity"
+              ref={capacity}
             />
           </label>
           <div className="contenedorByP">
@@ -109,7 +105,7 @@ export default function NewCity() {
               type="submit"
               onClick={notify}
             >
-              Create a new city
+              Modified a hotel
             </button>
           </div>
         </div>
@@ -118,4 +114,3 @@ export default function NewCity() {
     </>
   );
 }
-
