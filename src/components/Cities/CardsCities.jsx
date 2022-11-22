@@ -70,7 +70,7 @@ export default function CardsCities() {
           <div key={cities._id} className="citiesCard text-center flex">
             <img className="cardImg" src={cities.photo} alt={cities.name} />
             <h3 className="subtittleCard">{cities.name}</h3>
-            <Link to={`/cities/detail/${cities._id}`} className="viewMoreSubttitle Font_Arial"><p>view more</p>
+            <Link to={`/cities/detail/${cities._id}`} className="viewMoreSubttitle Font_Arial"><p className="">view more</p>
             </Link>
           </div>
         ))
