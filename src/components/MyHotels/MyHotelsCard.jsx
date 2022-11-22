@@ -9,29 +9,22 @@ import "react-toastify/dist/ReactToastify.css";
 export default function MyHotelsCard() {
   const dispatch = useDispatch();
   const hotels = useSelector((state) => state.myHotelsReducers.hotels);
-  console.log(hotels);
 
   useEffect(() => {
     let userId = "636d5a9512a6c5227df1ef0b";
-    console.log(hotels);
     if (hotels && hotels.length === 0) {
       dispatch(myHotelsAction.getMyHotels(userId));
     }
-    console.log("soy el dispatch de", hotels);
   }, [hotels]);
 
   const deleteFunc = (event, idHotel) => {
     event.preventDefault();
-    console.log({ idHotel });
     if (window.confirm("Estás seguro?")) {
       if (dispatch(myHotelsAction.deleteMyHotels(idHotel))) {
-        /*        let hotels = {...hotels} */
-        console.log("paso el dispatch");
         toast.success("the hotel was deleted successfully", {
           position: toast.POSITION.TOP_RIGHT,
         });
         toast()
-        console.log("paso el toast");
         dispatch(
           myHotelsAction.cargarHoteles(
             hotels.filter((hotels) => hotels._id !== idHotel)
@@ -40,13 +33,6 @@ export default function MyHotelsCard() {
       }
     }
   };
-
-  /*   const HotelDetail = (hotels) =>{
-    console.log(hotels);
-    return (
-
-    )
-  }  */
 
   return (
     <div className="containerMyHotels">
