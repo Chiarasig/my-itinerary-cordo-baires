@@ -382,6 +382,16 @@ input {
   align-items: center;
   margin-bottom: 2rem;
 }
+.editItineraryLayout{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+  min-height: 75vh;
+}
+
 .editShowLayout{
   display: flex;
   flex-wrap: wrap;
