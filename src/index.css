@@ -382,6 +382,15 @@ input {
   align-items: center;
   margin-bottom: 2rem;
 }
+.editShowLayout{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+  min-height: 75vh;
+}
 .tittleImgLogin{
   display: flex;
   flex-wrap: wrap;
