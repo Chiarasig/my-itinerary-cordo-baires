@@ -6,7 +6,7 @@ import "../index.css";
 export default function EditItineraryLayout() {
     return (
       
-      <div className="loginLayout">
+      <div className="editItineraryLayout">
         <div className="tittleImgLogin">
         <img className="logoReg" src={LogReg} alt="Logo register" />
           <h1 className="SignUpH1">Edit itinerary</h1>

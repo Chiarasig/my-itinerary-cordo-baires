@@ -36,9 +36,7 @@ function App() {
           <Route index element={<CardsCities />} />
           <Route path="detail/:id" element={<DetailCity />} />
           <Route path="editCities/:id" element={<EditCityLayout/>} />
-          <Route path="editItinerary/:id" element={<EditItineraryLayout/>} />
-
-          <Route path="editCities/:id" element={<EditCityLayout />} />
+          <Route path="edit/:id" element={<EditItineraryLayout/>} />
         </Route>
         <Route path="/myitinerary" element={<MyActivitiessCard/>}/>
         <Route path="/newcity" element={<NewCityLayout />} />
@@ -46,7 +44,7 @@ function App() {
         <Route path="/editHotel" element={<EditHotelLayout/>} />
         <Route path= "/mycities" element={<MyCitiesCard />} />
         <Route path="/editCities" element={<EditCityLayout/>} />
-        <Route path="/editItinerary" element={<EditItineraryLayout/>} />
+        <Route path="/edit" element={<EditItineraryLayout/>} />
         <Route path="/myhotels" element={<MyHotelsCard />} />
         <Route path="/editHotel" element={<EditHotelLayout />} />
         <Route path="/mycities" element={<MyCitiesCard />} />

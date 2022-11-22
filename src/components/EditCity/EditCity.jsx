@@ -34,7 +34,6 @@ export default function EditCity() {
         toast.success("The city was successfully modified");
       } else {
         toast.error(res.data.message.join(" - - - - "));
-        console.log(res.data);
       }
     } catch (error) {
       console.log(error);

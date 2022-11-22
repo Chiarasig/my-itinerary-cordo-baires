@@ -45,7 +45,7 @@ export default function MyActivitiessCard() {
               <h3 className="subtittleCard">{cities.name}</h3>
               <div className="buttonMyHotels">
                 <Link
-                  to={`/cities/editItineraries/${cities._id}`}
+                  to={`/cities/edit/${cities._id}`}
                   className="viewMoreSubttitle"
                 >
                   <p className="viewMore">edit</p>
