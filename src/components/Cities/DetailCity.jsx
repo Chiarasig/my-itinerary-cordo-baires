@@ -20,7 +20,6 @@ export default function DetailCity() {
   }, [id]);
   useEffect(()=>{
     if (searchParams.get("success") === "true") {
-      console.log('entre al if toast');
       toast.success("The city was successfully created");
       toast();
     }
