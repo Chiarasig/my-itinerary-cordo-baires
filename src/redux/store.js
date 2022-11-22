@@ -3,6 +3,7 @@ import hotelReducer from './reducers/hotelReducer'
 import myHotelsReducers from './reducers/myHotelsReducers'
 import cityReducer from './reducers/cityReducer'
 import myCitiesReducers from './reducers/myCityReducers'
+import myShowsReducers from './reducers/myShowsReducer'
 
 export const store = configureStore({
     reducer: {
@@ -10,5 +11,6 @@ export const store = configureStore({
         myHotelsReducers,
         cityReducer,
         myCitiesReducers,
+        myShowsReducers
     }
 })

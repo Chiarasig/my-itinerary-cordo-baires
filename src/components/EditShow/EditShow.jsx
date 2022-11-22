@@ -7,41 +7,43 @@ import axios from "axios";
 import { BASE_URL } from "../../api/url";
 import { useParams } from "react-router-dom";
 
-export default function EditHotels() {
-  const notify = () => {
-    toast();
-  };
-  let { id } = useParams();
-  let information = useRef();
-  let name = useRef();
-  let photo1 = useRef();
-  let photo2 = useRef();
-  let photo3 = useRef();
-  let capacity = useRef();
+export default function EditShow() {
+    const notify = () => {
+        toast();
+      };
 
-  async function editHotel(event) {
-    event.preventDefault();
-    let editHotel = {
-      name: name.current.value,
-      photo: [photo1.current.value, photo2.current.value, photo3.current.value],
-      capacity: capacity.current.value,
-    };
-    try {
-      let res = await axios.patch(`${BASE_URL}/hotel/${id}`, editHotel);
-      if (res.data.success) {
-        toast.success("The hotel was successfully modified");
-      } else {
-        toast.error(res.data.message.join(" - - - - "));
+    let { id } = useParams();
+    let information = useRef();
+    let name = useRef();
+    let photo = useRef();
+    let description = useRef();
+    let price = useRef();
+    let date = useRef();
+
+    async function editShow(event) {
+        event.preventDefault();
+        let editShow = {
+          name: name.current.value,
+          photo: photo.current.value,
+          description: description.current.value,
+          price: price.current.value,
+          date: date.current.value,
+        };
+        try {
+          let res = await axios.patch(`${BASE_URL}/shows/${id}`, editShow);
+          if (res.data.success) {
+            toast.success("The show was successfully modified");
+          } else {
+            toast.error(res.data.message.join(" - - - - "));
+          }
+        } catch (error) {
+          console.log(error);
+        }
       }
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  return ( <>
+  return (<>
     <form
       className="nuevoFormularioLogin"
-      onSubmit={editHotel}
+      onSubmit={editShow}
       ref={information}
     >
       <div className="formInputLabelRegister">
@@ -59,40 +61,42 @@ export default function EditHotels() {
           Photo: URL
           <input
             className="inputHotelNew"
-            name="photo1"
+            name="photo"
             accept="image/png, image/jpeg"
             type="text"
             autoComplete="on"
             placeholder="Photo"
-            ref={photo1}
-          />
-          <input
-            className="inputHotelNew"
-            name="photo2"
-            accept="image/png, image/jpeg"
-            type="text"
-            autoComplete="on"
-            placeholder="Photo"
-            ref={photo2}
-          />
-          <input
-            className="inputHotelNew"
-            name="photo3"
-            accept="image/png, image/jpeg"
-            type="text"
-            autoComplete="on"
-            placeholder="Photo"
-            ref={photo3}
+            ref={photo}
           />
         </label>
         <label className="labelLogin">
-          Capacity
+          Description
           <input
             className="inputHotelNew"
             type="text"
             autoComplete="on"
-            placeholder="Capacity"
-            ref={capacity}
+            placeholder="Description"
+            ref={description}
+          />
+        </label>
+        <label className="labelLogin">
+          Price
+          <input
+            className="inputHotelNew"
+            type="text"
+            autoComplete="on"
+            placeholder="Price"
+            ref={price}
+          />
+        </label>
+        <label className="labelLogin">
+          Date
+          <input
+            className="inputHotelNew"
+            type="date"
+            autoComplete="on"
+            placeholder="Date"
+            ref={date}
           />
         </label>
         <div className="contenedorByP">
@@ -101,7 +105,7 @@ export default function EditHotels() {
             type="submit"
             onClick={notify}
           >
-            Modified a hotel
+            Modified a show
           </button>
         </div>
       </div>
