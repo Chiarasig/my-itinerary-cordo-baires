@@ -60,6 +60,16 @@ export default function EditCity() {
             />
           </label>
           <label className="labelLogin">
+            Continent
+            <input
+              className="inputHotelNew"
+              type="text"
+              autoComplete="on"
+              placeholder="continent"
+              ref={continent}
+            />
+          </label>
+          <label className="labelLogin">
             Photo: URL
             <input
               className="inputHotelNew"
