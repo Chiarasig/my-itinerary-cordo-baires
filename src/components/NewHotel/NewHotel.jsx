@@ -5,8 +5,10 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { BASE_URL } from "../../api/url";
+import { useNavigate} from "react-router-dom";
 
 export default function NewHotel() {
+  const navigate = useNavigate();
   const notify = () => {
     toast();
   };
@@ -31,7 +33,7 @@ export default function NewHotel() {
     try {
       let res = await axios.post(`${BASE_URL}/hotel`, newHotel);
       if (res.data.success) {
-        toast.success("The hotel was successfully created");
+        navigate(`/hotels/detail/${res.data.id}?success=true`);
       } else {
         toast.error(res.data.message.join(" - - - - "));
         console.log(res.data);
