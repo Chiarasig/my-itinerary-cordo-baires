@@ -1,127 +1,148 @@
 import React from "react";
 import { useRef } from "react";
-import '../../index.css'
+// import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { BASE_URL } from "../../api/url";
+import axios from "axios";
+import "../../index.css";
 
 export default function RegisterForm() {
-/*   const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState(""); */
-  const firstName = useRef(null)
-  const lastName = useRef(null)
-  const email = useRef(null)
-  const password = useRef(null)
-  const confirmPassword = useRef(null)
-  /* const submit = () => {
-    if (
-      (firstName === "",
-      lastName === "",
-      email === "",
-      password === "",
-      confirmPassword === "")
-    ) {
-      alert("Please fill in all fields");
-    } else {
-      let register = { firstName, lastName, email, password, confirmPassword };
-      localStorage.setItem("Register", JSON.stringify(register));
-    }
-  }; */
+  // const navigate = useNavigate();
+  const notify = () => {
+    toast();
+  };
+  const information = useRef();
+  const name = useRef();
+  const lastName = useRef();
+  const role = useRef();
+  const photo = useRef();
+  const age = useRef();
+  const mail = useRef();
+  const password = useRef();
 
-  let submit = (event) => {
+  async function register(event) {
     event.preventDefault();
-        const data = {
-          firstName: firstName.current.value,
-          lastName: lastName.current.value,
-          email: email.current.value,
-          password: password.current.value,
-          confirmPassword: confirmPassword.current.value
-        };
-        
-    localStorage.setItem('user-registered', JSON.stringify(data))
-
-    alert("You are signed up!")
-
-    firstName.current.value=''
-    lastName.current.value=''
-    email.current.value=''
-    password.current.value=''
-    confirmPassword.current.value=''    
+    let newUser = {
+      name: name.current.value,
+      lastName: lastName.current.value,
+      role: role.current.value,
+      photo: photo.current.value,
+      age: age.current.value,
+      mail: mail.current.value,
+      password: password.current.value,
+    };
+    try {
+      let res = await axios.post(`${BASE_URL}/auth/sign-up`, newUser);
+      if (res.data.success) {
+        // navigate(`/login?success=true`);
+      } else {
+        toast.error(res.data.message.join(" - - - - "));
+      }
+    } catch (error) {
+      console.log(error);
     }
+  }
 
   return (
     <>
-      <form className="nuevoFormularioLogin">
+      <form 
+        className="nuevoFormularioLogin"
+        onSubmit={register}
+        ref={information}
+        >
         <div className="formInputLabelRegister">
-          <label className='labelLogin'>
-            First Name
+        <label className="labelLogin">
+            Name
             <input
+              className="inputHotelNew"
               type="text"
               autoComplete="on"
-              placeholder="First Name"
-              className='inputLogin'
-              ref={firstName}
-              /* onChange={(e) => setFirstName(e.target.value)} */
+              placeholder="Name"
+              ref={name}
             />
           </label>
-          <label className='labelLogin'>
-            Last Name
+          <label className="labelLogin">
+            Lastname
             <input
+              className="inputHotelNew"
               type="text"
               autoComplete="on"
-              placeholder="Last Name"
-              className='inputLogin'
+              placeholder="Lastname"
               ref={lastName}
-              /* onChange={(e) => setLastName(e.target.value)} */
             />
           </label>
-          <label className='labelLogin'>
-            Email
+          <label className="labelLogin">
+            Role
+            <input
+              className="inputHotelNew"
+              type="text"
+              autoComplete="on"
+              placeholder="Role"
+              ref={role}
+            />
+          </label>
+          <label className="labelLogin">
+            Photo:
+            <input
+              className="inputHotelNew"
+              name="photo"
+              accept="image/png, image/jpeg"
+              type="text"
+              autoComplete="on"
+              placeholder="Photo"
+              ref={photo}
+            />
+          </label>
+          <label className="labelLogin">
+            Age
+            <input
+              className="inputHotelNew"
+              type="number"
+              autoComplete="on"
+              placeholder="Age"
+              ref={age}
+            />
+          </label>
+          <label className="labelLogin">
+            Mail
             <input
               type="mail"
               autoComplete="current-email"
               placeholder="mail"
-              className='inputLogin'
-              ref={email}
-            /*   onChange={(e) => setEmail(e.target.value)} */
+              className="inputLogin"
+              ref={mail}
             />
           </label>
-          <label className='labelLogin'>
+          <label className="labelLogin">
             Password
             <input
               type="password"
               autoComplete="on"
               placeholder="Password"
-              className='inputLogin'
+              className="inputLogin"
               ref={password}
-             /*  onChange={(e) => setPassword(e.target.value)} */
-            />
-          </label>
-          <label className='labelLogin'>
-            Confirm Password
-            <input
-              type="password"
-              autoComplete="on"
-              placeholder="Confirm Password"
-              className='inputLogin'
-              ref={confirmPassword}
-              /* onChange={(e) => setConfirmPassword(e.target.value)} */
             />
           </label>
           <div className="contenedorByP">
-            <button className="buttonNuevoFormulario" onClick={submit}>
+            <button 
+              className="buttonNuevoFormulario"
+              type="submit"
+              onClick={notify}
+              >
               Sign Up
             </button>
             <p className="text-center">Or with</p>
-            <button className="buttonNuevoFormulario" onClick={submit}>
+            <button className="buttonNuevoFormulario">
               Register with Google
             </button>
             <p className="text-center">If you already registered</p>
-            <button className="buttonNuevoFormulario" onClick={submit}>
+            <button className="buttonNuevoFormulario">
               Sign In
             </button>
           </div>
         </div>
+        <ToastContainer />
       </form>
     </>
   );
