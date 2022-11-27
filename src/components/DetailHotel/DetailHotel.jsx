@@ -1,11 +1,15 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useEffect } from "react";
+import { useParams, useSearchParams } from "react-router-dom";
 import HotelShows from "./HotelShows";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { BASE_URL } from "../../api/url";
 import "../../index.css";
 
 export default function DetailHotel() {
+  const [searchParams, setSearchParams] = useSearchParams();
   const { id } = useParams();
 
   const [hotel, setHotel] = React.useState({});
@@ -17,6 +21,13 @@ export default function DetailHotel() {
       });
   }, [id]);
 
+  useEffect(()=>{
+    if (searchParams.get("success") === "true") {
+      toast.success("The hotel was successfully created");
+      toast();
+    }
+  },[])
+
   return (
     <div className="containerDetailHotel Font_Arial">
       <div className="containerTittleDetailHotel">
@@ -27,6 +38,15 @@ export default function DetailHotel() {
         <div className="subttitleDetails">
           <h3 className="subtittleCardDetail">Name: {hotel.name}</h3>
           <h3 className="subtittleCardDetail">Capacity: {hotel.capacity}</h3>
+          <h3 className="subtittleCardDetail">
+            {" "}
+            <img
+              className="stlye_img_admind"
+              src={hotel?.userId?.photo}
+              alt=""
+            />{" "}
+            Admin User: {hotel?.userId?.name}
+          </h3>
         </div>
       </div>
       <div className="containerShowTittleHotel">
@@ -37,6 +57,7 @@ export default function DetailHotel() {
           <HotelShows idHotel={hotel._id} />
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 }

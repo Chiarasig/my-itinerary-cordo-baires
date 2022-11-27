@@ -5,14 +5,13 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { BASE_URL } from "../../api/url";
-import { useNavigate} from "react-router-dom";
+import { useParams } from "react-router-dom";
 
-export default function NewCity() {
-  const navigate = useNavigate();
-
+export default function EditCity() {
   const notify = () => {
     toast();
   };
+  let { id } = useParams();
   let information = useRef();
   let name = useRef();
   let continent = useRef();
@@ -20,9 +19,9 @@ export default function NewCity() {
   let population = useRef();
   let userId = useRef();
 
-  async function newCity(event) {
+  async function editCity(event) {
     event.preventDefault();
-    let newCity = {
+    let editCity = {
       name: name.current.value,
       continent: continent.current.value,
       photo: photo.current.value,
@@ -30,9 +29,9 @@ export default function NewCity() {
       userId: userId.current.value,
     };
     try {
-      let res = await axios.post(`${BASE_URL}/city`, newCity);
+      let res = await axios.put(`${BASE_URL}/city/${id}`, editCity);
       if (res.data.success) {
-        navigate(`/cities/detail/${res.data.id}?success=true`);
+        toast.success("The city was successfully modified");
       } else {
         toast.error(res.data.message.join(" - - - - "));
       }
@@ -45,7 +44,7 @@ export default function NewCity() {
     <>
       <form
         className="nuevoFormularioLogin"
-        onSubmit={newCity}
+        onSubmit={editCity}
         ref={information}
       >
         <div className="formInputLabelRegister">
@@ -57,6 +56,16 @@ export default function NewCity() {
               autoComplete="on"
               placeholder="Name"
               ref={name}
+            />
+          </label>
+          <label className="labelLogin">
+            Continent
+            <input
+              className="inputHotelNew"
+              type="text"
+              autoComplete="on"
+              placeholder="continent"
+              ref={continent}
             />
           </label>
           <label className="labelLogin">
@@ -72,17 +81,7 @@ export default function NewCity() {
             />
           </label>
           <label className="labelLogin">
-            Continent
-            <input
-              className="inputHotelNew"
-              type="text"
-              autoComplete="on"
-              placeholder="Continent"
-              ref={continent}
-            />
-          </label>
-          <label className="labelLogin">
-            Population
+          Population
             <input
               className="inputHotelNew"
               type="text"
@@ -92,12 +91,12 @@ export default function NewCity() {
             />
           </label>
           <label className="labelLogin">
-            User Id:
+          UserId
             <input
               className="inputHotelNew"
               type="text"
               autoComplete="on"
-              placeholder="UserId mongoose"
+              placeholder="UserId"
               ref={userId}
             />
           </label>
@@ -107,7 +106,7 @@ export default function NewCity() {
               type="submit"
               onClick={notify}
             >
-              Create a new city
+              Modified a city
             </button>
           </div>
         </div>
@@ -116,4 +115,3 @@ export default function NewCity() {
     </>
   );
 }
-
