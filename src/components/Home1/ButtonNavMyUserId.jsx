@@ -9,11 +9,9 @@ export default function ButtonNavSig(props) {
   const { role } = user;
   let { texto1, texto2, titulo, texto3, texto4 } = props;
   let [mostrarOcultar, setMostrarOcultar] = useState(false);
-  //funcion para mostrar y ocultar el menu
   let hide = () => {
     setMostrarOcultar(!mostrarOcultar)
   };
-  //Funcion para ocultar el menu al hacer click en un link
   return (
     <div>
       {mostrarOcultar ? (
