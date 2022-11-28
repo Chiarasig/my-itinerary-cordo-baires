@@ -37,8 +37,8 @@ export default function MyShowsCard() {
   return (
     <div className="containerMyHotels">
       <div className="tittleMyHotels">
-        <h2>My shows by userId</h2>
-        <button>
+        <h2 className="tittleItinerary">My shows by userId</h2>
+        <button className="buttonProfile">
           <Link to="/myshows/newShow">Add Show</Link>
         </button>
       </div>
