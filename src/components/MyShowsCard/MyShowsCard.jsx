@@ -63,7 +63,7 @@ export default function MyShowsCard() {
             </div>
           ))
         ) : (
-          <h2>No results were found, please try again with another search</h2>
+          <h2 className="notFound">No results were found, please try again with another search</h2>
         )}
       </div>
     </div>
