@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import usersActions from "../../redux/actions/usersActions";
 
 
@@ -25,6 +26,9 @@ export const ButtonNavLogout = () => {
         </li>
         <li>
           <p>{`${name} ${lastName}`}</p>
+        </li>
+        <li>
+          <Link to={"/profile"}>My Profile</Link> 
         </li>
         <li>
           <button type="button" onClick={handleLogOut}>
