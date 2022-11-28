@@ -22,13 +22,28 @@ import EditItineraryLayout from "./layouts/EditItineraryLayout";
 import MyActivitiessCard from "./components/MyActivities/MyActivityCard";
 import EditShowLayout from "./layouts/EditShowLayout";
 import MyShowsCard from "./components/MyShowsCard/MyShowsCard";
-import { useSelector } from "react-redux";
 import ProtectedRoute from "./components/protectedRoute/ProtectedRoute";
+import { useSelector, useDispatch } from "react-redux";
+import usersActions from "./redux/actions/usersActions";
+import { useEffect } from "react";
 
 
 function App() {
-let user = useSelector((store) => store.usersReducers)
-let logged = user.token
+
+  let user = useSelector((store) => store.usersReducers);
+  let logged = user.token
+  let dispatch = useDispatch();
+  let { reEnter } = usersActions;
+
+  useEffect(() => {
+    let token = JSON.parse(localStorage.getItem("token"));
+    if (token) {
+      dispatch(reEnter(token.token.user));
+    }
+    // eslint-disable-next-line
+  }, []);
+
+
   
     return (
     <>
@@ -69,7 +84,6 @@ let logged = user.token
           <Route path="/myshows" element={<MyShowsCard />} />
           <Route path="/myitinerary" element={<MyActivitiessCard />} />
         </Route>
-
       </Routes>
       <FooterLayout />
     </>

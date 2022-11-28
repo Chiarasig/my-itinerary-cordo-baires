@@ -5,18 +5,19 @@ import '../../index.css'
 import ButtonNavNew from './ButtonNavNew'
 import ButtonNavMyUserId from './ButtonNavMyUserId'
 import { useSelector } from 'react-redux'
+import { ButtonNavLogout } from './ButtonNavLogout'
 
 
 export default function NavBar() {
   let user = useSelector((store) => store.usersReducers)
-  console.log(user)
-  const {lastName, logged, name, photo, token } = user;
+  const { logged, role } = user;
+
 
   return (
     <>
     <div className='NavBar'>
     <ButtonNav className="navBarH" titulo="Home" texto1="Cities" texto2="Hotels" />
-    { logged ? (
+    { logged && role === 'admin' ? (
       <ButtonNavNew className="navBarMiddle" titulo="New" texto1="New City" texto2="New Hotel"/>
     ) : null }
     { !logged ? (
@@ -25,7 +26,10 @@ export default function NavBar() {
       null
     )}
     { logged ? (
-      <ButtonNavMyUserId className="navBarMiddle" titulo="My" texto1="My cities" texto2="My hotels" texto3="My itinerary"/>
+      <ButtonNavMyUserId className="navBarMiddle" titulo="My" texto1="My cities" texto2="My hotels" texto3="My itinerary" texto4="My Shows"/>
+    ) : null }
+    { logged ? (
+      < ButtonNavLogout />
     ) : null }
     </div>
     </>
