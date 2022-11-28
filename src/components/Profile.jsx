@@ -5,8 +5,8 @@ import usersAction from "../redux/actions/usersActions";
 import Swal from "sweetalert2";
 import axios from "axios";
 import { BASE_URL } from "../api/url"
-
 import { Link as NavLink } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function Profile() {
   const dispatch = useDispatch();
@@ -14,10 +14,11 @@ export default function Profile() {
   const { getUser, updateUser } = usersAction;
 
   useEffect(() => {
-    dispatch(getUser(idUser));
-
+    if(idUser) {
+      dispatch(getUser(idUser));
+    }
     // eslint-disable-next-line
-  }, []);
+  }, [idUser]);
   console.log(user);
 
   let information = useRef();
@@ -37,26 +38,34 @@ export default function Profile() {
       mail: mail.current.value,
     };
 
-    Swal.fire({
-      icon: "question",
-      title: " Do you want to save the changes?",
-      showConfirmButton: true,
-      iconColor: "#fc4c4e",
-      confirmButtonColor: "#fc4c4e",
-      confirmButtonText: "Yes",
-      showCancelButton: true,
-    });
+    // TODO
+    // Swal.fire({
+    //   icon: "question",
+    //   title: " Do you want to save the changes?",
+    //   showConfirmButton: true,
+    //   iconColor: "#fc4c4e",
+    //   confirmButtonColor: "#fc4c4e",
+    //   confirmButtonText: "Yes",
+    //   showCancelButton: true,
+    // });
     try {
+      if(window.confirm("Do you want to save the changes?")) {
       let res = await axios.patch(`${BASE_URL}/auth/me/${idUser}`, editUser);
+      if (res.data.success) {
+        toast.success("User registered successfully", {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+        name.current.value = "";
+        lastName.current.value = "";
+        photo.current.value = "";
+        age.current.value = "";
+        mail.current.value = "";
+      }
       console.log(res);
+    }
     } catch (error) {
       console.log(error);
     }
-    name.current.value = "";
-    lastName.current.value = "";
-    photo.current.value = "";
-    age.current.value = "";
-    mail.current.value = "";
   }
 
   return (
