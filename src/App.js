@@ -28,10 +28,8 @@ import ProtectedRoute from "./components/protectedRoute/ProtectedRoute";
 
 function App() {
 
-// let user = useSelector((store) => store.usersReducers)
-// let logged = user.token
-
-
+let user = useSelector((store) => store.usersReducers)
+let logged = user.token
   
     return (
     <>
@@ -68,10 +66,10 @@ function App() {
         <Route path="/newhotel" element={<NewHotelLayout />} />
         <Route path="*" element={<PagNotFoundLayout />} />
 
-        {/* <Route element={<ProtectedRoute isAllowed={!!logged} reDirect="/SignIn" />}> */}
+        <Route element={<ProtectedRoute isAllowed={!!logged} reDirect="/SignIn" />}>
           <Route path="/myshows" element={<MyShowsCard />} />
           <Route path="/myitinerary" element={<MyActivitiessCard />} />
-        {/* </Route> */}
+        </Route>
       </Routes>
       <FooterLayout />
     </>
