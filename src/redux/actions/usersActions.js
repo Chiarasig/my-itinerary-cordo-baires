@@ -71,7 +71,7 @@ const reEnter = createAsyncThunk("reEnter", async (token) => {
       console.log(error);
       return {
         success: false,
-        response: "ocurrió un error",
+        response: "An error occurred",
       };
     }
   });
@@ -88,7 +88,7 @@ const reEnter = createAsyncThunk("reEnter", async (token) => {
         console.log(error)
         return {
           success: false,
-          response: "ocurrió un error",
+          response: "An error occurred",
         }
     }
   })

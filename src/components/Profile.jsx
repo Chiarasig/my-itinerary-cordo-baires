@@ -59,22 +59,6 @@ export default function Profile() {
     mail.current.value = "";
   }
 
-  function edit() {
-    Swal.fire({
-      icon: "question",
-      title: "Would do you like close your session?",
-      showConfirmButton: true,
-      iconColor: "#fc4c4e",
-      confirmButtonColor: "#fc4c4e",
-      confirmButtonText: "Yes",
-      showCancelButton: true,
-    }).then((result) => {
-      if (result.isConfirmed) {
-        dispatch(updateUser(idUser, editUser));
-      }
-    });
-  }
-
   return (
     <div className="formHotelAdmin">
       <div className="flex justify-center column align-center w-100">
@@ -137,7 +121,6 @@ export default function Profile() {
         <div className="flex justify-around  p-1 wrap g-25">
           <input
             type="submit"
-            onClick={edit}
             required
             className="btn"
             value="EDIT MY PROFILE"
