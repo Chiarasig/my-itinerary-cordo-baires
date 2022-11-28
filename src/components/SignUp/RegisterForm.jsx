@@ -1,6 +1,7 @@
 import React from "react";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
+
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { BASE_URL } from "../../api/url";
@@ -42,7 +43,6 @@ export default function RegisterForm() {
       }
     } catch (error) {
       console.log(error);
-
     }
       name.current.value= "";
       lastName.current.value= "";

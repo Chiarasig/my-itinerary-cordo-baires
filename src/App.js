@@ -27,8 +27,11 @@ import ProtectedRoute from "./components/protectedRoute/ProtectedRoute";
 
 
 function App() {
+
 // let user = useSelector((store) => store.usersReducers)
 // let logged = user.token
+
+
   
     return (
     <>
@@ -69,7 +72,6 @@ function App() {
           <Route path="/myshows" element={<MyShowsCard />} />
           <Route path="/myitinerary" element={<MyActivitiessCard />} />
         {/* </Route> */}
-
       </Routes>
       <FooterLayout />
     </>
