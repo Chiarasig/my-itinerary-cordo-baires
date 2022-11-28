@@ -58,10 +58,48 @@ const reEnter = createAsyncThunk("reEnter", async (token) => {
     }
   });
 
+  const getUser = createAsyncThunk("getUser", async (id) => {
+    let url = `${BASE_URL}/auth/me/${id}`;
+    try {
+      let res = await axios.get(url);
+      console.log(res);
+      return {
+        success: true,
+        response: res.data.response,
+      };
+    } catch (error) {
+      console.log(error);
+      return {
+        success: false,
+        response: "ocurrió un error",
+      };
+    }
+  });
+  
+  const updateUser = createAsyncThunk("updateUser", async (id) => {
+    let url = `${BASE_URL}/auth/me/${id}`;
+    try{
+      let res = await axios.patch(url);
+        return {
+        success: true,
+        response: res.data.response,
+        }
+      }catch(error){
+        console.log(error)
+        return {
+          success: false,
+          response: "ocurrió un error",
+        }
+    }
+  })
+  
+
 const usersActions= {
  enter,
  signOff,
  reEnter,
+ getUser,
+ updateUser
 }
 
 export default usersActions

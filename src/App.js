@@ -23,6 +23,8 @@ import MyActivitiessCard from "./components/MyActivities/MyActivityCard";
 import EditShowLayout from "./layouts/EditShowLayout";
 import MyShowsCard from "./components/MyShowsCard/MyShowsCard";
 import ProtectedRoute from "./components/protectedRoute/ProtectedRoute";
+/* import ProfileL from "./components/Profile"; */
+import ProfileLayout from "./layouts/ProfileLayout";
 import { useSelector, useDispatch } from "react-redux";
 import usersActions from "./redux/actions/usersActions";
 import { useEffect } from "react";
@@ -68,6 +70,7 @@ function App() {
         <Route path="/myhotels" element={<MyHotelsCard />} />
         <Route path="/editHotel" element={<EditHotelLayout />} />
         <Route path="/mycities" element={<MyCitiesCard />} />
+        <Route path="/profile" element={<ProfileLayout />} />
         <Route path="/editCities" element={<EditCityLayout />} />
         <Route path="/editShows" element={<EditShowLayout />} />
         <Route path="/hotels">
