@@ -70,9 +70,10 @@ export default function Profile() {
 
   return (
     <div className="formHotelAdmin">
-      <div className="flex justify-center column align-center w-100">
-        <h3>{user.name}</h3>
-        <img src={user.photo} className="photo-user-profile" />
+      <div className="flex justify-center align-center tittleProfile">
+        <h1 className="SignUpH1">My profile: </h1>
+        <h3 className="SignUpH1"> {user.name}</h3>
+        <img src={user.photo} className="photoProfile" />
       </div>
       <form className="nuevoFormularioLogin" onSubmit={editUser} ref={information}>
         <div className="formInputLabel">
@@ -131,11 +132,11 @@ export default function Profile() {
           <input
             type="submit"
             required
-            className="btn"
+            className="buttonProfile"
             value="EDIT MY PROFILE"
           />
           <NavLink className="w-100 margin-none flex justify-end" to="/">
-            <button className="back">Back to home</button>
+            <button className="buttonProfile">Back to home</button>
           </NavLink>
         </div>
       </form>

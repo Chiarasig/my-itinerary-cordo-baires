@@ -352,7 +352,7 @@ input {
   margin-top: 1rem;
 }
 .myProfile{
-  min-height: 70vh;
+  min-height: 75vh;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -360,7 +360,7 @@ input {
   margin-top: 1rem;
 }
 .newCityLayout{
-  min-height: 70vh;
+  min-height: 75vh;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -434,6 +434,40 @@ input {
   justify-content: center;
   width: 80%;
   font-family: Arial, Helvetica, sans-serif;
+}
+.buttonLogout{
+  background-color: #f0c023;
+  border: none;
+  padding: 7px;
+  border-radius: 7px;
+  margin-top: 7px;
+  margin-bottom: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.2rem;
+}
+.buttonProfile{
+  background-color: #624410;
+  color: rgba(255, 255, 255, 0.726);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 1rem;
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+.listLogout{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 /* Login Form */
 /* Register Form */
@@ -532,6 +566,13 @@ input {
   font-weight: 600;
   font-family: Arial, Helvetica, sans-serif;
 }
+/* .tittleProfile{
+  text-align: center;
+  margin-top: 11px;
+  font-size: 30px;
+  font-weight: 600;
+  font-family: Arial, Helvetica, sans-serif;
+} */
 .Form_Font_Family {
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -641,6 +682,9 @@ ul {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 18px;
 }
+.photoProfile{
+  width: 100px;
+}
 .checkboxCities {
   color: white;
   flex-wrap: wrap;
@@ -682,7 +726,7 @@ ul {
   background: white;
 }
 .cardImg {
-  height: 85%;
+  height: 80%;
   padding: 10px;
   border: none;
   border-radius: 1.5rem;
