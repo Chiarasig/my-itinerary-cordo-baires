@@ -6,13 +6,16 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import { BASE_URL } from "../api/url"
 import { Link as NavLink } from "react-router-dom";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 
 export default function Profile() {
   const dispatch = useDispatch();
   const { idUser, user } = useSelector((state) => state.usersReducers);
   const { getUser, updateUser } = usersAction;
 
+  const notify = () => {
+    toast();
+  };
   useEffect(() => {
     if(idUser) {
       dispatch(getUser(idUser));
@@ -37,22 +40,11 @@ export default function Profile() {
       age: age.current.value,
       mail: mail.current.value,
     };
-
-    // TODO
-    // Swal.fire({
-    //   icon: "question",
-    //   title: " Do you want to save the changes?",
-    //   showConfirmButton: true,
-    //   iconColor: "#fc4c4e",
-    //   confirmButtonColor: "#fc4c4e",
-    //   confirmButtonText: "Yes",
-    //   showCancelButton: true,
-    // });
     try {
       if(window.confirm("Do you want to save the changes?")) {
       let res = await axios.patch(`${BASE_URL}/auth/me/${idUser}`, editUser);
       if (res.data.success) {
-        toast.success("User registered successfully", {
+        toast.success("User updated successfully", {
           position: toast.POSITION.TOP_RIGHT,
         });
         name.current.value = "";
@@ -70,9 +62,10 @@ export default function Profile() {
 
   return (
     <div className="formHotelAdmin">
-      <div className="flex justify-center column align-center w-100">
-        <h3>{user.name}</h3>
-        <img src={user.photo} className="photo-user-profile" />
+      <div className="flex justify-center align-center tittleProfile">
+        <h1 className="SignUpH1">My profile: </h1>
+        <h3 className="SignUpH1"> {user.name}</h3>
+        <img src={user.photo} className="photoProfile" />
       </div>
       <form className="nuevoFormularioLogin" onSubmit={editUser} ref={information}>
         <div className="formInputLabel">
@@ -131,13 +124,14 @@ export default function Profile() {
           <input
             type="submit"
             required
-            className="btn"
+            className="buttonProfile"
             value="EDIT MY PROFILE"
           />
           <NavLink className="w-100 margin-none flex justify-end" to="/">
-            <button className="back">Back to home</button>
+            <button className="buttonProfile">Back to home</button>
           </NavLink>
         </div>
+        <ToastContainer/>
       </form>
     </div>
   );

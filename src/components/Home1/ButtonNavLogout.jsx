@@ -20,7 +20,7 @@ export const ButtonNavLogout = () => {
 
   return (
     <div>
-      <ul>
+      <ul className="listLogout">
         <li>
           <img src={photo} alt={name} width={"50px"} height={"50px"} />
         </li>
@@ -31,7 +31,7 @@ export const ButtonNavLogout = () => {
           <Link to={"/profile"}>My Profile</Link> 
         </li>
         <li>
-          <button type="button" onClick={handleLogOut}>
+          <button type="button" onClick={handleLogOut} className="buttonLogout">
             Log Out
           </button>
         </li>
