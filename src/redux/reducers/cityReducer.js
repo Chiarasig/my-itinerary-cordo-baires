@@ -3,6 +3,7 @@ import citiesActions from "../actions/citiesActions";
 
 const initialState = {
     cities: [],
+    filteredCities: [],
     loading: false,
     error: false,
 }
@@ -13,10 +14,10 @@ const cityReducer = createReducer(initialState, (builder) => {
         return {...state, cities: action.payload.cities, loading: false, error: false}
     })
     .addCase(citiesActions.getCitiesByName.fulfilled, (state, action) => {
-        return {...state, cities: action.payload.cities, loading: false, error: false}
+        return {...state, filteredCities: action.payload.cities, loading: false, error: false}
     })
     .addCase(citiesActions.getCitiesByFilter.fulfilled, (state, action) => {
-        return {...state, cities: action.payload.cities, loading: false, error: false}
+        return {...state, filteredCities: action.payload.cities, loading: false, error: false}
     })
 })
 

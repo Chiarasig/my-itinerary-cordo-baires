@@ -20,8 +20,7 @@ export default function NewCity() {
   let population = useRef();
   let userId = useRef();
 
-  async function newCity(event) {
-    event.preventDefault();
+  async function newCity() {
     let newCity = {
       name: name.current.value,
       continent: continent.current.value,

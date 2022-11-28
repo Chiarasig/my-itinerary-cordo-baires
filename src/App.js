@@ -22,9 +22,30 @@ import EditItineraryLayout from "./layouts/EditItineraryLayout";
 import MyActivitiessCard from "./components/MyActivities/MyActivityCard";
 import EditShowLayout from "./layouts/EditShowLayout";
 import MyShowsCard from "./components/MyShowsCard/MyShowsCard";
+import ProtectedRoute from "./components/protectedRoute/ProtectedRoute";
+import { useSelector, useDispatch } from "react-redux";
+import usersActions from "./redux/actions/usersActions";
+import { useEffect } from "react";
+
 
 function App() {
-  return (
+
+  let user = useSelector((store) => store.usersReducers);
+  let logged = user.token
+  let dispatch = useDispatch();
+  let { reEnter } = usersActions;
+
+  useEffect(() => {
+    let token = JSON.parse(localStorage.getItem("token"));
+    if (token) {
+      dispatch(reEnter(token.token.user));
+    }
+    // eslint-disable-next-line
+  }, []);
+
+
+  
+    return (
     <>
       <Header></Header>
       <AutoToTop></AutoToTop>
@@ -35,21 +56,19 @@ function App() {
         <Route path="/cities">
           <Route index element={<CardsCities />} />
           <Route path="detail/:id" element={<DetailCity />} />
-          <Route path="editCities/:id" element={<EditCityLayout/>} />
-          <Route path="edit/:id" element={<EditItineraryLayout/>} />
+          <Route path="editCities/:id" element={<EditCityLayout />} />
+          <Route path="edit/:id" element={<EditItineraryLayout />} />
         </Route>
-        <Route path="/myitinerary" element={<MyActivitiessCard/>}/>
         <Route path="/newcity" element={<NewCityLayout />} />
-          <Route path="/myhotels" element={<MyHotelsCard/>} />
-        <Route path="/editHotel" element={<EditHotelLayout/>} />
-        <Route path= "/mycities" element={<MyCitiesCard />} />
-        <Route path="/editCities" element={<EditCityLayout/>} />
-        <Route path="/edit" element={<EditItineraryLayout/>} />
         <Route path="/myhotels" element={<MyHotelsCard />} />
         <Route path="/editHotel" element={<EditHotelLayout />} />
         <Route path="/mycities" element={<MyCitiesCard />} />
         <Route path="/editCities" element={<EditCityLayout />} />
-        <Route path="/myshows" element={<MyShowsCard />} />
+        <Route path="/edit" element={<EditItineraryLayout />} />
+        <Route path="/myhotels" element={<MyHotelsCard />} />
+        <Route path="/editHotel" element={<EditHotelLayout />} />
+        <Route path="/mycities" element={<MyCitiesCard />} />
+        <Route path="/editCities" element={<EditCityLayout />} />
         <Route path="/editShows" element={<EditShowLayout />} />
         <Route path="/hotels">
           <Route index element={<CardsHotels />} />
@@ -60,6 +79,11 @@ function App() {
         <Route path="/signIn" element={<LoginFormLayout />} />
         <Route path="/newhotel" element={<NewHotelLayout />} />
         <Route path="*" element={<PagNotFoundLayout />} />
+
+        <Route element={<ProtectedRoute isAllowed={!!logged} reDirect="/SignIn" />}>
+          <Route path="/myshows" element={<MyShowsCard />} />
+          <Route path="/myitinerary" element={<MyActivitiessCard />} />
+        </Route>
       </Routes>
       <FooterLayout />
     </>
