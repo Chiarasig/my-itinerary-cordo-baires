@@ -28,6 +28,7 @@ import ProfileLayout from "./layouts/ProfileLayout";
 import { useSelector, useDispatch } from "react-redux";
 import usersActions from "./redux/actions/usersActions";
 import { useEffect } from "react";
+import NewActivityLayout from "./layouts/NewActivityLayout";
 
 
 function App() {
@@ -71,7 +72,6 @@ function App() {
         <Route path="/editHotel" element={<EditHotelLayout />} />
         <Route path="/mycities" element={<MyCitiesCard />} />
         <Route path="/profile" element={<ProfileLayout />} />
-        <Route path="/editCities" element={<EditCityLayout />} />
         <Route path="/editShows" element={<EditShowLayout />} />
         <Route path="/hotels">
           <Route index element={<CardsHotels />} />
@@ -86,6 +86,8 @@ function App() {
         <Route element={<ProtectedRoute isAllowed={!!logged} reDirect="/SignIn" />}>
           <Route path="/myshows" element={<MyShowsCard />} />
           <Route path="/myitinerary" element={<MyActivitiessCard />} />
+          <Route path="/myitinerary/newItinerary" element={<NewActivityLayout />} />
+          <Route path="/myitinerary/editItinerary/:id" element={<EditItineraryLayout />} />
         </Route>
       </Routes>
       <FooterLayout />
