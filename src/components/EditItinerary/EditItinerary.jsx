@@ -5,33 +5,37 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { BASE_URL } from "../../api/url";
-import { useNavigate} from "react-router-dom";
+import { useParams } from "react-router-dom";
 
-export default function NewCity() {
-  const navigate = useNavigate();
-
+export default function EditCity() {
   const notify = () => {
     toast();
   };
+  let { id } = useParams();
   let information = useRef();
   let name = useRef();
-  let continent = useRef();
-  let photo = useRef();
-  let population = useRef();
+  let photo1 = useRef();
+  let photo2 = useRef();
+  let photo3 = useRef();
+  let description = useRef();
+  let price = useRef();
+  let duration = useRef();
   let userId = useRef();
 
-  async function newCity() {
-    let newCity = {
+  async function editActivity(event) {
+    event.preventDefault();
+    let editActivity = {
       name: name.current.value,
-      continent: continent.current.value,
-      photo: photo.current.value,
-      population: population.current.value,
+      photo: [photo1.current.value, photo2.current.value, photo3.current.value],
+      description: description.current.value,
+      price: price.current.value,
+      duration: duration.current.value,
       userId: userId.current.value,
     };
     try {
-      let res = await axios.post(`${BASE_URL}/city`, newCity);
+      let res = await axios.put(`${BASE_URL}/itineraries/${id}`, editActivity);
       if (res.data.success) {
-        navigate(`/cities/detail/${res.data.id}?success=true`);
+        toast.success("The activity was successfully modified");
       } else {
         toast.error(res.data.message.join(" - - - - "));
       }
@@ -44,7 +48,7 @@ export default function NewCity() {
     <>
       <form
         className="nuevoFormularioLogin"
-        onSubmit={newCity}
+        onSubmit={editActivity}
         ref={information}
       >
         <div className="formInputLabelRegister">
@@ -59,44 +63,72 @@ export default function NewCity() {
             />
           </label>
           <label className="labelLogin">
-            Photo: URL
+          Description
             <input
               className="inputHotelNew"
-              name="photo"
-              accept="image/png, image/jpeg"
               type="text"
               autoComplete="on"
-              placeholder="Photo"
-              ref={photo}
+              placeholder="Description"
+              ref={description}
             />
           </label>
           <label className="labelLogin">
-            Continent
+          Photo: URL
+          <input
+            className="inputHotelNew"
+            name="photo1"
+            accept="image/png, image/jpeg"
+            type="text"
+            autoComplete="on"
+            placeholder="Photo"
+            ref={photo1}
+          />
+          <input
+            className="inputHotelNew"
+            name="photo2"
+            accept="image/png, image/jpeg"
+            type="text"
+            autoComplete="on"
+            placeholder="Photo"
+            ref={photo2}
+          />
+          <input
+            className="inputHotelNew"
+            name="photo3"
+            accept="image/png, image/jpeg"
+            type="text"
+            autoComplete="on"
+            placeholder="Photo"
+            ref={photo3}
+          />
+        </label>
+          <label className="labelLogin">
+          Price
             <input
               className="inputHotelNew"
               type="text"
               autoComplete="on"
-              placeholder="Continent"
-              ref={continent}
+              placeholder="Price"
+              ref={price}
             />
           </label>
           <label className="labelLogin">
-            Population
+          Duration
             <input
               className="inputHotelNew"
               type="text"
               autoComplete="on"
-              placeholder="Population"
-              ref={population}
+              placeholder="Duration"
+              ref={duration}
             />
           </label>
           <label className="labelLogin">
-            User Id:
+          UserId
             <input
               className="inputHotelNew"
               type="text"
               autoComplete="on"
-              placeholder="UserId mongoose"
+              placeholder="UserId"
               ref={userId}
             />
           </label>
@@ -106,7 +138,7 @@ export default function NewCity() {
               type="submit"
               onClick={notify}
             >
-              Create a new city
+              Modified a Activity
             </button>
           </div>
         </div>
@@ -115,4 +147,3 @@ export default function NewCity() {
     </>
   );
 }
-

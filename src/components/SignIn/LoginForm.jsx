@@ -1,48 +1,70 @@
-// Login Form and save information to local storage for future use in the app 
-import React, { useState, useRef } from 'react';
+import React, { useRef } from 'react';
+import Swal from "sweetalert2";
 import '../../index.css'
-
+import { useNavigate } from 'react-router-dom';
+import usersActions from '../../redux/actions/usersActions';
+import { useDispatch } from "react-redux";
 
 function LoginForm(){
- /*  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState(""); */
-    const email = useRef(null)
-  const password = useRef(null)
+  const mail = useRef()
+  const password = useRef()
+  let dispatch = useDispatch()
+  let {enter} = usersActions
+  let form = useRef();
+  let navegation = useNavigate()
 
-/*   const submit = () => {
-    if (email === "" | password === "") {
-      alert("Please fill in all fields");
-    } else {
-      let login = {email, password}
-      localStorage.setItem("Sign In", JSON.stringify(login));
-    }
-  }; */
-  let submit = (event) => {
+  async function submitLogin(event) {
     event.preventDefault();
-        const data = {
-          email: email.current.value,
-          password: password.current.value
-        };
-        
-    localStorage.setItem('sign-in', JSON.stringify(data))
 
-    alert("You have entered correctly!")
-
-    email.current.value=''
-    password.current.value=''
-  
+    let datos = {
+      mail: mail.current.value,
+      password: password.current.value,
+    };
+    try {
+      let res = await dispatch(enter (datos));
+      console.log(res)
+      if (res.payload.success) {
+        Swal.fire({
+          icon: "success",
+          title: res.payload.res.message,
+          showConfirmButton: true,
+          iconColor: "#fc4c4e",
+          confirmButtonColor: "#fc4c4e",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            navegation(`/`);
+          }
+        });
+      }else{
+        Swal.fire({
+          icon: "error",
+          confirmButtonColor: "#fc4c4e",
+          iconColor: "#fc4c4e",
+          title: res.payload.res.message,
+          showConfirmButton: true,
+        }).then((result) => {
+          if (!result.isConfirmed) {
+            navegation(`/signin`);
+          }
+        })
+      }
+    } catch (error) {
+      console.log(error);
     }
+    mail.current.value=''
+    password.current.value=''
+  }
+
   return (
     <>
-    <form className="nuevoFormularioLogin">
+    <form className="nuevoFormularioLogin" onSubmit={submitLogin} ref={form}>
       <div className='formInputLabel'>
-        <label className='labelLogin'>Email
+        <label className='labelLogin'>Mail
         <input className='inputLogin'
-          type="email"
-          autoComplete='current-email'
-          placeholder="Email"
-          ref={email}
-     /*      onChange={(e) => setEmail(e.target.value)} */
+          type="mail"
+          autoComplete='current-mail'
+          placeholder="Mail"
+          ref={mail}
         />
         </label>
         <label className='labelLogin'>Password
@@ -51,15 +73,14 @@ function LoginForm(){
           autoComplete='on'
           placeholder="Password"
           ref={password}
-      /*     onChange={(e) => setPassword(e.target.value)} */
         />
         </label>
       <div className="contenedorByP">
-        <button className='buttonNuevoFormulario' onClick={submit}>Sign In</button>
+        <button className='buttonNuevoFormulario'>Sign In</button>
         <p className="text-center">Or with</p>
-        <button className='buttonNuevoFormulario' onClick={submit}>Login with Google</button>  
+        <button className='buttonNuevoFormulario'>Login with Google</button>  
         <p className="text-center">If you are not registered</p>
-        <button className='buttonNuevoFormulario' onClick={submit}>Sign Up</button>
+        <button className='buttonNuevoFormulario'>Sign Up</button>
       </div>
       </div>
     </form>

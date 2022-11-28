@@ -4,7 +4,7 @@ import "../../index.css";
 import axios from 'axios';
 import {BASE_URL} from '../../api/url'
 
-export default function Activiti (props) {
+export default function Activiti (props) { 
     const {idCity} = props;
     const [activities, setActivities] = React.useState([]);
     let [mostrarOcultar, setMostrarOcultar] = useState(false);
