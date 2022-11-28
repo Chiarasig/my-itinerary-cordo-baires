@@ -3,7 +3,7 @@ import axios from "axios";
 import { BASE_URL } from "../../api/url";
 import usersActions from "../actions/usersActions";
 
-const { enter, signOff, reEnter } = usersActions;
+const { enter, signOff, reEnter, getUser, updateUser } = usersActions;
 
 const initialState = {
   name: "",
@@ -11,6 +11,8 @@ const initialState = {
   photo: "",
   logged: false,
   token: "",
+  idUser: "",
+  user: [],
 };
 
 const usersReducers = createReducer(initialState, (builder) => {
@@ -28,7 +30,9 @@ const usersReducers = createReducer(initialState, (builder) => {
         logged: true,
         role: user.role,
         token: token,
+        idUser: user.idUser,
       };
+      console.log("enter", newState)
       return newState;
     } else {
       let newState = {
@@ -51,6 +55,7 @@ const usersReducers = createReducer(initialState, (builder) => {
         role: "",
         idUser: "",
         token: "",
+        idUser: "",
       };
       console.log(newState);
       return newState;
@@ -74,10 +79,10 @@ const usersReducers = createReducer(initialState, (builder) => {
         photo: user.photo,
         logged: true,
         role: user.role,
-        idUser: user.id,
+        idUser: user.idUser,
         token: token,
       };
-
+      console.log("reEnter", newState)
       return newState;
     } else {
       let newState = {
@@ -86,7 +91,21 @@ const usersReducers = createReducer(initialState, (builder) => {
       };
       return newState;
     }
-  });
+  })
+  .addCase(getUser.fulfilled, (state, action) => 
+  {
+    console.log("getuser")
+    return {
+      ...state,
+      user: action.payload.response,
+      
+    };
+  })
+  .addCase(updateUser.fulfilled, (state, action) => {
+    return { ...state,
+     ...action.payload
+    };
+})
 })
 
 

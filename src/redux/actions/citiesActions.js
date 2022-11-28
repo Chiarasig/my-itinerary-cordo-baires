@@ -17,8 +17,12 @@ let getCitiesByName = createAsyncThunk("getCitiesByName", async (name) => {
 });
 
 let getCitiesByFilter = createAsyncThunk("getCitiesByFilter", async (filter) => {
+    let params = `name=${filter.name}`
+    if (filter.continent) {
+      params += `&continent=${filter.continent}`
+    }
     let data = await axios.get(
-      `${BASE_URL}/cities?name=${filter.name}&continent=${filter.continent}`
+      `${BASE_URL}/cities?${params}`
     );
     return {
         cities: data.data.response,
