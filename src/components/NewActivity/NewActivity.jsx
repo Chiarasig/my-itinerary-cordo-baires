@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useRef } from "react";
 import "../../index.css";
 import { ToastContainer, toast } from "react-toastify";
@@ -9,15 +9,14 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import citiesActions from "../../redux/actions/citiesActions";
 
-export default function EditItinerary() {
+export default function NewActivity() {
   const dispatch = useDispatch();
-  const { idUser: userId} = useSelector((state) => state.usersReducers);
   const cities = useSelector((state) => state.cityReducer.cities);
+  const { idUser: userId} = useSelector((state) => state.usersReducers);
+
   const notify = () => {
     toast();
   };
-
-  let { id } = useParams();
   let information = useRef();
   let name = useRef();
   let photo1 = useRef();
@@ -27,46 +26,25 @@ export default function EditItinerary() {
   let price = useRef();
   let duration = useRef();
   let cityId = useRef();
-  // usuario creador del itinerario
-  let ownerUser = '';
 
   useEffect(() => {
     dispatch(citiesActions.getCities())
-  }, []);
+  }, [])
 
-  useEffect(() => {
-    axios
-      .get(`${BASE_URL}/itineraries?_id=${id}`)
-      .then((res) => {
-        let itinerary = res.data.response[0];
-        console.log(itinerary);
-        information.current.value = itinerary.information;
-        name.current.value = itinerary.name;
-        photo1.current.value = itinerary.photo[0];
-        photo2.current.value = itinerary.photo[1];
-        photo3.current.value = itinerary.photo[2];
-        description.current.value = itinerary.description;
-        price.current.value = itinerary.price;
-        duration.current.value = itinerary.duration;
-        cityId.current = itinerary.cityId._id;
-        ownerUser = itinerary.userId._id;
-      })
-      .catch((err) => console.log(err));
-  }, []);
-  
-  async function editActivity(event) {
+  async function createActivity(event) {
     event.preventDefault();
-    let editActivity = {
+    let createActivity = {
       name: name.current.value,
       photo: [photo1.current.value, photo2.current.value, photo3.current.value],
       description: description.current.value,
       price: price.current.value,
       duration: duration.current.value,
-      cityId: cityId.current.value,
-      userId,
+      userId: userId,
+      cityId: cityId,
     };
     try {
-      let res = await axios.put(`${BASE_URL}/itineraries/${id}`, editActivity);
+      console.log(createActivity);
+      let res = await axios.post(`${BASE_URL}/itineraries`, createActivity);
       if (res.data.success) {
         toast.success("The activity was successfully modified");
       } else {
@@ -76,16 +54,16 @@ export default function EditItinerary() {
       console.log(error);
     }
   }
-
+  
   const handleSelect = (event) => {
-    cityId.current = event.target.value
+    cityId = event.target.value
   }
 
   return (
     <>
       <form
         className="nuevoFormularioLogin"
-        onSubmit={editActivity}
+        onSubmit={createActivity}
         ref={information}
       >
         <div className="formInputLabelRegister">

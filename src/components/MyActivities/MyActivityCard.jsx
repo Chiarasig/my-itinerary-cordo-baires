@@ -9,13 +9,13 @@ import "react-toastify/dist/ReactToastify.css";
 export default function MyActivitiessCard() {
   const dispatch = useDispatch();
   const { cities } = useSelector((state) => state.myActivityReducers);
+  const { idUser: userId} = useSelector((state) => state.usersReducers);
 
   useEffect(() => {
-    let userId = "636d5a9512a6c5227df1ef0c";
     if (cities && cities.length === 0) {
-      dispatch(myActivityActions.getMyActivity(userId));
+      dispatch(myActivityActions.getMyActivity(''));
     }
-  }, [cities]);
+  }, [userId]);
 
   const deleteMyActivity = (event, idActivity) => {
     event.preventDefault();
@@ -32,6 +32,9 @@ export default function MyActivitiessCard() {
     <div className="containerMyHotels">
       <div className="tittleMyHotels">
         <h2 className="text-center">My activities whit userId</h2>
+        <button>
+          <Link to="/myitinerary/newItinerary">Add itinerary</Link>
+        </button>
       </div>
       <div className="flex wrap w-100 justify-center align-center g-25 pb-3">
         {cities && cities.length > 0 ? (
@@ -44,18 +47,22 @@ export default function MyActivitiessCard() {
               />
               <h3 className="subtittleCard">{cities.name}</h3>
               <div className="buttonMyHotels">
-                <Link
-                  to={`/cities/edit/${cities._id}`}
-                  className="viewMoreSubttitle"
-                >
-                  <p className="viewMore">edit</p>
-                </Link>
-                <div
-                  className="viewMore" 
-                  onClick={(event) => deleteMyActivity(event, `${cities._id}`)}
-                >
-                  delete
-                </div>
+                {cities.userId._id === userId ? (
+                  <>
+                    <Link
+                      to={`/myitinerary/editItinerary/${cities._id}`}
+                      className="viewMoreSubttitle"
+                    >
+                      <p className="viewMore">edit</p>
+                    </Link>
+                    <div
+                      className="viewMore" 
+                      onClick={(event) => deleteMyActivity(event, `${cities._id}`)}
+                    >
+                      delete
+                    </div>
+                  </>
+                ) : null }
               </div>
               <ToastContainer />
             </div>
