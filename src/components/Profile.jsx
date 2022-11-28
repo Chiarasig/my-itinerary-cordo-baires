@@ -6,13 +6,16 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import { BASE_URL } from "../api/url"
 import { Link as NavLink } from "react-router-dom";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 
 export default function Profile() {
   const dispatch = useDispatch();
   const { idUser, user } = useSelector((state) => state.usersReducers);
   const { getUser, updateUser } = usersAction;
 
+  const notify = () => {
+    toast();
+  };
   useEffect(() => {
     if(idUser) {
       dispatch(getUser(idUser));
@@ -37,22 +40,11 @@ export default function Profile() {
       age: age.current.value,
       mail: mail.current.value,
     };
-
-    // TODO
-    // Swal.fire({
-    //   icon: "question",
-    //   title: " Do you want to save the changes?",
-    //   showConfirmButton: true,
-    //   iconColor: "#fc4c4e",
-    //   confirmButtonColor: "#fc4c4e",
-    //   confirmButtonText: "Yes",
-    //   showCancelButton: true,
-    // });
     try {
       if(window.confirm("Do you want to save the changes?")) {
       let res = await axios.patch(`${BASE_URL}/auth/me/${idUser}`, editUser);
       if (res.data.success) {
-        toast.success("User registered successfully", {
+        toast.success("User updated successfully", {
           position: toast.POSITION.TOP_RIGHT,
         });
         name.current.value = "";
@@ -139,6 +131,7 @@ export default function Profile() {
             <button className="buttonProfile">Back to home</button>
           </NavLink>
         </div>
+        <ToastContainer/>
       </form>
     </div>
   );
