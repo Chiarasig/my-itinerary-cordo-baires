@@ -9,18 +9,23 @@ import "react-toastify/dist/ReactToastify.css";
 export default function MyCitiesCard() {
   const dispatch = useDispatch();
   const { cities } = useSelector((state) => state.myCitiesReducers);
+  const {idUser, token} = useSelector((state) => state.usersReducers);
+  const {getMyCities} = myCitiesActions;
 
   useEffect(() => {
-    let userId = "636d5a9512a6c5227df1ef0c";
     if (cities && cities.length === 0) {
-      dispatch(myCitiesActions.getMyCities(userId));
+      dispatch(getMyCities(idUser));
     }
   }, [cities]);
-
+  console.log(token);
   const deleteCity = (event, idCity) => {
+    let data= {
+      token,
+      idCity
+    }
     event.preventDefault();
     if (window.confirm("Are you sure you want to delete this city?")) {
-      dispatch(myCitiesActions.deleteMyCities(idCity));
+      dispatch(myCitiesActions.deleteMyCities(data));
       toast.success("City deleted successfully", {
         position: toast.POSITION.TOP_RIGHT,
       });

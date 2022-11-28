@@ -6,8 +6,11 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { BASE_URL } from "../../api/url";
 import { useNavigate} from "react-router-dom";
+import { useSelector } from "react-redux";
+
 
 export default function NewCity() {
+  const {idUser, token} = useSelector((state) => state.usersReducers);
   const navigate = useNavigate();
 
   const notify = () => {
@@ -18,7 +21,7 @@ export default function NewCity() {
   let continent = useRef();
   let photo = useRef();
   let population = useRef();
-  let userId = useRef();
+  
 
   async function newCity() {
     let newCity = {
@@ -26,10 +29,13 @@ export default function NewCity() {
       continent: continent.current.value,
       photo: photo.current.value,
       population: population.current.value,
-      userId: userId.current.value,
+      userId: idUser,
     };
+
+    let headers = { headers: { Authorization: `Bearer ${token}` } }
+
     try {
-      let res = await axios.post(`${BASE_URL}/city`, newCity);
+      let res = await axios.post(`${BASE_URL}/city`, newCity, headers);
       if (res.data.success) {
         navigate(`/cities/detail/${res.data.id}?success=true`);
       } else {
@@ -88,16 +94,6 @@ export default function NewCity() {
               autoComplete="on"
               placeholder="Population"
               ref={population}
-            />
-          </label>
-          <label className="labelLogin">
-            User Id:
-            <input
-              className="inputHotelNew"
-              type="text"
-              autoComplete="on"
-              placeholder="UserId mongoose"
-              ref={userId}
             />
           </label>
           <div className="contenedorByP">

@@ -11,7 +11,7 @@ import citiesActions from "../../redux/actions/citiesActions";
 
 export default function EditItinerary() {
   const dispatch = useDispatch();
-  const { idUser: userId} = useSelector((state) => state.usersReducers);
+  const { idUser: userId, token} = useSelector((state) => state.usersReducers);
   const cities = useSelector((state) => state.cityReducer.cities);
   const notify = () => {
     toast();
@@ -65,8 +65,10 @@ export default function EditItinerary() {
       cityId: cityId.current.value,
       userId,
     };
+
+    let headers = { headers: { Authorization: `Bearer ${token}` } }
     try {
-      let res = await axios.put(`${BASE_URL}/itineraries/${id}`, editActivity);
+      let res = await axios.put(`${BASE_URL}/itineraries/${id}`, editActivity, headers);
       if (res.data.success) {
         toast.success("The activity was successfully modified");
       } else {

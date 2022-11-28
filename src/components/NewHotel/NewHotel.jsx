@@ -1,13 +1,19 @@
-import React from "react";
-import { useRef } from "react";
+import React, { useState } from "react";
+import { useRef, useEffect } from "react";
 import "../../index.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { BASE_URL } from "../../api/url";
 import { useNavigate} from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import citiesActions from "../../redux/actions/citiesActions";
 
 export default function NewHotel() {
+  let dispatch = useDispatch();
+  const {idUser, token} = useSelector((state) => state.usersReducers);
+  const {cities} = useSelector((state) => state.cityReducer);
+  const {getCities} = citiesActions;
   const navigate = useNavigate();
   const notify = () => {
     toast();
@@ -19,7 +25,10 @@ export default function NewHotel() {
   let photo3 = useRef();
   let capacity = useRef();
   let cityId = useRef();
-  let userId = useRef();
+
+  useEffect(() => {
+    dispatch(getCities());
+  }, []);
 
   async function newHotel(event) {
     event.preventDefault();
@@ -28,10 +37,13 @@ export default function NewHotel() {
       photo: [photo1.current.value, photo2.current.value, photo3.current.value],
       capacity: capacity.current.value,
       cityId: cityId.current.value,
-      userId: userId.current.value,
+      userId: idUser,
     };
+
+    let headers = { headers: { Authorization: `Bearer ${token}` } }
+
     try {
-      let res = await axios.post(`${BASE_URL}/hotel`, newHotel);
+      let res = await axios.post(`${BASE_URL}/hotel`, newHotel, headers);
       if (res.data.success) {
         navigate(`/hotels/detail/${res.data.id}?success=true`);
       } else {
@@ -102,24 +114,12 @@ export default function NewHotel() {
             />
           </label>
           <label className="labelLogin">
-            City Id:
-            <input
-              className="inputHotelNew"
-              type="text"
-              autoComplete="on"
-              placeholder="cityId mongoose"
-              ref={cityId}
-            />
-          </label>
-          <label className="labelLogin">
-            User Id:
-            <input
-              className="inputHotelNew"
-              type="text"
-              autoComplete="on"
-              placeholder="userId mongoose"
-              ref={userId}
-            />
+            City:
+            <select className="inputHotelNew" ref={cityId}>
+              {cities.map((city) => (
+                <option value={city._id}>{city.name}</option>
+              ))}
+            </select>
           </label>
           <div className="contenedorByP">
             <button

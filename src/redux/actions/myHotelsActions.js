@@ -9,8 +9,9 @@ let getMyHotels = createAsyncThunk("getMyHotels", async (userId) =>{
     };
 })
 
-let deleteMyHotels = createAsyncThunk("deleteMyHotels", async(idHotel)=>{
-    let data = await axios.delete(`${BASE_URL}/hotel/${idHotel}`)
+let deleteMyHotels = createAsyncThunk("deleteMyHotels", async(datos)=>{
+    let headers = { headers: { Authorization: `Bearer ${datos.token}` } }
+    let data = await axios.delete(`${BASE_URL}/hotel/${datos.idHotel}`, headers);
 })
 
 let cargarHoteles = createAsyncThunk("cargarHoteles", async (hotels) => {

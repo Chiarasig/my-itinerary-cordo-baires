@@ -6,8 +6,10 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { BASE_URL } from "../../api/url";
 import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export default function EditHotels() {
+  const { token } = useSelector((state) => state.usersReducers);
   const notify = () => {
     toast();
   };
@@ -26,8 +28,10 @@ export default function EditHotels() {
       photo: [photo1.current.value, photo2.current.value, photo3.current.value],
       capacity: capacity.current.value,
     };
+
+    let headers = { headers: { Authorization: `Bearer ${token}` } };
     try {
-      let res = await axios.patch(`${BASE_URL}/hotel/${id}`, editHotel);
+      let res = await axios.patch(`${BASE_URL}/hotel/${id}`, editHotel, headers);
       if (res.data.success) {
         toast.success("The hotel was successfully modified");
       } else {
