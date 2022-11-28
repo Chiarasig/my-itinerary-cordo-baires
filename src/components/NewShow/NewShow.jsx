@@ -1,24 +1,20 @@
-import React, { useEffect } from "react";
-import { useRef } from "react";
-import "../../index.css";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
-import { BASE_URL } from "../../api/url";
-import { useParams } from "react-router-dom";
-import myHotelsAction from "../../redux/actions/myHotelsActions";
+import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { BASE_URL } from "../../api/url";
+import "../../index.css";
+import myHotelsAction from "../../redux/actions/myHotelsActions";
 
-export default function EditShow() {
+export default function NewShow() {
   const dispatch = useDispatch();
   const { idUser: userId} = useSelector((state) => state.usersReducers);
   const hotels = useSelector((state) => state.myHotelsReducers.hotels);
-
     const notify = () => {
         toast();
       };
 
-    let { id } = useParams();
     let information = useRef();
     let name = useRef();
     let photo = useRef();
@@ -26,45 +22,26 @@ export default function EditShow() {
     let price = useRef();
     let date = useRef();
     let hotelId = useRef();
-    // usuario creador del itinerario
-    let ownerUser = '';
 
     useEffect(() => {
       dispatch(myHotelsAction.getMyHotels(userId));
     }, []);
-
-    useEffect(() => {
-      console.log(id)
-      axios
-        .get(`${BASE_URL}/shows/${id}`)
-        .then((res) => {
-          let show = res.data.response[0];
-          console.log(show);
-          information.current.value = show.information;
-          name.current.value = show.name;
-          photo.current.value = show.photo;
-          description.current.value = show.description;
-          price.current.value = show.price;
-          date.current.value = show.date;
-          hotelId.current = show.hotelId._id;
-          ownerUser = show.userId._id;
-        })
-        .catch((err) => console.log(err));
-    }, []);
-
+    
     async function editShow(event) {
         event.preventDefault();
-        let editShow = {
+        let createShow = {
           name: name.current.value,
           photo: photo.current.value,
           description: description.current.value,
           price: price.current.value,
           date: date.current.value,
+          userId,
+          hotelId
         };
         try {
-          let res = await axios.patch(`${BASE_URL}/shows/${id}`, editShow);
+          let res = await axios.post(`${BASE_URL}/shows`, createShow);
           if (res.data.success) {
-            toast.success("The show was successfully modified");
+            toast.success("The show was successfully created");
           } else {
             toast.error(res.data.message.join(" - - - - "));
           }
@@ -140,8 +117,8 @@ export default function EditShow() {
         <label className="labelLogin">
           Hotel
           <select className="inputHotelNew" onChange={handleSelect}>
-            {hotels.map((hotel, key) => (
-              <option value={hotel._id} key={key}>{hotel.name}</option>
+            {hotels.map((hotel) => (
+              <option value={hotel._id}>{hotel.name}</option>
             ))}
           </select>
         </label>
@@ -151,7 +128,7 @@ export default function EditShow() {
             type="submit"
             onClick={notify}
           >
-            Modified a show
+            Create a show
           </button>
         </div>
       </div>

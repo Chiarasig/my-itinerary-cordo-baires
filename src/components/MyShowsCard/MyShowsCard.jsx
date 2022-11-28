@@ -8,13 +8,14 @@ import "react-toastify/dist/ReactToastify.css";
 
 export default function MyShowsCard() {
   const dispatch = useDispatch();
+  const { idUser: userId} = useSelector((state) => state.usersReducers);
   const hotels = useSelector((state) => state.myShowsReducers.hotels);
+
   useEffect(() => {
-    let userId = "636d5a9512a6c5227df1ef0b";
     if (hotels && hotels.length === 0) {
-      dispatch(myShowsAction.getMyShows(userId));
+      dispatch(myShowsAction.getMyShows(''));
     }
-  }, [hotels]);
+  }, []);
 
   const deleteFunc = (event, idHotel) => {
     event.preventDefault();
@@ -32,11 +33,14 @@ export default function MyShowsCard() {
       }
     }
   };
-  console.log(hotels)
+
   return (
     <div className="containerMyHotels">
       <div className="tittleMyHotels">
         <h2>My shows by userId</h2>
+        <button>
+          <Link to="/myshows/newShow">Add Show</Link>
+        </button>
       </div>
       <div className="flex wrap w-100 justify-center align-center g-25 pb-3">
         {hotels && hotels.length > 0 ? (
@@ -48,17 +52,19 @@ export default function MyShowsCard() {
                 alt={hotels.name}
               />
               <h3 className="subtittleCard">{hotels.name}</h3>
-              <div className="buttonMyHotels">
-              <Link
-                to={`/hotels/editShows/${hotels._id}`}
-                className="viewMoreSubttitle"
-              >
-                <p className="viewMore">edit</p>
-              </Link>
-                <div className="viewMore" onClick={(event) => deleteFunc(event, `${hotels._id}`)}>
-                  delete
+              { userId === hotels.userId._id ? (
+                <div className="buttonMyHotels">
+                <Link
+                  to={`/myshows/editShow/${hotels._id}`}
+                  className="viewMoreSubttitle"
+                >
+                  <p className="viewMore">edit</p>
+                </Link>
+                  <div className="viewMore" onClick={(event) => deleteFunc(event, `${hotels._id}`)}>
+                    delete
+                  </div>
                 </div>
-              </div>
+              ) : null}
               <ToastContainer/>
             </div>
           ))
