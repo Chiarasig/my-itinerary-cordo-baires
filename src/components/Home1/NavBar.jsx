@@ -5,6 +5,7 @@ import '../../index.css'
 import ButtonNavNew from './ButtonNavNew'
 import ButtonNavMyUserId from './ButtonNavMyUserId'
 import { useSelector } from 'react-redux'
+import { ButtonNavLogout } from './ButtonNavLogout'
 
 
 export default function NavBar() {
@@ -26,6 +27,9 @@ export default function NavBar() {
     )}
     { logged ? (
       <ButtonNavMyUserId className="navBarMiddle" titulo="My" texto1="My cities" texto2="My hotels" texto3="My itinerary" texto4="My Shows"/>
+    ) : null }
+    { logged ? (
+      < ButtonNavLogout />
     ) : null }
     </div>
     </>
