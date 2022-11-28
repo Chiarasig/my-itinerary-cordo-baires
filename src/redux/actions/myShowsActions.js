@@ -3,7 +3,11 @@ import axios from "axios";
 import { BASE_URL } from "../../api/url";
 
 let getMyShows = createAsyncThunk("getMyShows", async (userId) =>{
-    let data = await axios.get(`${BASE_URL}/shows?userId=${userId}`);
+    let param = '';
+    if(userId){
+        param = `?userId=${userId}`
+    }
+    let data = await axios.get(`${BASE_URL}/shows${param}`);
     return {
         hotels: data.data.response
     };
