@@ -15,6 +15,6 @@ export const store = configureStore({
         myCitiesReducers,
         myActivityReducers,
         myShowsReducers,
-        usersReducers
+        usersReducers,
     }
 })
