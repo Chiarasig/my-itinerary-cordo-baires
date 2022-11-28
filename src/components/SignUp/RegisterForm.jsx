@@ -1,6 +1,6 @@
 import React from "react";
 import { useRef } from "react";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { BASE_URL } from "../../api/url";
@@ -8,14 +8,13 @@ import axios from "axios";
 import "../../index.css";
 
 export default function RegisterForm() {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const notify = () => {
     toast();
   };
   const information = useRef();
   const name = useRef();
   const lastName = useRef();
-  const role = useRef();
   const photo = useRef();
   const age = useRef();
   const mail = useRef();
@@ -26,7 +25,7 @@ export default function RegisterForm() {
     let newUser = {
       name: name.current.value,
       lastName: lastName.current.value,
-      role: role.current.value,
+      role: "user",
       photo: photo.current.value,
       age: age.current.value,
       mail: mail.current.value,
@@ -35,13 +34,22 @@ export default function RegisterForm() {
     try {
       let res = await axios.post(`${BASE_URL}/auth/sign-up`, newUser);
       if (res.data.success) {
-        // navigate(`/login?success=true`);
+        toast.success("User registered successfully", {
+          position: toast.POSITION.TOP_RIGHT,
+        });
       } else {
         toast.error(res.data.message.join(" - - - - "));
       }
     } catch (error) {
       console.log(error);
+
     }
+      name.current.value= "";
+      lastName.current.value= "";
+      photo.current.value="";
+      age.current.value="";
+      mail.current.value="";
+      password.current.value="";
   }
 
   return (
@@ -70,16 +78,6 @@ export default function RegisterForm() {
               autoComplete="on"
               placeholder="Lastname"
               ref={lastName}
-            />
-          </label>
-          <label className="labelLogin">
-            Role
-            <input
-              className="inputHotelNew"
-              type="text"
-              autoComplete="on"
-              placeholder="Role"
-              ref={role}
             />
           </label>
           <label className="labelLogin">

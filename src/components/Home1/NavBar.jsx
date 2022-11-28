@@ -10,7 +10,8 @@ import { useSelector } from 'react-redux'
 export default function NavBar() {
   let user = useSelector((store) => store.usersReducers)
   console.log(user)
-  const {lastName, logged, name, photo, token } = user;
+  let logged=false;
+  // const {lastName, logged, name, photo, token } = user;
 
   return (
     <>
