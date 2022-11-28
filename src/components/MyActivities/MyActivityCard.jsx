@@ -31,8 +31,8 @@ export default function MyActivitiessCard() {
   return (
     <div className="containerMyHotels">
       <div className="tittleMyHotels">
-        <h2 className="text-center">My activities whit userId</h2>
-        <button>
+        <h2 className="text-center tittleItinerary">My activities whit userId</h2>
+        <button className="buttonProfile">
           <Link to="/myitinerary/newItinerary">Add itinerary</Link>
         </button>
       </div>
@@ -68,7 +68,7 @@ export default function MyActivitiessCard() {
             </div>
           ))
         ) : (
-          <h2>No results were found, please try again with another search</h2>
+          <h2 className="notFound">No results were found, please try again with another search</h2>
         )}
       </div>
     </div>

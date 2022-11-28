@@ -37,8 +37,8 @@ export default function MyShowsCard() {
   return (
     <div className="containerMyHotels">
       <div className="tittleMyHotels">
-        <h2>My shows by userId</h2>
-        <button>
+        <h2 className="tittleItinerary">My shows by userId</h2>
+        <button className="buttonProfile">
           <Link to="/myshows/newShow">Add Show</Link>
         </button>
       </div>
@@ -69,7 +69,7 @@ export default function MyShowsCard() {
             </div>
           ))
         ) : (
-          <h2>No results were found, please try again with another search</h2>
+          <h2 className="notFound">No results were found, please try again with another search</h2>
         )}
       </div>
     </div>

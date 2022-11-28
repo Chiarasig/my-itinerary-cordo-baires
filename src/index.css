@@ -14,6 +14,14 @@
   align-items: center;
   padding: 1rem;
   font-family: Arial, Helvetica, sans-serif;
+  min-height: 20vh;
+}
+.notFound{
+  min-height: 30vh;
+}
+.tittleItinerary{
+  margin-right: 2rem;
+  margin-top: 0.8rem;
 }
 .linkHotels{
   background-color:#f0c023;
@@ -367,6 +375,15 @@ input {
   align-items: center;
   margin-top: 1rem;
 }
+.newActivityLayout{
+  min-height: 75vh;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+  margin-bottom: 10rem;
+}
 .newHotelLayout{
   min-height: 90vh;
   display: flex;
@@ -397,8 +414,8 @@ input {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 2rem;
-  min-height: 75vh;
+  margin-bottom: 15rem;
+  min-height: 70vh;
 }
 
 .editShowLayout{
@@ -566,13 +583,6 @@ input {
   font-weight: 600;
   font-family: Arial, Helvetica, sans-serif;
 }
-/* .tittleProfile{
-  text-align: center;
-  margin-top: 11px;
-  font-size: 30px;
-  font-weight: 600;
-  font-family: Arial, Helvetica, sans-serif;
-} */
 .Form_Font_Family {
   font-family: Arial, Helvetica, sans-serif;
 }
