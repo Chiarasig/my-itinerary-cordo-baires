@@ -9,7 +9,7 @@ import myHotelsAction from "../../redux/actions/myHotelsActions";
 
 export default function NewShow() {
   const dispatch = useDispatch();
-  const { idUser: userId} = useSelector((state) => state.usersReducers);
+  const { idUser: userId, token} = useSelector((state) => state.usersReducers);
   const hotels = useSelector((state) => state.myHotelsReducers.hotels);
     const notify = () => {
         toast();
@@ -36,10 +36,12 @@ export default function NewShow() {
           price: price.current.value,
           date: date.current.value,
           userId,
-          hotelId
+          hotelId: hotelId.current.value,
         };
+
+        let headers = { headers: { Authorization: `Bearer ${token}` } }
         try {
-          let res = await axios.post(`${BASE_URL}/shows`, createShow);
+          let res = await axios.post(`${BASE_URL}/shows`, createShow, headers);
           if (res.data.success) {
             toast.success("The show was successfully created");
           } else {
@@ -116,7 +118,7 @@ export default function NewShow() {
         </label>
         <label className="labelLogin">
           Hotel
-          <select className="inputHotelNew" onChange={handleSelect}>
+          <select className="inputHotelNew" onChange={handleSelect} ref={hotelId  }>
             {hotels.map((hotel) => (
               <option value={hotel._id}>{hotel.name}</option>
             ))}

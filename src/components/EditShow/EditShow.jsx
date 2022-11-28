@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 export default function EditShow() {
   const dispatch = useDispatch();
-  const { idUser: userId} = useSelector((state) => state.usersReducers);
+  const { idUser: userId, token} = useSelector((state) => state.usersReducers);
   const hotels = useSelector((state) => state.myHotelsReducers.hotels);
 
     const notify = () => {
@@ -61,8 +61,10 @@ export default function EditShow() {
           price: price.current.value,
           date: date.current.value,
         };
+
+        let headers = { headers: { Authorization: `Bearer ${token}` } }
         try {
-          let res = await axios.patch(`${BASE_URL}/shows/${id}`, editShow);
+          let res = await axios.patch(`${BASE_URL}/shows/${id}`, editShow, headers);
           if (res.data.success) {
             toast.success("The show was successfully modified");
           } else {

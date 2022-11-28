@@ -9,18 +9,23 @@ import "react-toastify/dist/ReactToastify.css";
 export default function MyActivitiessCard() {
   const dispatch = useDispatch();
   const { cities } = useSelector((state) => state.myActivityReducers);
-  const { idUser: userId} = useSelector((state) => state.usersReducers);
+  const {idUser, token} = useSelector((state) => state.usersReducers);
+  const {getMyActivity, deleteMyActivity} = myActivityActions;
 
   useEffect(() => {
     if (cities && cities.length === 0) {
-      dispatch(myActivityActions.getMyActivity(''));
+      dispatch(getMyActivity(idUser));
     }
-  }, [userId]);
+  }, [idUser]);
 
-  const deleteMyActivity = (event, idActivity) => {
+  const deleteMyActivityTwo = (event, idActivity) => {
     event.preventDefault();
+    let data= {
+      token,
+      idActivity
+    }
     if (window.confirm("Are you sure you want to delete this activity?")) {
-      dispatch(myActivityActions.deleteMyActivity(idActivity));
+      dispatch(deleteMyActivity(data));
       toast.success("Activity deleted successfully", {
         position: toast.POSITION.TOP_RIGHT,
       });
@@ -47,7 +52,7 @@ export default function MyActivitiessCard() {
               />
               <h3 className="subtittleCard">{cities.name}</h3>
               <div className="buttonMyHotels">
-                {cities.userId._id === userId ? (
+                {cities.userId._id === idUser ? (
                   <>
                     <Link
                       to={`/myitinerary/editItinerary/${cities._id}`}
@@ -57,7 +62,7 @@ export default function MyActivitiessCard() {
                     </Link>
                     <div
                       className="viewMore" 
-                      onClick={(event) => deleteMyActivity(event, `${cities._id}`)}
+                      onClick={(event) => deleteMyActivityTwo(event,cities._id)}
                     >
                       delete
                     </div>

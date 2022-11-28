@@ -9,18 +9,23 @@ import "react-toastify/dist/ReactToastify.css";
 export default function MyHotelsCard() {
   const dispatch = useDispatch();
   const hotels = useSelector((state) => state.myHotelsReducers.hotels);
+  const {idUser, token} = useSelector((state) => state.usersReducers);
+  const {getMyHotels} = myHotelsAction;
 
   useEffect(() => {
-    let userId = "636d5a9512a6c5227df1ef0d";
     if (hotels && hotels.length === 0) {
-      dispatch(myHotelsAction.getMyHotels(userId));
+      dispatch(getMyHotels(idUser));
     }
   }, [hotels]);
 
   const deleteFunc = (event, idHotel) => {
     event.preventDefault();
+    let data= {
+      token,
+      idHotel
+    }
     if (window.confirm("Are you sure you want to delete this hotel?")) {
-      if (dispatch(myHotelsAction.deleteMyHotels(idHotel))) {
+      if (dispatch(myHotelsAction.deleteMyHotels(data))) {
         toast.success("the hotel was deleted successfully", {
           position: toast.POSITION.TOP_RIGHT,
         });

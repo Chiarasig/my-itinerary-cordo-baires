@@ -6,8 +6,10 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { BASE_URL } from "../../api/url";
 import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export default function EditCity() {
+  const { token } = useSelector((state) => state.usersReducers);
   const notify = () => {
     toast();
   };
@@ -28,8 +30,11 @@ export default function EditCity() {
       population: population.current.value,
       userId: userId.current.value,
     };
+
+    let headers = { headers: { Authorization: `Bearer ${token}` } }
+    
     try {
-      let res = await axios.put(`${BASE_URL}/city/${id}`, editCity);
+      let res = await axios.put(`${BASE_URL}/city/${id}`, editCity, headers);
       if (res.data.success) {
         toast.success("The city was successfully modified");
       } else {

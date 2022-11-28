@@ -11,7 +11,8 @@ const myActivityReducers = createReducer(initialState, (builder) => {
         return {...state, cities: action.payload.cities};
     })
     .addCase(myActivityActions.deleteMyActivity.fulfilled, (state, action) => {
-        return {...state, cities: state.cities.filter((city) => city._id !== action.payload.idCity)};
+        console.log(action.payload);
+        return {...state, cities: state.cities.filter((city) => city._id !== action.payload.date)};
     })
     .addCase(myActivityActions.cargarActivity.fulfilled, (state, action) => {
         return {...state, cities: action.payload.cities};

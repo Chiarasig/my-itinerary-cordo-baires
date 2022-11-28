@@ -10,9 +10,10 @@ import { useDispatch, useSelector } from "react-redux";
 import citiesActions from "../../redux/actions/citiesActions";
 
 export default function NewActivity() {
+
   const dispatch = useDispatch();
   const cities = useSelector((state) => state.cityReducer.cities);
-  const { idUser: userId} = useSelector((state) => state.usersReducers);
+  const { idUser: userId, token} = useSelector((state) => state.usersReducers);
 
   const notify = () => {
     toast();
@@ -42,9 +43,12 @@ export default function NewActivity() {
       userId: userId,
       cityId: cityId,
     };
+
+    let headers = { headers: { Authorization: `Bearer ${token}` } }
+
     try {
       console.log(createActivity);
-      let res = await axios.post(`${BASE_URL}/itineraries`, createActivity);
+      let res = await axios.post(`${BASE_URL}/itineraries`, createActivity, headers);
       if (res.data.success) {
         toast.success("The activity was successfully modified");
       } else {
