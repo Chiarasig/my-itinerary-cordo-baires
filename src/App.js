@@ -23,7 +23,6 @@ import MyActivitiessCard from "./components/MyActivities/MyActivityCard";
 import EditShowLayout from "./layouts/EditShowLayout";
 import MyShowsCard from "./components/MyShowsCard/MyShowsCard";
 import ProtectedRoute from "./components/protectedRoute/ProtectedRoute";
-/* import ProfileL from "./components/Profile"; */
 import ProfileLayout from "./layouts/ProfileLayout";
 import { useSelector, useDispatch } from "react-redux";
 import usersActions from "./redux/actions/usersActions";
@@ -83,7 +82,7 @@ function App() {
         <Route path="/newhotel" element={<NewHotelLayout />} />
         <Route path="*" element={<PagNotFoundLayout />} />
 
-        <Route element={<ProtectedRoute isAllowed={!!logged} reDirect="/SignIn" />}>
+        <Route element={<ProtectedRoute isAllowed={!!logged} />}>
           <Route path="/myshows" element={<MyShowsCard />} />
           <Route path="/myshows/newShow" element={<NewShowLayout />} />
           <Route path="/myshows/editShow/:id" element={<EditShowLayout />} />
