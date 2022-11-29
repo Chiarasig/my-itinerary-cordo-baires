@@ -12,11 +12,15 @@ export default function MyActivitiessCard() {
   const {idUser, token} = useSelector((state) => state.usersReducers);
   const {getMyActivity, deleteMyActivity} = myActivityActions;
 
+  // useEffect(() => {
+  //   if (cities && cities.length === 0) {
+  //     dispatch(getMyActivity(idUser));
+  //   }
+  // }, [idUser]);
+
   useEffect(() => {
-    if (cities && cities.length === 0) {
-      dispatch(getMyActivity(idUser));
-    }
-  }, [idUser]);
+    dispatch(getMyActivity(idUser));
+  }, []);
 
   const deleteMyActivityTwo = (event, idActivity) => {
     event.preventDefault();

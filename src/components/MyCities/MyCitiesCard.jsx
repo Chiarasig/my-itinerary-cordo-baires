@@ -12,24 +12,35 @@ export default function MyCitiesCard() {
   const {idUser, token} = useSelector((state) => state.usersReducers);
   const {getMyCities} = myCitiesActions;
 
+  // useEffect(() => {
+  //   if (cities && cities.length === 0) {
+  //     dispatch(getMyCities(idUser));
+  //   }
+  // }, [cities]);
+
   useEffect(() => {
-    if (cities && cities.length === 0) {
-      dispatch(getMyCities(idUser));
-    }
-  }, [cities]);
+    dispatch(getMyCities(idUser));
+  }, [idUser]); 
+
   console.log(token);
   const deleteCity = (event, idCity) => {
+    event.preventDefault();
     let data= {
       token,
       idCity
     }
-    event.preventDefault();
-    if (window.confirm("Are you sure you want to delete this city?")) {
-      dispatch(myCitiesActions.deleteMyCities(data));
+    if (window.confirm("Are you sure you want to delete this city?")) 
+    {
+      if (dispatch(myCitiesActions.deleteMyCities(data)));
       toast.success("City deleted successfully", {
         position: toast.POSITION.TOP_RIGHT,
       });
       toast();
+      dispatch(
+        myCitiesActions.cargarMyCities(
+          cities.filter((cities) => cities._id !== idCity)
+        )
+      );
     }
   };
 

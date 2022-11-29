@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useRef } from "react";
 import "../../index.css";
 import { ToastContainer, toast } from "react-toastify";
@@ -20,6 +20,22 @@ export default function EditHotels() {
   let photo2 = useRef();
   let photo3 = useRef();
   let capacity = useRef();
+
+  useEffect(() => {
+    axios
+      .get(`${BASE_URL}/hotels/${id}`)
+      .then((res) => {
+        let hotel = res.data.response;
+        console.log(hotel);
+        information.current.value = hotel.information;
+        name.current.value = hotel.name;
+        photo1.current.value = hotel.photo[0];
+        photo2.current.value = hotel.photo[1];
+        photo3.current.value = hotel.photo[2];
+        capacity.current.value = hotel.capacity;
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   async function editHotel(event) {
     event.preventDefault();

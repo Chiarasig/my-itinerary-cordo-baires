@@ -17,7 +17,10 @@ let getCitiesByName = createAsyncThunk("getCitiesByName", async (name) => {
 });
 
 let getCitiesByFilter = createAsyncThunk("getCitiesByFilter", async (filter) => {
-    let params = `name=${filter.name}`
+    let params = ''
+     if(filter.name){
+      params += `name=${filter.name}`
+     }
     if (filter.continent) {
       params += `&continent=${filter.continent}`
     }
