@@ -6,8 +6,8 @@ import usersActions from "../../redux/actions/usersActions";
 
 export const ButtonNavLogout = () => {
   const { signOff } = usersActions;
-  let user = useSelector((store) => store.usersReducers);
-  const { name, lastName, photo } = user;
+  let {user, userUpdate} = useSelector((store) => store.usersReducers);
+  const { name, lastName, photo } = userUpdate;
   const dispatch = useDispatch();  
   let [mostrarOcultar, setMostrarOcultar] = useState(false);
   let hide = () => {

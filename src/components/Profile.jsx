@@ -1,8 +1,7 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import { useDispatch, useSelector } from "react-redux";
 import usersAction from "../redux/actions/usersActions";
-import Swal from "sweetalert2";
 import axios from "axios";
 import { BASE_URL } from "../api/url"
 import { Link as NavLink } from "react-router-dom";
@@ -10,7 +9,7 @@ import { toast, ToastContainer } from "react-toastify";
 
 export default function Profile() {
   const dispatch = useDispatch();
-  const { idUser, user } = useSelector((state) => state.usersReducers);
+  const { idUser, user, userUpdate } = useSelector((state) => state.usersReducers);
   const { getUser, updateUser } = usersAction;
 
   const notify = () => {
@@ -21,8 +20,9 @@ export default function Profile() {
       dispatch(getUser(idUser));
     }
     // eslint-disable-next-line
-  }, [idUser]);
+  }, [idUser, userUpdate]);
   console.log(user);
+
 
   let information = useRef();
   let name = useRef();
@@ -42,8 +42,9 @@ export default function Profile() {
     };
     try {
       if(window.confirm("Do you want to save the changes?")) {
-      let res = await axios.patch(`${BASE_URL}/auth/me/${idUser}`, editUser);
-      if (res.data.success) {
+      let res = await dispatch(updateUser({idUser, editUser}));
+      console.log(res);
+      if (res.payload.success) {
         toast.success("User updated successfully", {
           position: toast.POSITION.TOP_RIGHT,
         });
@@ -53,7 +54,6 @@ export default function Profile() {
         age.current.value = "";
         mail.current.value = "";
       }
-      console.log(res);
     }
     } catch (error) {
       console.log(error);

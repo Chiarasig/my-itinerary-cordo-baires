@@ -76,10 +76,10 @@ const reEnter = createAsyncThunk("reEnter", async (token) => {
     }
   });
   
-  const updateUser = createAsyncThunk("updateUser", async (id) => {
-    let url = `${BASE_URL}/auth/me/${id}`;
+  const updateUser = createAsyncThunk("updateUser", async ({idUser, editUser}) => {
+    let url = `${BASE_URL}/auth/me/${idUser}`;
     try{
-      let res = await axios.patch(url);
+      let res = await axios.patch(url, editUser);
         return {
         success: true,
         response: res.data.response,
