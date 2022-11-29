@@ -77,6 +77,14 @@ export default function EditItinerary() {
     } catch (error) {
       console.log(error);
     }
+    name.current.value='';
+    photo1.current.value = "";
+    photo2.current.value = "";
+    photo3.current.value = "";
+    description.current.value = "";
+    price.current.value = "";
+    duration.current.value = "";
+    cityId = "";
   }
 
   const handleSelect = (event) => {

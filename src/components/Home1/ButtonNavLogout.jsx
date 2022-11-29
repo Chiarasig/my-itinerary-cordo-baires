@@ -28,11 +28,9 @@ export const ButtonNavLogout = () => {
       (<>
         <p onMouseEnter={hide} className="tittleNavbar"><Link to={"/profile"}>My profile 🡻</Link></p>
       <ul className="listLogout">
-        <li>
+        <li className="flex">
           <img src={photo} alt={name} width={"50px"} height={"50px"} />
-        </li>
-        <li>
-          <p>{`${name} ${lastName}`}</p>
+          <p className="tittleNavProfile">{`${name} ${lastName}`}</p>
         </li>
         <li>
           <button type="button" onClick={handleLogOut} className="buttonLogout">

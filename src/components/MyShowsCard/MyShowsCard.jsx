@@ -17,7 +17,6 @@ export default function MyShowsCard() {
       dispatch(getMyShows(idUser));
   }, []);
 
-  console.log(hotels);
 
   const deleteFunc = (event, idHotel) => {
     event.preventDefault();
@@ -39,7 +38,7 @@ export default function MyShowsCard() {
       }
     }
   };
-  console.log(hotels);
+ 
   return (
     <div className="containerMyHotels">
       <div className="tittleMyHotels">
