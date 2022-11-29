@@ -5,9 +5,9 @@ import LogReg from '../Image/registerCiudad.png'
 
 export default function NewShowLayout() {
   return (
-    <div className='newCityLayout'>
+    <div className='newShowLayout'>
       <div className='tittleImgLogin'>
-        <img className='logoReg' src={LogReg} alt="" />
+        <img className='logoReg' src={LogReg} alt="Logo" />
         <h1 className="SignUpH1">Register Show</h1>
       </div>
       <div className='formLogin' > 

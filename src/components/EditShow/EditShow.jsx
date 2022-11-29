@@ -26,7 +26,6 @@ export default function EditShow() {
     let price = useRef();
     let date = useRef();
     let hotelId = useRef();
-    // usuario creador del itinerario
     let ownerUser = '';
 
     useEffect(() => {
@@ -34,12 +33,10 @@ export default function EditShow() {
     }, []);
 
     useEffect(() => {
-      console.log(id)
       axios
         .get(`${BASE_URL}/shows/${id}`)
         .then((res) => {
           let show = res.data.response[0];
-          console.log(show);
           information.current.value = show.information;
           name.current.value = show.name;
           photo.current.value = show.photo;
@@ -73,6 +70,11 @@ export default function EditShow() {
         } catch (error) {
           console.log(error);
         }
+        name.current.value = "";
+        photo.current.value = "";
+        description.current.value = "";
+        price.current.value = "";
+        date.current.value = "";
       }
 
   const handleSelect = (event) => {

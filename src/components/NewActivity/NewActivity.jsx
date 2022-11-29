@@ -5,15 +5,13 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { BASE_URL } from "../../api/url";
-import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import citiesActions from "../../redux/actions/citiesActions";
 
 export default function NewActivity() {
-
   const dispatch = useDispatch();
   const cities = useSelector((state) => state.cityReducer.cities);
-  const { idUser: userId, token} = useSelector((state) => state.usersReducers);
+  const { idUser: userId, token } = useSelector((state) => state.usersReducers);
 
   const notify = () => {
     toast();
@@ -29,8 +27,8 @@ export default function NewActivity() {
   let cityId = useRef();
 
   useEffect(() => {
-    dispatch(citiesActions.getCities())
-  }, [])
+    dispatch(citiesActions.getCities());
+  }, []);
 
   async function createActivity(event) {
     event.preventDefault();
@@ -44,24 +42,36 @@ export default function NewActivity() {
       cityId: cityId,
     };
 
-    let headers = { headers: { Authorization: `Bearer ${token}` } }
+    let headers = { headers: { Authorization: `Bearer ${token}` } };
 
     try {
       console.log(createActivity);
-      let res = await axios.post(`${BASE_URL}/itineraries`, createActivity, headers);
+      let res = await axios.post(
+        `${BASE_URL}/itineraries`,
+        createActivity,
+        headers
+      );
       if (res.data.success) {
-        toast.success("The activity was successfully modified");
+        toast.success("The activity was successfully created");
       } else {
         toast.error(res.data.message.join(" - - - - "));
       }
     } catch (error) {
       console.log(error);
     }
+    name.current.value='';
+    photo1.current.value = "";
+    photo2.current.value = "";
+    photo3.current.value = "";
+    description.current.value = "";
+    price.current.value = "";
+    duration.current.value = "";
+    cityId = "";
   }
-  
+
   const handleSelect = (event) => {
-    cityId = event.target.value
-  }
+    cityId = event.target.value;
+  };
 
   return (
     <>
@@ -82,7 +92,7 @@ export default function NewActivity() {
             />
           </label>
           <label className="labelLogin">
-          Description
+            Description
             <input
               className="inputHotelNew"
               type="text"
@@ -92,37 +102,37 @@ export default function NewActivity() {
             />
           </label>
           <label className="labelLogin">
-          Photo: URL
-          <input
-            className="inputHotelNew"
-            name="photo1"
-            accept="image/png, image/jpeg"
-            type="text"
-            autoComplete="on"
-            placeholder="Photo"
-            ref={photo1}
-          />
-          <input
-            className="inputHotelNew"
-            name="photo2"
-            accept="image/png, image/jpeg"
-            type="text"
-            autoComplete="on"
-            placeholder="Photo"
-            ref={photo2}
-          />
-          <input
-            className="inputHotelNew"
-            name="photo3"
-            accept="image/png, image/jpeg"
-            type="text"
-            autoComplete="on"
-            placeholder="Photo"
-            ref={photo3}
-          />
-        </label>
+            Photo: URL
+            <input
+              className="inputHotelNew"
+              name="photo1"
+              accept="image/png, image/jpeg"
+              type="text"
+              autoComplete="on"
+              placeholder="Photo"
+              ref={photo1}
+            />
+            <input
+              className="inputHotelNew"
+              name="photo2"
+              accept="image/png, image/jpeg"
+              type="text"
+              autoComplete="on"
+              placeholder="Photo"
+              ref={photo2}
+            />
+            <input
+              className="inputHotelNew"
+              name="photo3"
+              accept="image/png, image/jpeg"
+              type="text"
+              autoComplete="on"
+              placeholder="Photo"
+              ref={photo3}
+            />
+          </label>
           <label className="labelLogin">
-          Price
+            Price
             <input
               className="inputHotelNew"
               type="text"
@@ -132,7 +142,7 @@ export default function NewActivity() {
             />
           </label>
           <label className="labelLogin">
-          Duration
+            Duration
             <input
               className="inputHotelNew"
               type="text"
@@ -142,21 +152,16 @@ export default function NewActivity() {
             />
           </label>
           <label className="labelLogin">
-          CityId 
-            <select
-              className="inputHotelNew" 
-              onChange={handleSelect}
-            >
-              <option value="">
-                Seleccionar ciudad
-              </option>
-              {cities ? cities.map((city) => (
-                <option key={city._id} value={city._id}>
-                  {city.name}
-                </option>
-              )) :
-                null
-              }
+            CityId
+            <select className="inputHotelNew" onChange={handleSelect}>
+              <option value="">Select city</option>
+              {cities
+                ? cities.map((city) => (
+                    <option key={city._id} value={city._id}>
+                      {city.name}
+                    </option>
+                  ))
+                : null}
             </select>
           </label>
           <div className="contenedorByP">
@@ -165,7 +170,7 @@ export default function NewActivity() {
               type="submit"
               onClick={notify}
             >
-              Modified a Activity
+              Create Activity
             </button>
           </div>
         </div>

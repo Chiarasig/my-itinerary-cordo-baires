@@ -50,6 +50,12 @@ export default function NewShow() {
         } catch (error) {
           console.log(error);
         }
+        name.current.value = "";
+        photo.current.value = "";
+        description.current.value = "";
+        price.current.value = "";
+        date.current.value = "";
+        hotelId.current.value = "";
       }
 
   const handleSelect = (event) => {
