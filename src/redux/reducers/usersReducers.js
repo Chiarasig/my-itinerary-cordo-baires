@@ -1,6 +1,4 @@
-import { createAsyncThunk, createReducer } from "@reduxjs/toolkit";
-import axios from "axios";
-import { BASE_URL } from "../../api/url";
+import { createReducer } from "@reduxjs/toolkit";
 import usersActions from "../actions/usersActions";
 
 const { enter, signOff, reEnter, getUser, updateUser } = usersActions;
@@ -13,6 +11,7 @@ const initialState = {
   token: "",
   idUser: "",
   user: [],
+  userUpdate: []
 };
 
 const usersReducers = createReducer(initialState, (builder) => {
@@ -94,7 +93,6 @@ const usersReducers = createReducer(initialState, (builder) => {
   })
   .addCase(getUser.fulfilled, (state, action) => 
   {
-    console.log("getuser")
     return {
       ...state,
       user: action.payload.response,
@@ -102,8 +100,9 @@ const usersReducers = createReducer(initialState, (builder) => {
     };
   })
   .addCase(updateUser.fulfilled, (state, action) => {
+    console.log(action.payload);
     return { ...state,
-     ...action.payload
+      userUpdate: action.payload.response,
     };
 })
 })
