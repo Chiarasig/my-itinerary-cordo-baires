@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useRef } from "react";
 import "../../index.css";
 import { ToastContainer, toast } from "react-toastify";
@@ -6,8 +6,10 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { BASE_URL } from "../../api/url";
 import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export default function EditHotels() {
+  const { token } = useSelector((state) => state.usersReducers);
   const notify = () => {
     toast();
   };
@@ -19,6 +21,22 @@ export default function EditHotels() {
   let photo3 = useRef();
   let capacity = useRef();
 
+  useEffect(() => {
+    axios
+      .get(`${BASE_URL}/hotels/${id}`)
+      .then((res) => {
+        let hotel = res.data.response;
+        console.log(hotel);
+        information.current.value = hotel.information;
+        name.current.value = hotel.name;
+        photo1.current.value = hotel.photo[0];
+        photo2.current.value = hotel.photo[1];
+        photo3.current.value = hotel.photo[2];
+        capacity.current.value = hotel.capacity;
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   async function editHotel(event) {
     event.preventDefault();
     let editHotel = {
@@ -26,8 +44,10 @@ export default function EditHotels() {
       photo: [photo1.current.value, photo2.current.value, photo3.current.value],
       capacity: capacity.current.value,
     };
+
+    let headers = { headers: { Authorization: `Bearer ${token}` } };
     try {
-      let res = await axios.patch(`${BASE_URL}/hotel/${id}`, editHotel);
+      let res = await axios.patch(`${BASE_URL}/hotel/${id}`, editHotel, headers);
       if (res.data.success) {
         toast.success("The hotel was successfully modified");
       } else {

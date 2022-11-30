@@ -1,20 +1,18 @@
-import React, { useState } from "react";
-import { useRef, useEffect } from "react";
+import React, { useEffect } from "react";
+import { useRef } from "react";
 import "../../index.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { BASE_URL } from "../../api/url";
-import { useNavigate} from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import citiesActions from "../../redux/actions/citiesActions";
 
-export default function NewHotel() {
-  let dispatch = useDispatch();
-  const {idUser, token} = useSelector((state) => state.usersReducers);
-  const {cities} = useSelector((state) => state.cityReducer);
-  const {getCities} = citiesActions;
-  const navigate = useNavigate();
+export default function NewActivity() {
+  const dispatch = useDispatch();
+  const cities = useSelector((state) => state.cityReducer.cities);
+  const { idUser: userId, token } = useSelector((state) => state.usersReducers);
+
   const notify = () => {
     toast();
   };
@@ -23,43 +21,63 @@ export default function NewHotel() {
   let photo1 = useRef();
   let photo2 = useRef();
   let photo3 = useRef();
-  let capacity = useRef();
+  let description = useRef();
+  let price = useRef();
+  let duration = useRef();
   let cityId = useRef();
 
   useEffect(() => {
-    dispatch(getCities());
+    dispatch(citiesActions.getCities());
   }, []);
 
-  async function newHotel(event) {
+  async function createActivity(event) {
     event.preventDefault();
-    let newHotel = {
+    let createActivity = {
       name: name.current.value,
       photo: [photo1.current.value, photo2.current.value, photo3.current.value],
-      capacity: capacity.current.value,
-      cityId: cityId.current.value,
-      userId: idUser,
+      description: description.current.value,
+      price: price.current.value,
+      duration: duration.current.value,
+      userId: userId,
+      cityId: cityId,
     };
 
-    let headers = { headers: { Authorization: `Bearer ${token}` } }
+    let headers = { headers: { Authorization: `Bearer ${token}` } };
 
     try {
-      let res = await axios.post(`${BASE_URL}/hotel`, newHotel, headers);
+      console.log(createActivity);
+      let res = await axios.post(
+        `${BASE_URL}/itineraries`,
+        createActivity,
+        headers
+      );
       if (res.data.success) {
-        navigate(`/hotels/detail/${res.data.id}?success=true`);
+        toast.success("The activity was successfully created");
       } else {
         toast.error(res.data.message.join(" - - - - "));
-        console.log(res.data);
       }
     } catch (error) {
       console.log(error);
     }
+    name.current.value='';
+    photo1.current.value = "";
+    photo2.current.value = "";
+    photo3.current.value = "";
+    description.current.value = "";
+    price.current.value = "";
+    duration.current.value = "";
+    cityId = "";
   }
+
+  const handleSelect = (event) => {
+    cityId = event.target.value;
+  };
 
   return (
     <>
       <form
         className="nuevoFormularioLogin"
-        onSubmit={newHotel}
+        onSubmit={createActivity}
         ref={information}
       >
         <div className="formInputLabelRegister">
@@ -71,6 +89,16 @@ export default function NewHotel() {
               autoComplete="on"
               placeholder="Name"
               ref={name}
+            />
+          </label>
+          <label className="labelLogin">
+            Description
+            <input
+              className="inputHotelNew"
+              type="text"
+              autoComplete="on"
+              placeholder="Description"
+              ref={description}
             />
           </label>
           <label className="labelLogin">
@@ -104,21 +132,36 @@ export default function NewHotel() {
             />
           </label>
           <label className="labelLogin">
-            Capacity
+            Price
             <input
               className="inputHotelNew"
               type="text"
               autoComplete="on"
-              placeholder="Capacity"
-              ref={capacity}
+              placeholder="Price"
+              ref={price}
             />
           </label>
           <label className="labelLogin">
-            City:
-            <select className="inputHotelNew" ref={cityId}>
-              {cities.map((city) => (
-                <option value={city._id}>{city.name}</option>
-              ))}
+            Duration
+            <input
+              className="inputHotelNew"
+              type="text"
+              autoComplete="on"
+              placeholder="Duration"
+              ref={duration}
+            />
+          </label>
+          <label className="labelLogin">
+            CityId
+            <select className="inputHotelNew" onChange={handleSelect}>
+              <option value="">Select city</option>
+              {cities
+                ? cities.map((city) => (
+                    <option key={city._id} value={city._id}>
+                      {city.name}
+                    </option>
+                  ))
+                : null}
             </select>
           </label>
           <div className="contenedorByP">
@@ -127,7 +170,7 @@ export default function NewHotel() {
               type="submit"
               onClick={notify}
             >
-              Create a new hotel
+              Create Activity
             </button>
           </div>
         </div>

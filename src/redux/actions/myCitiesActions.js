@@ -9,9 +9,11 @@ let getMyCities = createAsyncThunk("getMyCities", async (userId) => {
     };
     });
 
-let deleteMyCities = createAsyncThunk("deleteMyCities", async (idCity) => {
-    await axios.delete(`${BASE_URL}/city/${idCity}`);
-    return { idCity };
+let deleteMyCities = createAsyncThunk("deleteMyCities", async (data) => {
+    let headers = { headers: { Authorization: `Bearer ${data.token}` } }
+    await axios.delete(`${BASE_URL}/city/${data.idCity}`, headers);
+    let date= data.idCity
+    return { date };
 });
 let cargarMyCities = createAsyncThunk("cargarMyCities", async (cities) => {
     return{

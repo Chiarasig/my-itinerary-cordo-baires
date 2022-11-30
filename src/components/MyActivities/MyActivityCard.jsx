@@ -9,18 +9,27 @@ import "react-toastify/dist/ReactToastify.css";
 export default function MyActivitiessCard() {
   const dispatch = useDispatch();
   const { cities } = useSelector((state) => state.myActivityReducers);
+  const {idUser, token} = useSelector((state) => state.usersReducers);
+  const {getMyActivity, deleteMyActivity} = myActivityActions;
+
+  // useEffect(() => {
+  //   if (cities && cities.length === 0) {
+  //     dispatch(getMyActivity(idUser));
+  //   }
+  // }, [idUser]);
 
   useEffect(() => {
-    let userId = "636d5a9512a6c5227df1ef0c";
-    if (cities && cities.length === 0) {
-      dispatch(myActivityActions.getMyActivity(userId));
-    }
-  }, [cities]);
+    dispatch(getMyActivity(idUser));
+  }, []);
 
-  const deleteMyActivity = (event, idActivity) => {
+  const deleteMyActivityTwo = (event, idActivity) => {
     event.preventDefault();
+    let data= {
+      token,
+      idActivity
+    }
     if (window.confirm("Are you sure you want to delete this activity?")) {
-      dispatch(myActivityActions.deleteMyActivity(idActivity));
+      dispatch(deleteMyActivity(data));
       toast.success("Activity deleted successfully", {
         position: toast.POSITION.TOP_RIGHT,
       });
@@ -31,7 +40,10 @@ export default function MyActivitiessCard() {
   return (
     <div className="containerMyHotels">
       <div className="tittleMyHotels">
-        <h2 className="text-center">My activities whit userId</h2>
+        <h2 className="text-center tittleItinerary">My activities whit userId</h2>
+        <button className="buttonProfile">
+          <Link to="/myitinerary/newItinerary">Add itinerary</Link>
+        </button>
       </div>
       <div className="flex wrap w-100 justify-center align-center g-25 pb-3">
         {cities && cities.length > 0 ? (
@@ -44,24 +56,28 @@ export default function MyActivitiessCard() {
               />
               <h3 className="subtittleCard">{cities.name}</h3>
               <div className="buttonMyHotels">
-                <Link
-                  to={`/cities/edit/${cities._id}`}
-                  className="viewMoreSubttitle"
-                >
-                  <p className="viewMore">edit</p>
-                </Link>
-                <div
-                  className="viewMore" 
-                  onClick={(event) => deleteMyActivity(event, `${cities._id}`)}
-                >
-                  delete
-                </div>
+                {cities.userId._id === idUser ? (
+                  <>
+                    <Link
+                      to={`/myitinerary/editItinerary/${cities._id}`}
+                      className="viewMoreSubttitle"
+                    >
+                      <p className="viewMore">edit</p>
+                    </Link>
+                    <div
+                      className="viewMore" 
+                      onClick={(event) => deleteMyActivityTwo(event,cities._id)}
+                    >
+                      delete
+                    </div>
+                  </>
+                ) : null }
               </div>
               <ToastContainer />
             </div>
           ))
         ) : (
-          <h2>No results were found, please try again with another search</h2>
+          <h2 className="notFound">No results were found, please try again with another search</h2>
         )}
       </div>
     </div>

@@ -23,9 +23,12 @@ import MyActivitiessCard from "./components/MyActivities/MyActivityCard";
 import EditShowLayout from "./layouts/EditShowLayout";
 import MyShowsCard from "./components/MyShowsCard/MyShowsCard";
 import ProtectedRoute from "./components/protectedRoute/ProtectedRoute";
+import ProfileLayout from "./layouts/ProfileLayout";
 import { useSelector, useDispatch } from "react-redux";
 import usersActions from "./redux/actions/usersActions";
 import { useEffect } from "react";
+import NewActivityLayout from "./layouts/NewActivityLayout";
+import NewShowLayout from "./layouts/NewShowLayout";
 
 
 function App() {
@@ -68,8 +71,7 @@ function App() {
         <Route path="/myhotels" element={<MyHotelsCard />} />
         <Route path="/editHotel" element={<EditHotelLayout />} />
         <Route path="/mycities" element={<MyCitiesCard />} />
-        <Route path="/editCities" element={<EditCityLayout />} />
-        <Route path="/editShows" element={<EditShowLayout />} />
+        <Route path="/profile" element={<ProfileLayout />} />
         <Route path="/hotels">
           <Route index element={<CardsHotels />} />
           <Route path="detail/:id" element={<DetailHotel />} />
@@ -80,9 +82,13 @@ function App() {
         <Route path="/newhotel" element={<NewHotelLayout />} />
         <Route path="*" element={<PagNotFoundLayout />} />
 
-        <Route element={<ProtectedRoute isAllowed={!!logged} reDirect="/SignIn" />}>
+        <Route element={<ProtectedRoute isAllowed={!!logged} />}>
           <Route path="/myshows" element={<MyShowsCard />} />
+          <Route path="/myshows/newShow" element={<NewShowLayout />} />
+          <Route path="/myshows/editShow/:id" element={<EditShowLayout />} />
           <Route path="/myitinerary" element={<MyActivitiessCard />} />
+          <Route path="/myitinerary/newItinerary" element={<NewActivityLayout />} />
+          <Route path="/myitinerary/editItinerary/:id" element={<EditItineraryLayout />} />
         </Route>
       </Routes>
       <FooterLayout />
