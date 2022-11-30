@@ -2,8 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import { useDispatch, useSelector } from "react-redux";
 import usersAction from "../redux/actions/usersActions";
-import axios from "axios";
-import { BASE_URL } from "../api/url"
 import { Link as NavLink } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 
@@ -21,8 +19,6 @@ export default function Profile() {
     }
     // eslint-disable-next-line
   }, [idUser, userUpdate]);
-  console.log(user);
-
 
   let information = useRef();
   let name = useRef();
