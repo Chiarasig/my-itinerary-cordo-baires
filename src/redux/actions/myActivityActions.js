@@ -25,9 +25,17 @@ let cargarActivity = createAsyncThunk("cargarActivity", async (cities) => {
         cities
     }
 })
+let getActivity = createAsyncThunk("getActivity", async () => {
+    let data = await axios.get(`${BASE_URL}/itineraries/`);
+    return {
+        activity: data.data.response
+    };
+})
+
 const myActivityActions = {
     getMyActivity,
     deleteMyActivity,
-    cargarActivity
+    cargarActivity,
+    getActivity
 }
 export default myActivityActions;

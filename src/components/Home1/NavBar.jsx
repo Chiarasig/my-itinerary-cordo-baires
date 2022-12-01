@@ -18,7 +18,7 @@ export default function NavBar() {
     <div className='NavBar'>
     <ButtonNav className="navBarH" titulo="Home 🡻" tituloflecha="tituloflecha" texto1="Cities" texto2="Hotels" />
     { logged && role === 'admin' ? (
-      <ButtonNavNew className="navBarMiddle" titulo="New 🡻" texto1="New City" texto2="New Hotel"/>
+      <ButtonNavNew className="navBarMiddle" titulo="New 🡻" texto1="New City" texto2="New Hotel" texto3="New Reactions"/>
     ) : null }
     { !logged ? (
       <ButtonNavSig className="navBarR" titulo="Register 🡻" texto1="Sign In" texto2="Sign Up" />

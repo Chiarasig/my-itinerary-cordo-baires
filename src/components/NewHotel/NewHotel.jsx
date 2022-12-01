@@ -117,7 +117,7 @@ export default function NewHotel() {
             City:
             <select className="inputHotelNew" ref={cityId}>
               {cities.map((city) => (
-                <option value={city._id}>{city.name}</option>
+                <option key={city._id} value={city._id}>{city.name}</option>
               ))}
             </select>
           </label>
