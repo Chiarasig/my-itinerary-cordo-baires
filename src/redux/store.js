@@ -18,5 +18,6 @@ export const store = configureStore({
         myShowsReducers,
         usersReducers,
         reactionReducers,
+        commentsReducers
     }
 })
