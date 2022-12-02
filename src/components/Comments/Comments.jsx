@@ -26,21 +26,16 @@ const  Comments =({id}) => {
     
   }
 
-/*   useEffect(()=>{
-    dispatch(commentsAction.getComments(id))
-  }, [id]) */
-
   const sendData = async ()=>{
     console.log(dataBack)
     await dispatch(commentsAction.createComments(dataBack))
   }
 
   return(
-   <>
-  
-    <input name="comment" onChange={handledChange}/>
-    <button type="submit" onClick={sendData}>Enviar Comentario</button>
-   </>
+   <div className="sendComments">
+    <input className="boxComment" onChange={handledChange}/>
+    <button className="buttonComment" type="submit" onClick={sendData}>Send comments</button>
+   </div>
     
   )
 }

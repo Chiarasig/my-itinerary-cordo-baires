@@ -22,6 +22,45 @@
 .photoComment{
   width: 50px;
   height: 50px;
+  margin-right: 1rem;
+}
+.comments{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0.5rem;
+  flex-wrap: wrap;
+  color: white;
+  border-radius: 9px;
+  border: 2px solid #e79200;
+  padding: 2px;
+}
+.sendComments{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.boxComment{
+  height: 30px;
+  width: 80%;
+  margin-top: 0.5rem;
+}
+.buttonComment{
+  background-color: #f0c023;
+  border: none;
+  padding: 5px;
+  border-radius: 7px;
+  margin-top: 7px;
+  margin-bottom: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-left: 1rem;
+}
+.subttitleComment{
+  margin-right: 1rem;
 }
 .tittleNavProfile{
   margin-top: 0.8rem;
@@ -212,7 +251,7 @@ a {
   flex-direction: column;
   text-align: center;
   padding: 2px;
-  height: 450px;
+  height: 900px;
   box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.2);
 }
 .containerActivityDetails{
@@ -467,6 +506,7 @@ input {
   width: 80%;
   font-family: Arial, Helvetica, sans-serif;
 }
+
 .buttonLogout{
   background-color: #f0c023;
   border: none;

@@ -5,8 +5,6 @@ import "../../index.css";
 import Comments from "../Comments/Comments";
 import { useDispatch, useSelector } from "react-redux";
 import commentsAction from "../../redux/actions/commentsAction";
-/* import DeleteComment from "../Comments/DeleteComment";
-import CancelComment from "../Comments/CancelComment"; */
 
 export default function HotelShows(props) {
   const { idHotel } = props;
@@ -46,6 +44,7 @@ export default function HotelShows(props) {
       ...data,
       id: id_comment,
     });
+    console.log(data);
   };
 
   const sendEditData = () => {
@@ -53,6 +52,12 @@ export default function HotelShows(props) {
     dispatch(commentsAction.editComments(info));
     setEdit(false);
   };
+
+/*   const deleteComment = (id_comment) => {
+    window.alert("estás segura");
+    var info = Object.assign({}, { id: id_comment }, { token: token });
+    dispatch(commentsAction.deleteComments(info));
+  }; */
 
   return (
     <div className="cardsShows">
@@ -69,23 +74,23 @@ export default function HotelShows(props) {
               <h3 className="subtittleCardDetail">Date: {show.date}</h3>
 
               {open === true ? (
-                <button onClick={() => setOpen(false)}>ver menos</button>
+                <button onClick={() => setOpen(false)} className="buttonComment">Hide comments</button>
               ) : (
-                <button onClick={() => viewCommentForId(show._id)}>
-                  ver mas
+                <button onClick={() => viewCommentForId(show._id)} className="buttonComment">
+                  View comments
                 </button>
               )}
               {open === true ? (
-                <div>
+                <div className="containerComments">
                   {comments?.map((comment) => {
                     if (comment?.showId?._id === show._id) {
                       return (
-                        <div key={comment._id}>
-                          <p>{comment.userId.name}</p>
+                        <div key={comment._id} className="comments">
+                          <p className="subttitleComment">{comment.userId.name}</p>
                           <img
                             className="photoComment"
                             src={comment.userId.photo}
-                            alt=""
+                            alt={comment.userId.name}
                           />
 
                           {edit === false && <p>{comment.comment}</p>}
@@ -95,6 +100,7 @@ export default function HotelShows(props) {
                               defaultValue={comment.comment}
                               onChange={handledChange}
                               name="comment"
+                              className="subttitleComment"
                             />
                           ) : (
                             <div></div>
@@ -103,25 +109,20 @@ export default function HotelShows(props) {
                           {userId === comment.userId._id && (
                             <>
                               {edit === true ? (
-                                <button onClick={sendEditData}>
-                                  Guardar Cambio
+                                <button className="buttonComment" onClick={sendEditData}>
+                                  Save changes
                                 </button>
                               ) : (
                                 <>
                                   <button
                                     onClick={() => editComment(comment._id)}
-                                    type="submit"
+                                    type="submit" className="buttonComment"
                                   >
-                                    Editar
+                                    Edit
                                   </button>
-                                  {/* <CancelComment
-                                    delete_commet={
-                                      (data = {
-                                        comment: comment._id,
-                                        userId: token,
-                                      })
-                                    }
-                                  /> */}
+                                  <button  className="buttonComment" /* onClick={deleteComment(comment._id)} */>
+                                    Delete
+                                  </button>
                                 </>
                               )}
                             </>
