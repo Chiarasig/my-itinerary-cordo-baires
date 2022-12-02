@@ -66,6 +66,7 @@ function App() {
           <Route path="edit/:id" element={<EditItineraryLayout />} />
         </Route>
         <Route path="/newcity" element={<NewCityLayout />} />
+        <Route path="/comments" element={<Comments />} />
         <Route path="/myhotels" element={<MyHotelsCard />} />
         <Route path="/editHotel" element={<EditHotelLayout />} />
         <Route path="/mycities" element={<MyCitiesCard />} />
