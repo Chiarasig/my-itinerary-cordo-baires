@@ -12,11 +12,6 @@ export default function MyCitiesCard() {
   const {idUser, token} = useSelector((state) => state.usersReducers);
   const {getMyCities} = myCitiesActions;
 
-  // useEffect(() => {
-  //   if (cities && cities.length === 0) {
-  //     dispatch(getMyCities(idUser));
-  //   }
-  // }, [cities]);
 
   useEffect(() => {
     dispatch(getMyCities(idUser));

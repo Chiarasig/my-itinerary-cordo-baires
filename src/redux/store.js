@@ -6,7 +6,7 @@ import myCitiesReducers from './reducers/myCityReducers'
 import myActivityReducers from './reducers/myActivityReducers'
 import myShowsReducers from './reducers/myShowsReducer'
 import usersReducers from './reducers/usersReducers'
-import commentsReducers from './reducers/commentsReducers'
+import reactionReducers from './reducers/reactionReducers'
 
 export const store = configureStore({
     reducer: {
@@ -17,6 +17,7 @@ export const store = configureStore({
         myActivityReducers,
         myShowsReducers,
         usersReducers,
+        reactionReducers,
         commentsReducers
     }
 })

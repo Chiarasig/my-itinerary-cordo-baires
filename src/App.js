@@ -29,8 +29,8 @@ import usersActions from "./redux/actions/usersActions";
 import { useEffect } from "react";
 import NewActivityLayout from "./layouts/NewActivityLayout";
 import NewShowLayout from "./layouts/NewShowLayout";
-import Comments from "./components/Comments/Comments";
-
+import NewReaction from "./components/NewReaction/NewReaction";
+import NewReactions from "./layouts/NewReactionsLayout";
 
 function App() {
 
@@ -91,6 +91,7 @@ function App() {
           <Route path="/myitinerary" element={<MyActivitiessCard />} />
           <Route path="/myitinerary/newItinerary" element={<NewActivityLayout />} />
           <Route path="/myitinerary/editItinerary/:id" element={<EditItineraryLayout />} />
+          <Route path="/newreactions" element={<NewReactions/>} />
         </Route>
       </Routes>
       <FooterLayout />

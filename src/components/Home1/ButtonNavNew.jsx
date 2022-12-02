@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import "../../index.css";
 
 export default function ButtonNavNew(props) {
-    let { texto1, texto2, titulo } = props;
+    let { texto1, texto2, titulo, texto3 } = props;
     let [mostrarOcultar, setMostrarOcultar] = useState(false);
     let hide = () => {
         setMostrarOcultar(!mostrarOcultar)
@@ -20,6 +20,9 @@ export default function ButtonNavNew(props) {
             </li>
             <li>
               <Link to={"/newhotel"}>{texto2}</Link>
+            </li>
+            <li>
+              <Link to={"/newreactions"}>{texto3}</Link>
             </li>
           </ul>
         </>

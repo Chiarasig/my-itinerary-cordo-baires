@@ -17,6 +17,9 @@ const myActivityReducers = createReducer(initialState, (builder) => {
     .addCase(myActivityActions.cargarActivity.fulfilled, (state, action) => {
         return {...state, cities: action.payload.cities};
     })
+    .addCase(myActivityActions.getActivity.fulfilled, (state, action) => {
+        return {...state, cities: action.payload.activity};
+    })
 });
 
 export default myActivityReducers;

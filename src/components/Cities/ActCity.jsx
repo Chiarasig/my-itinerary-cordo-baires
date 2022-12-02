@@ -3,6 +3,7 @@ import { useState } from 'react'
 import "../../index.css";
 import axios from 'axios';
 import {BASE_URL} from '../../api/url'
+import Reactions from '../Reactions/Reactions';
 
 export default function Activiti (props) { 
     const {idCity} = props;
@@ -35,6 +36,7 @@ export default function Activiti (props) {
               <h3 className="subtittleCardDetail">Description: {activity.description}</h3>
               <h3 className="subtittleCardDetail">Price: ${activity.price}</h3>
               <h3 className="subtittleCardDetail">Duration: {activity.duration}HS</h3>
+              <Reactions iditinerary={activity.id}/>
               </div>
             </div>
           ))
