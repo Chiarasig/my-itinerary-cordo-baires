@@ -16,17 +16,17 @@ export default function NavBar() {
   return (
     <>
     <div className='NavBar'>
-    <ButtonNav className="navBarH" titulo="Home" texto1="Cities" texto2="Hotels" />
+    <ButtonNav className="navBarH" titulo="Home 🡻" tituloflecha="tituloflecha" texto1="Cities" texto2="Hotels" />
     { logged && role === 'admin' ? (
-      <ButtonNavNew className="navBarMiddle" titulo="New" texto1="New City" texto2="New Hotel"/>
+      <ButtonNavNew className="navBarMiddle" titulo="New 🡻" texto1="New City" texto2="New Hotel"/>
     ) : null }
     { !logged ? (
-      <ButtonNavSig className="navBarR" titulo="Register" texto1="Sign In" texto2="Sign Up" />
+      <ButtonNavSig className="navBarR" titulo="Register 🡻" texto1="Sign In" texto2="Sign Up" />
     ) : (
       null
     )}
     { logged ? (
-      <ButtonNavMyUserId className="navBarMiddle" titulo="My" texto1="My cities" texto2="My hotels" texto3="My itinerary" texto4="My Shows"/>
+      <ButtonNavMyUserId className="navBarMiddle" titulo="My 🡻" texto1="My Cities" texto2="My Hotels" texto3="My Itinerary" texto4="My Shows"/>
     ) : null }
     { logged ? (
       < ButtonNavLogout />

@@ -8,19 +8,28 @@ import "react-toastify/dist/ReactToastify.css";
 
 export default function MyHotelsCard() {
   const dispatch = useDispatch();
+  const {idUser, token} = useSelector((state) => state.usersReducers);
   const hotels = useSelector((state) => state.myHotelsReducers.hotels);
+  const {getMyHotels} = myHotelsAction;
 
-  useEffect(() => {
-    let userId = "636d5a9512a6c5227df1ef0d";
+/*   useEffect(() => {
     if (hotels && hotels.length === 0) {
-      dispatch(myHotelsAction.getMyHotels(userId));
+      dispatch(getMyHotels(idUser));
     }
-  }, [hotels]);
+  }, [hotels]); */
+  useEffect(() => {
+
+    dispatch(getMyHotels(idUser));
+}, []);
 
   const deleteFunc = (event, idHotel) => {
     event.preventDefault();
+    let data= {
+      token,
+      idHotel
+    }
     if (window.confirm("Are you sure you want to delete this hotel?")) {
-      if (dispatch(myHotelsAction.deleteMyHotels(idHotel))) {
+      if (dispatch(myHotelsAction.deleteMyHotels(data))) {
         toast.success("the hotel was deleted successfully", {
           position: toast.POSITION.TOP_RIGHT,
         });
@@ -40,37 +49,35 @@ export default function MyHotelsCard() {
         <h2>My hotels by userId</h2>
       </div>
       <div className="flex wrap w-100 justify-center align-center g-25 pb-3">
-        {hotels && hotels.length > 0 ? (
-          hotels.map((hotels) => (
-            <div key={hotels._id} className="myHotelCard">
+        {hotels.length > 0 && (
+          hotels.map((hotel) => (
+            <div key={hotel._id} className="myHotelCard">
               <img
                 className="cardImgHotel"
-                src={hotels.photo}
-                alt={hotels.name}
+                src={hotel.photo}
+                alt={hotel.name}
               />
-              <h3 className="subtittleCard">{hotels.name}</h3>
+              <h3 className="subtittleCard">{hotel.name}</h3>
               <div className="buttonMyHotels">
               <Link
-                to={`/hotels/detail/${hotels._id}`}
+                to={`/hotels/detail/${hotel._id}`}
                 className="viewMoreSubttitle"
               >
                 <p className="viewMore">view more</p>
               </Link>
               <Link
-                to={`/hotels/editHotel/${hotels._id}`}
+                to={`/hotels/editHotel/${hotel._id}`}
                 className="viewMoreSubttitle"
               >
                 <p className="viewMore">edit</p>
               </Link>
-                <div className="viewMore" onClick={(event) => deleteFunc(event, `${hotels._id}`)}>
+                <div className="viewMore" onClick={(event) => deleteFunc(event, `${hotel._id}`)}>
                   delete
                 </div>
               </div>
               <ToastContainer/>
             </div>
           ))
-        ) : (
-          <h2>No results were found, please try again with another search</h2>
         )}
       </div>
     </div>

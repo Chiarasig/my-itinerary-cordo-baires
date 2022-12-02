@@ -14,6 +14,60 @@
   align-items: center;
   padding: 1rem;
   font-family: Arial, Helvetica, sans-serif;
+  min-height: 40vh;
+}
+.notFound{
+  min-height: 30vh;
+}
+.photoComment{
+  width: 50px;
+  height: 50px;
+  margin-right: 1rem;
+}
+.comments{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0.5rem;
+  flex-wrap: wrap;
+  color: white;
+  border-radius: 9px;
+  border: 2px solid #e79200;
+  padding: 2px;
+}
+.sendComments{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.boxComment{
+  height: 30px;
+  width: 80%;
+  margin-top: 0.5rem;
+}
+.buttonComment{
+  background-color: #f0c023;
+  border: none;
+  padding: 5px;
+  border-radius: 7px;
+  margin-top: 7px;
+  margin-bottom: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-left: 1rem;
+}
+.subttitleComment{
+  margin-right: 1rem;
+}
+.tittleNavProfile{
+  margin-top: 0.8rem;
+}
+.tittleItinerary{
+  margin-right: 2rem;
+  margin-top: 0.8rem;
 }
 .linkHotels{
   background-color:#f0c023;
@@ -197,7 +251,7 @@ a {
   flex-direction: column;
   text-align: center;
   padding: 2px;
-  height: 450px;
+  height: 900px;
   box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.2);
 }
 .containerActivityDetails{
@@ -351,13 +405,38 @@ input {
   align-items: center;
   margin-top: 1rem;
 }
-.newCityLayout{
-  min-height: 70vh;
+.myProfile{
+  min-height: 85vh;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
   align-items: center;
   margin-top: 1rem;
+}
+.newCityLayout{
+  min-height: 75vh;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+}
+.newShowLayout{
+  min-height: 85vh;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+}
+.newActivityLayout{
+  min-height: 75vh;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+  margin-bottom: 10rem;
 }
 .newHotelLayout{
   min-height: 90vh;
@@ -389,8 +468,8 @@ input {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 2rem;
-  min-height: 75vh;
+  margin-bottom: 15rem;
+  min-height: 70vh;
 }
 
 .editShowLayout{
@@ -399,7 +478,7 @@ input {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 2rem;
+  margin-bottom: 10rem;
   min-height: 75vh;
 }
 .tittleImgLogin{
@@ -426,6 +505,41 @@ input {
   justify-content: center;
   width: 80%;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.buttonLogout{
+  background-color: #f0c023;
+  border: none;
+  padding: 7px;
+  border-radius: 7px;
+  margin-top: 7px;
+  margin-bottom: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.2rem;
+}
+.buttonProfile{
+  background-color: #624410;
+  color: rgba(255, 255, 255, 0.726);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 1rem;
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+.listLogout{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 /* Login Form */
 /* Register Form */
@@ -633,6 +747,9 @@ ul {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 18px;
 }
+.photoProfile{
+  width: 100px;
+}
 .checkboxCities {
   color: white;
   flex-wrap: wrap;
@@ -674,7 +791,7 @@ ul {
   background: white;
 }
 .cardImg {
-  height: 85%;
+  height: 80%;
   padding: 10px;
   border: none;
   border-radius: 1.5rem;

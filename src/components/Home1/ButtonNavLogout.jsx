@@ -1,13 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import usersActions from "../../redux/actions/usersActions";
 
 
 export const ButtonNavLogout = () => {
   const { signOff } = usersActions;
+  const dispatch = useDispatch();  
   let user = useSelector((store) => store.usersReducers);
   const { name, lastName, photo } = user;
-  const dispatch = useDispatch();
+  let [mostrarOcultar, setMostrarOcultar] = useState(false);
+  let hide = () => {
+    setMostrarOcultar(!mostrarOcultar)
+  };
 
   const handleLogOut = (e) => {
     e.preventDefault();
@@ -19,19 +24,25 @@ export const ButtonNavLogout = () => {
 
   return (
     <div>
-      <ul>
-        <li>
+      {mostrarOcultar ? 
+      (<>
+        <p onMouseEnter={hide} className="tittleNavbar"><Link to={"/profile"}>My profile 🡻</Link></p>
+      <ul className="listLogout">
+        <li className="flex">
           <img src={photo} alt={name} width={"50px"} height={"50px"} />
+          <p className="tittleNavProfile">{`${name} ${lastName}`}</p>
         </li>
         <li>
-          <p>{`${name} ${lastName}`}</p>
-        </li>
-        <li>
-          <button type="button" onClick={handleLogOut}>
+          <button type="button" onClick={handleLogOut} className="buttonLogout">
             Log Out
           </button>
         </li>
       </ul>
+      </>) : 
+      (<>
+      <p onClick={hide} className="tittleNavbar">My profile 🡻</p>
+      </>)}
+
     </div>
   );
 };

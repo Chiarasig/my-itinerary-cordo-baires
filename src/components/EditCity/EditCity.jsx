@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useRef } from "react";
 import "../../index.css";
 import { ToastContainer, toast } from "react-toastify";
@@ -6,8 +6,13 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { BASE_URL } from "../../api/url";
 import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import citiesActions from "../../redux/actions/citiesActions";
 
 export default function EditCity() {
+  const dispatch = useDispatch();
+  const { idUser: userId, token } = useSelector( (state) => state.usersReducers);
+  const cities = useSelector((state) => state.cityReducer.cities);
   const notify = () => {
     toast();
   };
@@ -17,7 +22,20 @@ export default function EditCity() {
   let continent = useRef();
   let photo = useRef();
   let population = useRef();
-  let userId = useRef();
+
+  useEffect(() => {
+    axios
+      .get(`${BASE_URL}/cities/${id}`)
+      .then((res) => {
+        let city = res.data.response;
+        information.current.value = city.information;
+        name.current.value = city.name;
+        photo.current.value = city.photo;
+        continent.current.value = city.continent;
+        population.current.value = city.population;
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   async function editCity(event) {
     event.preventDefault();
@@ -26,10 +44,13 @@ export default function EditCity() {
       continent: continent.current.value,
       photo: photo.current.value,
       population: population.current.value,
-      userId: userId.current.value,
+      userId,
     };
+
+    let headers = { headers: { Authorization: `Bearer ${token}` } }
+    
     try {
-      let res = await axios.put(`${BASE_URL}/city/${id}`, editCity);
+      let res = await axios.put(`${BASE_URL}/city/${id}`, editCity, headers);
       if (res.data.success) {
         toast.success("The city was successfully modified");
       } else {
@@ -38,6 +59,10 @@ export default function EditCity() {
     } catch (error) {
       console.log(error);
     }
+    name: name.current.value= "";
+    continent: continent.current.value= "";
+    photo: photo.current.value= "";
+    population: population.current.value = "";
   }
 
   return (
@@ -88,16 +113,6 @@ export default function EditCity() {
               autoComplete="on"
               placeholder="Population"
               ref={population}
-            />
-          </label>
-          <label className="labelLogin">
-          UserId
-            <input
-              className="inputHotelNew"
-              type="text"
-              autoComplete="on"
-              placeholder="UserId"
-              ref={userId}
             />
           </label>
           <div className="contenedorByP">

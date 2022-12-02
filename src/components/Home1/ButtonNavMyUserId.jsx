@@ -7,7 +7,7 @@ import '../../index.css'
 export default function ButtonNavSig(props) {
   let user = useSelector((store) => store.usersReducers)
   const { role } = user;
-  let { texto1, texto2, titulo, texto3, texto4 } = props;
+  let { texto1, texto2, titulo, tituloflecha, texto3, texto4 } = props;
   let [mostrarOcultar, setMostrarOcultar] = useState(false);
   let hide = () => {
     setMostrarOcultar(!mostrarOcultar)

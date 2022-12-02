@@ -3,7 +3,7 @@ import EditShow from '../components/EditShow/EditShow';
 import LogReg from "../Image/registerCiudad.png";
 import "../index.css";
 
-export default function EditHotelLayout() {
+export default function EditShowLayout() {
   return (
     
     <div className="editShowLayout">
