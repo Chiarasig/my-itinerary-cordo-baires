@@ -37,7 +37,7 @@ export default function NewReaction() {
       name: name.current.value,
       icon: icon.current.value,
       iconBack: iconBack.current.value,
-      userId: idUser,
+      userId: [idUser],
     };
     console.log(newReaction);
 

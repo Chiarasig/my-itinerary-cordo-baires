@@ -26,7 +26,7 @@ export default function NavBar() {
       null
     )}
     { logged ? (
-      <ButtonNavMyUserId className="navBarMiddle" titulo="My 🡻" texto1="My Cities" texto2="My Hotels" texto3="My Itinerary" texto4="My Shows"/>
+      <ButtonNavMyUserId className="navBarMiddle" titulo="My 🡻" texto1="My Cities" texto2="My hotels" texto3="My Itinerary" texto4="My Shows" texto5="My Reactions"/>
     ) : null }
     { logged ? (
       < ButtonNavLogout />

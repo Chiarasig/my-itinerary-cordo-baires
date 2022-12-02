@@ -31,6 +31,7 @@ import NewActivityLayout from "./layouts/NewActivityLayout";
 import NewShowLayout from "./layouts/NewShowLayout";
 import NewReaction from "./components/NewReaction/NewReaction";
 import NewReactions from "./layouts/NewReactionsLayout";
+import MyReactionsCard from "./components/MyReactions/MyReactionsCard";
 
 function App() {
 
@@ -55,6 +56,7 @@ function App() {
       <AutoToTop></AutoToTop>
       <BackToTopButton />
       <Routes>
+        <Route path="/myreactions" element={<MyReactionsCard/>} />
         <Route path="/" element={<Home1y2 />} />
         <Route path="/register" element={<RegisterSignUp />} />
         <Route path="/cities">

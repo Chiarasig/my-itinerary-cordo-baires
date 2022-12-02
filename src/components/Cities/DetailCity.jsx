@@ -29,15 +29,15 @@ export default function DetailCity() {
   return (
     <div className="containerDetailHotel">
       <div className="containerTittleDetailHotel">
-        <h1 className="tittleDetail">City panel</h1>
+        <h1 className="tittleDetail Font_Arial">City panel</h1>
       </div>
       <div key={city._id} className="containerCardDetailHotel">
         <img className="cardDetailImg" src={city.photo} alt={city.name} />
         <div className="subttitleDetails">
-          <h3 className="subtittleCardDetail">{city.name}</h3>
-          <h3 className="subtittleCardDetail">Continent: {city.continent}</h3>
-          <h3 className="subtittleCardDetail">Population: {city.population}</h3>
-          <h3 className="subtittleCardDetail">
+          <h3 className="subtittleCardDetail color_black">{city.name}</h3>
+          <h3 className="subtittleCardDetail color_black">Continent: {city.continent}</h3>
+          <h3 className="subtittleCardDetail color_black">Population: {city.population}</h3>
+          <h3 className="subtittleCardDetail color_black">
             {" "}
             <img
               className="stlye_img_admind"
@@ -50,7 +50,7 @@ export default function DetailCity() {
       </div>
       <div className="containerShowTittleHotel">
         <div className="containerTittleDetailHotel">
-          <h1 className="tittleDetail">Activities panel</h1>
+          <h1 className="tittleDetail Font_Arial">Activities panel</h1>
         </div>
         <div className="containerCardShowsHotel">
           {city._id ? <Activiti idCity={city._id} /> : null}

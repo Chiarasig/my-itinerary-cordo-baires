@@ -4,6 +4,12 @@
   box-sizing: border-box;
 }
 
+.color_black {
+  color: #000;
+}
+.Font_Arial {
+  font-family: Arial, Helvetica, sans-serif;
+}
 .stlye_img_admind{
   width: 20px;
   height: 20px;
@@ -287,6 +293,8 @@ a {
   padding-top: 5px;
   font-family: Arial, Helvetica, sans-serif;
   color: rgba(255, 255, 255, 0.911);
+  -webkit-text-stroke: 0.2px rgb(0, 0, 0);
+
 }
 .cardImgShow{
   width: 100%;

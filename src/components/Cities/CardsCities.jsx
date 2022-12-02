@@ -84,7 +84,7 @@ export default function CardsCities() {
           </div>
         ))
         : (
-          <h1>No results were found, please try again with another search</h1>
+          <h1 className="Font_Arial">No results were found, please try again with another search</h1>
         )}
         </div>
     </>

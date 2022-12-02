@@ -25,7 +25,7 @@ export default function Activiti (props) {
         <div className="cardsShows">
             {activities.length !== 0
         ? activities.map((activity) => (
-            <div key={activity.id} className="containerActivityDetails">
+            <div key={activity._id} className="containerActivityDetails">
               <img
                 className="cardImgShow"
                 src={activity.photo}
@@ -36,7 +36,7 @@ export default function Activiti (props) {
               <h3 className="subtittleCardDetail">Description: {activity.description}</h3>
               <h3 className="subtittleCardDetail">Price: ${activity.price}</h3>
               <h3 className="subtittleCardDetail">Duration: {activity.duration}HS</h3>
-              <Reactions iditinerary={activity.id}/>
+              <Reactions iditinerary={activity._id}/>
               </div>
             </div>
           ))
