@@ -11,7 +11,7 @@ export default function MyShowsCard() {
   const {idUser, token} = useSelector((state) => state.usersReducers);
   const hotels = useSelector((state) => state.myShowsReducers.hotels);
   const {getMyShows} = myShowsAction;
-
+console.log(hotels)
   useEffect(() => {
 
       dispatch(getMyShows(idUser));

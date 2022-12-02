@@ -29,6 +29,7 @@ import usersActions from "./redux/actions/usersActions";
 import { useEffect } from "react";
 import NewActivityLayout from "./layouts/NewActivityLayout";
 import NewShowLayout from "./layouts/NewShowLayout";
+import Comments from "./components/Comments/Comments";
 
 
 function App() {
@@ -63,6 +64,7 @@ function App() {
           <Route path="edit/:id" element={<EditItineraryLayout />} />
         </Route>
         <Route path="/newcity" element={<NewCityLayout />} />
+        <Route path="/comments" element={<Comments />} />
         <Route path="/myhotels" element={<MyHotelsCard />} />
         <Route path="/editHotel" element={<EditHotelLayout />} />
         <Route path="/mycities" element={<MyCitiesCard />} />
