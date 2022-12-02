@@ -7,6 +7,7 @@ import myActivityReducers from './reducers/myActivityReducers'
 import myShowsReducers from './reducers/myShowsReducer'
 import usersReducers from './reducers/usersReducers'
 import reactionReducers from './reducers/reactionReducers'
+import commentsReducers from './reducers/commentsReducers'
 
 export const store = configureStore({
     reducer: {
