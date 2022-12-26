@@ -53,7 +53,7 @@ export default function HotelShows(props) {
     setEdit(false);
   };
 
-/*   const deleteComment = (id_comment) => {
+  /*   const deleteComment = (id_comment) => {
     window.alert("estás segura");
     var info = Object.assign({}, { id: id_comment }, { token: token });
     dispatch(commentsAction.deleteComments(info));
@@ -74,69 +74,84 @@ export default function HotelShows(props) {
               <h3 className="subtittleCardDetail">Date: {show.date}</h3>
 
               {open === true ? (
-                <button onClick={() => setOpen(false)} className="buttonComment">Hide comments</button>
+                <button
+                  onClick={() => setOpen(false)}
+                  className="buttonComment"
+                >
+                  Hide comments
+                </button>
               ) : (
-                <button onClick={() => viewCommentForId(show._id)} className="buttonComment">
+                <button
+                  onClick={() => viewCommentForId(show._id)}
+                  className="buttonComment"
+                >
                   View comments
                 </button>
               )}
-              {open === true ? (
-                <div className="containerComments">
-                  {comments?.map((comment) => {
-                    if (comment?.showId?._id === show._id) {
-                      return (
-                        <div key={comment._id} className="comments">
-                          <p className="subttitleComment">{comment.userId.name}</p>
-                          <img
-                            className="photoComment"
-                            src={comment.userId.photo}
-                            alt={comment.userId.name}
-                          />
-
-                          {edit === false && <p>{comment.comment}</p>}
-                          {edit === true && data.id === comment._id ? (
-                            <input
-                              type="text"
-                              defaultValue={comment.comment}
-                              onChange={handledChange}
-                              name="comment"
-                              className="subttitleComment"
-                            />
-                          ) : (
-                            <div></div>
-                          )}
-
-                          {userId === comment.userId._id && (
-                            <>
-                              {edit === true ? (
-                                <button className="buttonComment" onClick={sendEditData}>
-                                  Save changes
-                                </button>
-                              ) : (
-                                <>
-                                  <button
-                                    onClick={() => editComment(comment._id)}
-                                    type="submit" className="buttonComment"
-                                  >
-                                    Edit
-                                  </button>
-                                  <button  className="buttonComment" /* onClick={deleteComment(comment._id)} */>
-                                    Delete
-                                  </button>
-                                </>
-                              )}
-                            </>
-                          )}
-                        </div>
-                      );
-                    }
-                  })}
-                </div>
-              ) : (
-                <div></div>
-              )}
             </div>
             <Comments id={show._id} />
+            {open === true ? (
+              <div className="containerComments">
+                {comments?.map((comment) => {
+                  if (comment?.showId?._id === show._id) {
+                    return (
+                      <div key={comment._id} className="comments">
+                        <p className="subttitleComment">
+                          {comment.userId.name}
+                        </p>
+                        <img
+                          className="photoComment"
+                          src={comment.userId.photo}
+                          alt={comment.userId.name}
+                        />
+
+                        {edit === false && <p>{comment.comment}</p>}
+                        {edit === true && data.id === comment._id ? (
+                          <input
+                            type="text"
+                            defaultValue={comment.comment}
+                            onChange={handledChange}
+                            name="comment"
+                            className="subttitleComment"
+                          />
+                        ) : (
+                          <div></div>
+                        )}
+                        {userId === comment.userId._id && (
+                          <>
+                            {edit === true ? (
+                              <button
+                                className="buttonComment"
+                                onClick={sendEditData}
+                              >
+                                Save changes
+                              </button>
+                            ) : (
+                              <>
+                                <button
+                                  onClick={() => editComment(comment._id)}
+                                  type="submit"
+                                  className="buttonComment"
+                                >
+                                  Edit
+                                </button>
+                                <button
+                                  className="buttonComment" /* onClick={deleteComment(comment._id)} */
+                                >
+                                  Delete
+                                </button>
+                              </>
+                            )}
+                          </>
+                        )}
+                      </div>
+                    );
+                  }
+                })}
+              </div>
+            ) : (
+              <div></div>
+            )}
           </div>
         ))
       ) : (

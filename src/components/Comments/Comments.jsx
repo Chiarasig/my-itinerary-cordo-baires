@@ -13,9 +13,9 @@ const  Comments =({id}) => {
     comment:'',
     date: new Date(),
   })
-
+//código a actualizar, comparar con el del Deconfort
   
-  var dataBack = Object.assign({}, data, {userId:userId}, {showId:id},{token:token})
+  let dataBack = Object.assign({}, data, {userId:userId}, {showId:id},{token:token})
 
   const handledChange =(event)=>{
 
