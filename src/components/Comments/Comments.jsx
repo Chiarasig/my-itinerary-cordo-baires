@@ -14,6 +14,7 @@ const  Comments =({id}) => {
     date: new Date(),
   })
 //código a actualizar, comparar con el del Deconfort
+//ver librerias
   
   let dataBack = Object.assign({}, data, {userId:userId}, {showId:id},{token:token})
 
